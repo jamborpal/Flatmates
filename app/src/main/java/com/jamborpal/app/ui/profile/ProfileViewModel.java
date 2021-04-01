@@ -1,15 +1,14 @@
-package com.jamborpal.app.ui.home;
+package com.jamborpal.app.ui.profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
-
+public class ProfileViewModel extends ViewModel {
     private String mText;
 
-    public HomeViewModel() {
-        mText = "This is Home Fragment";
+    public ProfileViewModel() {
+        mText = "This is Profile Fragment";
     }
 
     public String getText() {
