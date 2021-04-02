@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity
-            android:name=".MainActivity"
+            android:name=".login.LoginHandler"
             android:label="@string/app_name"
             android:theme="@style/Theme.App.NoActionBar">
             <intent-filter>
@@ -19,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".register.RegisterHandler"/>
+
     </application>
 
 </manifest>

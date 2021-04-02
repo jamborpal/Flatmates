@@ -4,27 +4,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    tools:context=".login.LoginHandler">
 
     <Button
         android:id="@+id/login"
-        android:layout_width="302dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="176dp"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.775"
+        android:onClick="Login"/>
 
     <EditText
         android:id="@+id/password"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="244dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
@@ -33,29 +37,38 @@
         android:id="@+id/username"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="336dp"
         android:ems="10"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginEnd="286dp"
+        android:layout_marginBottom="396dp"
+        android:fontFamily="sans-serif-light"
         android:text="@string/username"
-        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginEnd="286dp"
+        android:layout_marginBottom="300dp"
+        android:fontFamily="sans-serif-light"
         android:text="@string/password"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -66,16 +79,21 @@
         android:layout_marginBottom="16dp"
         android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="Register"/>
 
     <TextView
 
         android:layout_width="300dp"
         android:layout_height="75dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="72dp"
-        android:textSize="30sp"
+        android:layout_marginTop="84dp"
+        android:fontFamily="sans-serif-light"
+        android:lineSpacingExtra="12sp"
         android:text="@string/welcome"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
