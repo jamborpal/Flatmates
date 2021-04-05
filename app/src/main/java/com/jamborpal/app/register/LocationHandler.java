@@ -2,33 +2,31 @@ package com.jamborpal.app.register;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.jamborpal.app.MainActivity;
 import com.jamborpal.app.R;
 import com.jamborpal.app.login.LoginHandler;
 
-public class RegisterHandler extends AppCompatActivity {
-    public RegisterHandler(){
-
-    }
-
+public class LocationHandler extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_location);
     }
 
-    public void Login(View view) {
-        Intent intent = new Intent(this, LoginHandler.class);
+    public void choose(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
-    public void Register(View view) {
-        Intent intent = new Intent(this, LocationHandler.class);
+    public void add(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

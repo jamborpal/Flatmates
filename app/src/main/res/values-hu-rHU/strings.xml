@@ -11,4 +11,14 @@
     <string name="login">Bejelentkezés</string>
     <string name="register">Regisztráció</string>
     <string name="welcome">Üdvözöljük</string>
+    <string name="repeatpassword">Jelszó újra</string>
+    <string name="choose">Válassz</string>
+    <string name="id">Azonosító</string>
+    <string name="log_out">Kijelentkezés</string>
+    <string name="enter_the_id_of_apartment_you_would_like_to_join">Írja be az azonosítóját az apartmanjának</string>
+    <string name="give_an_id_to_your_apartment_collaboration">Adjon egy azonosítót az apartmanjának</string>
+    <string name="add_an_apartment">Addjion hozzá egy apartmant</string>
+    <string name="choose_an_apartment">Válasszon egy apartmant</string>
+    <string name="fullname">Teljes név</string>
+    <string name="add">Létrehozás</string>
 </resources>

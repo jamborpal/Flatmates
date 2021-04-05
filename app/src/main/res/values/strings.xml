@@ -18,8 +18,16 @@
     <string name="register">Register</string>
     <string name="welcome">WELCOME</string>
     <string name="repeatpassword">Repeat Password</string>
-    <string name="email">Email</string>
+    <string name="email" translatable="false">Email</string>
     <string name="fullname">Full name</string>
+    <string name="choose_an_apartment">Choose an apartment</string>
+    <string name="add_an_apartment">Add an apartment</string>
+    <string name="give_an_id_to_your_apartment_collaboration">Give an ID to your apartment collaboration</string>
+    <string name="enter_the_id_of_apartment_you_would_like_to_join">Enter the ID of apartment you would like to join</string>
+    <string name="add">Add</string>
+    <string name="choose">Choose</string>
+    <string name="id">ID</string>
+    <string name="log_out">Log out</string>
 
 
 </resources>
