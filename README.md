@@ -17,8 +17,8 @@ As far as the requirements of the application are concered, they have been MoSCo
 |5.|As a flatmate, I want to be able to see the location of my home so I can navigate back in case I am lost.|
 |6.|As a flatmate, I want to be able to notify my flatmates if they are too loud or disturbing, so that I can live peacefully.|
 ||Could have|
-|7.|As a flatmate, I want to be able to add and remove flatmates in case of tenant changes.| MAAYBE NO
-|8.|As a flatmate, I want to know when my flatmates are home, so that I know if I am home alone.| MAAYBE NO
+|7.|As a flatmate, I want to be able to add and remove flatmates in case of tenant changes.|
+|8.|As a flatmate, I want to know when my flatmates are home, so that I know if I am home alone.|
 |9.|As a flatmate, I want to be able to organize events with my flatmates, so that we are not strangers living together.|
 |10.|As a flatmate, I want to be able to ask questions/talk to my flatmates, so that it’s easier to keep in touch.|
 |11.|As a flatmate, I want to be able to register the rooms and its tenants and common spaces of the flat, so the rooms can be managed accordingly.|
