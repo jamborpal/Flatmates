@@ -16,15 +16,34 @@
     </group>
     <group android:id="@+id/nav2">
         <item
+            android:id="@+id/nav_expenses"
+            android:title="@string/expenses"
+            android:icon="@drawable/ic_expenses"/>
+        <item
+            android:id="@+id/nav_tasks"
+            android:title="@string/menu_tasks"
+            android:icon="@drawable/ic_chores"/>
+        <item
+            android:id="@+id/nav_events"
+            android:title="@string/menu_events"
+            android:icon="@drawable/ic_event"/>
+        <item
+            android:id="@+id/nav_messageboard"
+            android:title="@string/menu_messageboard"
+            android:icon="@drawable/ic_messageboard"/>
+        <item
             android:id="@+id/nav_takemehome"
             android:title="@string/menu_takemehome"
             android:icon="@drawable/ic_take_me_home"/>
+
+
+
+    </group>
+    <group android:id="@+id/nav3">
         <item
             android:id="@+id/nav_contact"
             android:title="@string/menu_contact"
             android:icon="@drawable/ic_contact"/>
-    </group>
-    <group android:id="@+id/nav3">
         <item
             android:id="@+id/nav_settings"
             android:title="@string/menu_settings"
