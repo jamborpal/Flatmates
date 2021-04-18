@@ -18,8 +18,7 @@ public class EventsFragment extends Fragment { private EventsViewModel eventsVie
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         eventsViewModel = new ViewModelProvider(this).get(EventsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_events, container, false);
-        TextView textView = root.findViewById(R.id.text_events);
-        textView.setText(eventsViewModel.getText());
+
 
         return root;
     }

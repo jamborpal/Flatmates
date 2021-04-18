@@ -18,8 +18,7 @@ public class TasksFragment extends Fragment { private TasksViewModel tasksViewMo
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         tasksViewModel = new ViewModelProvider(this).get(TasksViewModel.class);
         View root = inflater.inflate(R.layout.fragment_tasks, container, false);
-        TextView textView = root.findViewById(R.id.text_task);
-        textView.setText(tasksViewModel.getText());
+
 
         return root;
     }

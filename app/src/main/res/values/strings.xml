@@ -37,6 +37,17 @@
     <string name="menu_tasks">Tasks</string>
     <string name="menu_events">Events</string>
     <string name="menu_messageboard">Message board</string>
+    <string name="organize_an_event">Organize an event</string>
+    <string name="description">Description</string>
+    <string name="add_event">Add event</string>
+    <string name="add_an_expense">Add an expense</string>
+    <string name="title">Title</string>
+    <string name="price">Price</string>
+    <string name="money_spent_on_apartment">Money spent on apartment:</string>
+    <string name="phone_number">Phone number:</string>
+    <string name="email_dot">Email:</string>
+    <string name="your_tasks">Your tasks</string>
+    <string name="latest_costs">Latest costs</string>
 
 
 </resources>

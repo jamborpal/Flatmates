@@ -1,54 +1,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container2"
+    android:id="@+id/container1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/contactspanel"
-        android:layout_margin="20dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/contactspanel">
 
         <TextView
-            android:id="@+id/rv_item_name"
+            android:id="@+id/event_name"
             android:layout_width="157dp"
             android:layout_height="28dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="#911F1F"
-            android:text="Pál Jámbor"
+            android:backgroundTint="@color/white"
+            android:text="Event name"
             android:textAlignment="textStart"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.141"
+            app:layout_constraintHorizontal_bias="0.139"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.333" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/contact_call"
+            android:id="@+id/remove_task"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginStart="56dp"
-            android:background="@drawable/ic_baseline_call_24"
+            android:layout_marginStart="308dp"
+            android:background="@drawable/ic_baseline_remove"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rv_item_name"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.506" />
+            app:layout_constraintVertical_bias="0.457" />
 
         <Button
-            android:id="@+id/contact_email"
+            android:id="@+id/accept_task"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginStart="29dp"
-            android:background="@drawable/ic_email"
+            android:layout_marginStart="260dp"
+            android:background="@drawable/ic_baseline_check"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/contact_call"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.506" />
+            app:layout_constraintVertical_bias="0.457" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -23,8 +23,7 @@ public class ExpensesFragment extends Fragment {
         expensesViewModel =
                 new ViewModelProvider(this).get(ExpensesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_expenses, container, false);
-        final TextView textView = root.findViewById(R.id.text_expenses);
-        textView.setText(expensesViewModel.getText());
+
         return root;
     }
 }
