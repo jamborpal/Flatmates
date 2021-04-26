@@ -1,14 +1,29 @@
 package com.jamborpal.app.ui.tasks;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
-public class TasksViewModel extends ViewModel { private String mtext;
+import com.jamborpal.app.model.Chore;
+import com.jamborpal.app.model.Model;
+import com.jamborpal.app.model.ModelManager;
+
+import java.util.ArrayList;
+
+public class TasksViewModel extends ViewModel {
+    private Model model;
 
     public TasksViewModel() {
-        mtext = "This is the tasks fragment";
+        model = new ModelManager();
+
     }
 
-    public String getText() {
-        return mtext;
+
+    public void addTask(Chore task) {
+        model.AddChore(task);
+
+    }
+    public ArrayList<Chore> getAllNotAssignedChores(){
+        return  model.getChoresNotAssigned();
     }
 }

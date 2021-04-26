@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.tasks.TasksFragment">
 
 
     <TextView
@@ -25,7 +26,7 @@
         android:layout_height="22dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="36dp"
-        android:text="Title"
+        android:text="@string/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -34,12 +35,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:text="Description"
+        android:text="@string/description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/task_title" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/task_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -50,17 +51,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/add_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="10dp"
-        android:text="Add task"
+        android:onClick="addTask"
+        android:text="@string/add_task"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/task_description" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/task_description"
         android:layout_width="342dp"
         android:layout_height="49dp"
         android:layout_marginStart="28dp"
@@ -69,11 +71,14 @@
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvt"
         android:layout_width="match_parent"
         android:layout_height="350dp"
+        android:layout_marginTop="91dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_task" />
 </androidx.constraintlayout.widget.ConstraintLayout>

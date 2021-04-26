@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/app_background"
     tools:context=".register.LocationHandler">
 
@@ -13,21 +13,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="8dp"
+        android:onClick="choose"
         android:text="@string/choose"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="choose"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/adding_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="616dp"
         android:layout_marginEnd="8dp"
         android:text="@string/add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="add"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -42,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/flatID"
         android:layout_width="232dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
@@ -76,6 +75,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView26"
+        android:layout_width="314dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="39dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/country"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="314dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="15dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/city"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/country" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="314dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="15dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/address"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cityk" />
+
+    <TextView
         android:id="@+id/textView3"
         android:layout_width="326dp"
         android:layout_height="33dp"
@@ -100,13 +130,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="370dp"
-        android:layout_height="281dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent" />
+    <EditText
+        android:id="@+id/country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <EditText
+        android:id="@+id/cityk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

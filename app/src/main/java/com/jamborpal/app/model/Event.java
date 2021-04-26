@@ -1,42 +1,59 @@
 package com.jamborpal.app.model;
 
 public class Event {
-    public String Title;
-    public String Description;
-    public String Time;
-    public int Organiser;
-    public int EventID;
+    public String title;
+    public String description;
+    public String time;
+    public int organiser;
+    public int eventid;
+public Event(){
 
+}
     public Event(String title, String description, String time, int organiser) {
-        Title = title;
-        Description = description;
-        Time = time;
-        Organiser = organiser;
-        this.EventID = (int) (System.currentTimeMillis() & 0xfffffff);
+        this.title = title;
+        this.description = description;
+        this.time = time;
+        this.organiser = organiser;
+        this.eventid = (int) (System.currentTimeMillis() & 0xfffffff);
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getTime() {
-        return Time;
+        return time;
     }
 
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public int getOrganiser() {
-        return Organiser;
+        return organiser;
     }
 
-
-    public int getEventID() {
-        return EventID;
+    public void setOrganiser(int organiser) {
+        this.organiser = organiser;
     }
 
+    public int getEventid() {
+        return eventid;
+    }
+
+    public void setEventid(int eventid) {
+        this.eventid = eventid;
+    }
 }

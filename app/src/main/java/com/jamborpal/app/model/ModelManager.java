@@ -1,32 +1,38 @@
 package com.jamborpal.app.model;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class ModelManager implements Model {
     //Add variable of database instance
     private Flatmate LoggedInUser;
     private Flat flat;
+    private FirebaseDatabase database;
 
     public ModelManager(Flatmate loggedInUser) {
         LoggedInUser = loggedInUser;
     }
 
     public ModelManager() {
-        ArrayList<Room> rooms= new ArrayList<>();
+        database = FirebaseDatabase.getInstance();
+     /*   ArrayList<Room> rooms = new ArrayList<>();
         Room room1 = new Room("Room1");
         Room room2 = new Room("Room2");
-        Room room3= new Room("Room3");
-        this.flat = new Flat("Horsens", "Denmark", "Radhustorvet", rooms);
+        Room room3 = new Room("Room3");
+        this.flat = new Flat("firstflat","Horsens", "Denmark", "Radhustorvet");
         this.LoggedInUser = new Flatmate("Pál Jámbor", "jamborpal@gmail.com", "jamborpal", "1234");
         LoggedInUser.setPhoneNumber(0211313);
-        Flatmate flatmate= new Flatmate("Toyota","toyi@gmail.om","toy","1234");
+        Flatmate flatmate = new Flatmate("Toyota", "toyi@gmail.om", "toy", "1234");
         flatmate.setPhoneNumber(32432432);
-
+        Chore chore = new Chore("title", "desctiption");Chore chore1 = new Chore("titlsfdge", "descfdsgfdsfsfsaftiption");
+        flat.AddChore(chore1);
+        flat.AddChore(chore);*/
     }
 
     @Override
-    public void MoveIn(Flatmate flatmate, int RoomID) {
-        flat.MoveIn(flatmate, RoomID);
+    public void MoveIn(Flatmate flatmate) {
+        flat.MoveIn(flatmate);
     }
 
     @Override
@@ -65,6 +71,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ArrayList<Chore> getChoresNotAssigned() {
+        return flat.getNotAssignedChores();
+    }
+
+    @Override
     public ArrayList<Chore> getChoresByFlatmate(int FlatmateID) {
         return flat.getChoresByFlatmate(FlatmateID);
     }
@@ -99,10 +110,6 @@ public class ModelManager implements Model {
         return flat.getTenants();
     }
 
-    @Override
-    public ArrayList<Room> getRooms() {
-        return flat.getRooms();
-    }
 
     @Override
     public ArrayList<Event> getEvents() {

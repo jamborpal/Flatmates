@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "553168472100",
+    "project_id": "flatmates-6d8b4",
+    "storage_bucket": "flatmates-6d8b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553168472100:android:7edaeff48a4d200ff6b0b1",
+        "android_client_info": {
+          "package_name": "com.jamborpal.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553168472100-23fmtifd8b7hvj9vgjl3rs91re4uon5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTb2x5Mp-cWipBBCQ6cw0_FXeBn_hI-2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553168472100-23fmtifd8b7hvj9vgjl3rs91re4uon5c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -22,8 +22,7 @@ public class TakeMeHomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         takeMeHomeViewModel = new ViewModelProvider(this).get(TakeMeHomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_takemehome, container, false);
-        TextView textView = root.findViewById(R.id.text_takemehome);
-        textView.setText(takeMeHomeViewModel.getText());
+
 
         return root;
     }

@@ -1,45 +1,66 @@
 package com.jamborpal.app.model;
 
 public class Expense {
-    public String Title;
-    public String Description;
-    public double Price;
-    public int Buyer;
-    public int ExpenseID;
+    public String title;
+    public String description;
+    public double price;
+    public int buyer;
+    public int expenseid;
+public Expense(){
 
+}
     public Expense(String title, String description, double price, int buyer) {
-        Title = title;
-        Description = description;
-        Price = price;
-        Buyer = buyer;
-        ExpenseID = (int) (System.currentTimeMillis() & 0xfffffff);
+        this.title = title;
+       this. description = description;
+        this.price = price;
+        this.buyer = buyer;
+        expenseid = (int) (System.currentTimeMillis() & 0xfffffff);
     }
 
     public Expense(String title, double price, int buyer) {
-        Title = title;
-        Price = price;
-        Buyer = buyer;
-        ExpenseID = (int) (System.currentTimeMillis() & 0xfffffff);
+        this.title = title;
+        this.price = price;
+        this.buyer = buyer;
+        expenseid = (int) (System.currentTimeMillis() & 0xfffffff);
     }
 
     public String getTitle() {
-        return Title;
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getPrice() {
-        return Price;
+        return price;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public int getBuyer() {
-        return Buyer;
+        return buyer;
     }
 
-    public int getExpenseID() {
-        return ExpenseID;
+    public void setBuyer(int buyer) {
+        this.buyer = buyer;
+    }
+
+    public int getExpenseid() {
+        return expenseid;
+    }
+
+    public void setExpenseid(int expenseid) {
+        this.expenseid = expenseid;
     }
 }

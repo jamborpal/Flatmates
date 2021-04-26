@@ -1,33 +1,45 @@
 package com.jamborpal.app.model;
 
-public class Flatmate {
-    public int FlatmateID;
-    public String FullName;
+import java.io.Serializable;
+
+public class Flatmate implements Serializable {
+    public int flatmateid;
+    public String fullname;
     public String email;
     public String username;
     public String password;
-    public int PhoneNumber;
-    public double MoneySpent;
+    public int phonenumber;
+    public double moneyspent;
 
-    public Flatmate(String fullName, String email, String username, String password) {
-        FullName = fullName;
+    public Flatmate() {
+
+    }
+
+    public Flatmate(int flatmateid, String fullname, String email, String username, String password, int phonenumber, double moneyspent) {
+        this.flatmateid = flatmateid;
+        this.fullname = fullname;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.FlatmateID = (int) (System.currentTimeMillis() & 0xfffffff);
-        this.MoneySpent = 0;
-        this.PhoneNumber = 0;
+        this.phonenumber = phonenumber;
+        this.moneyspent = moneyspent;
     }
 
-    public int getFlatmateID() {
-        return FlatmateID;
+    public int getFlatmateid() {
+        return flatmateid;
     }
 
-
-    public String getFullName() {
-        return FullName;
+    public void setFlatmateid(int flatmateid) {
+        this.flatmateid = flatmateid;
     }
 
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
     public String getEmail() {
         return email;
@@ -41,6 +53,9 @@ public class Flatmate {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getPassword() {
         return password;
@@ -50,19 +65,31 @@ public class Flatmate {
         this.password = password;
     }
 
-    public int getPhoneNumber() {
-        return PhoneNumber;
+    public int getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        PhoneNumber = phoneNumber;
+    public void setPhonenumber(int phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
-    public double getMoneySpent() {
-        return MoneySpent;
+    public double getMoneyspent() {
+        return moneyspent;
     }
 
-    public void addMoneySpent(double moneySpent) {
-        MoneySpent += moneySpent;
+    public void setMoneyspent(double moneyspent) {
+        this.moneyspent = moneyspent;
     }
+
+    public Flatmate(String fullName, String email, String username, String password) {
+        this.fullname = fullName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.flatmateid = (int) (System.currentTimeMillis() & 0xfffffff);
+        this.moneyspent = 0;
+        this.phonenumber = 0;
+    }
+
+
 }

@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=55:F2:B3:17:F1:C0:D2:67:2F:E1:06:A3:0F:A0:BC:D7:4C:46:8F:67%3Bcom.jamborpal.app
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.jamborpal.app
+
+    SHA-1 certificate fingerprint:
+    55:F2:B3:17:F1:C0:D2:67:2F:E1:06:A3:0F:A0:BC:D7:4C:46:8F:67
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBXw2M3pE48OWKaTyM1f5mW6-ghfsow8b0</string>
+</resources>

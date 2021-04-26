@@ -3,7 +3,7 @@ package com.jamborpal.app.model;
 import java.util.ArrayList;
 
 public interface Model {
-    void MoveIn(Flatmate flatmate, int RoomID);
+    void MoveIn(Flatmate flatmate);
 
     void MoveOut(int FlatmateID);
 
@@ -18,12 +18,14 @@ public interface Model {
     void MarkChoreDone(int ChoreID);
 
     void AssignChore(int ChoreID, int FlatmateID);
+    ArrayList<Chore> getChoresNotAssigned();
 
     ArrayList<Chore> getChoresByFlatmate(int FlatmateID);
 
     void OrganizeEvent(Event event);
 
     void MarkEventFinished(int EventID);
+    Flatmate getLoggedInUser();
      String getCity();
 
      String getCountry();
@@ -32,7 +34,6 @@ public interface Model {
 
      ArrayList<Flatmate> getTenants();
 
-     ArrayList<Room> getRooms() ;
 
      ArrayList<Event> getEvents();
 
