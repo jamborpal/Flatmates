@@ -8,7 +8,7 @@
     tools:context=".register.LocationHandler">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/choose_loc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
@@ -29,14 +29,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/location_id"
         android:layout_width="232dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="92dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/id"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +48,7 @@
         android:layout_marginTop="296dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/id"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
