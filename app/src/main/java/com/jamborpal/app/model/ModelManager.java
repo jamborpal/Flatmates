@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class ModelManager implements Model {
     //Add variable of database instance
-    private Flatmate LoggedInUser;
-    private Flat flat;
+    public Flatmate LoggedInUser;
+    public Flat flat;
     private FirebaseDatabase database;
 
     public ModelManager(Flatmate loggedInUser) {
@@ -15,6 +15,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
+        LoggedInUser = new Flatmate();
         database = FirebaseDatabase.getInstance();
      /*   ArrayList<Room> rooms = new ArrayList<>();
         Room room1 = new Room("Room1");
@@ -28,6 +29,16 @@ public class ModelManager implements Model {
         Chore chore = new Chore("title", "desctiption");Chore chore1 = new Chore("titlsfdge", "descfdsgfdsfsfsaftiption");
         flat.AddChore(chore1);
         flat.AddChore(chore);*/
+    }
+
+    @Override
+    public void setLoggedInUser(Flatmate flatmate) {
+        this.LoggedInUser = flatmate;
+    }
+
+    @Override
+    public void setFlatUsed(Flat flat) {
+        this.flat = flat;
     }
 
     @Override

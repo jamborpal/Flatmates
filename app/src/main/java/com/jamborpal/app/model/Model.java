@@ -3,6 +3,8 @@ package com.jamborpal.app.model;
 import java.util.ArrayList;
 
 public interface Model {
+    void setLoggedInUser(Flatmate flatmate);
+    void setFlatUsed(Flat flat);
     void MoveIn(Flatmate flatmate);
 
     void MoveOut(int FlatmateID);

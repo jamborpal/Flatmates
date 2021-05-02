@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +17,8 @@ import com.jamborpal.app.register.RegisterHandler;
 
 public class LoginHandler extends AppCompatActivity {
     private LoginViewModel loginViewModel;
+    private EditText username;
+    private EditText password;
 
     public LoginHandler() {
         this.loginViewModel = new LoginViewModel();
@@ -24,14 +29,23 @@ public class LoginHandler extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //initialize fields
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        //adding onClick listener to the login button
+        final Button loginButton = findViewById(R.id.login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Login(username.getText().toString(), password.getText().toString());
+            }
+        });
     }
 
-    public void Login(View view) {
-
-
-
+    public void Login(String username, String password) {
+        loginViewModel.login(username,password);
         Intent intent = new Intent(this, MainActivity.class);
-
+        Toast toast = Toast.makeText(getApplicationContext(), loginViewModel.getsomething()+"hiiii",Toast.LENGTH_LONG);
+        toast.show();
         startActivity(intent);
         finish();
     }
