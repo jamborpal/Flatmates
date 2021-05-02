@@ -37,11 +37,14 @@ public class LoginViewModel extends ViewModel {
 
                     flat = snapshot1.getValue(Flat.class);
                     System.out.println(flat.address);
-                            /*if (flat.getUsername().equals(username) && flat.getPassword().equals(password)) {
+                    for (Flatmate flatmate : flat.getTenants()) {
+                        if (flatmate.getUsername().equals(username) && flatmate.getPassword().equals(password)) {
 
-                                model.setLoggedInUser(flat);
-                                return;
-                            }*/
+                            model.setLoggedInUser(flatmate);
+                            model.setFlatUsed(flat);
+                            return;
+                        }
+                    }
 
 
                 }
