@@ -4,17 +4,16 @@ public class Event {
     public String title;
     public String description;
     public String time;
-    public int organiser;
-    public int eventid;
-public Event(){
+    public String organiser;
+
+    public Event(){
 
 }
-    public Event(String title, String description, String time, int organiser) {
+    public Event(String title, String description, String time, String organiser) {
         this.title = title;
         this.description = description;
         this.time = time;
         this.organiser = organiser;
-        this.eventid = (int) (System.currentTimeMillis() & 0xfffffff);
     }
 
     public String getTitle() {
@@ -41,19 +40,12 @@ public Event(){
         this.time = time;
     }
 
-    public int getOrganiser() {
+    public String getOrganiser() {
         return organiser;
     }
 
-    public void setOrganiser(int organiser) {
+    public void setOrganiser(String organiser) {
         this.organiser = organiser;
     }
 
-    public int getEventid() {
-        return eventid;
-    }
-
-    public void setEventid(int eventid) {
-        this.eventid = eventid;
-    }
 }

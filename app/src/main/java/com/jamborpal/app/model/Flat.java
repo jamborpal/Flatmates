@@ -61,21 +61,21 @@ public class Flat implements Serializable {
 
     public ArrayList<Expense> getExpensesByFlatmate(int FlatmateID) {
         ArrayList<Expense> expenses = new ArrayList<>();
-        for (int i = 0; i < this.expenses.size(); i++) {
+        /*for (int i = 0; i < this.expenses.size(); i++) {
             if (this.expenses.get(i).getBuyer() == FlatmateID) {
                 expenses.add(this.expenses.get(i));
             }
-        }
+        }*/
         return expenses;
     }
 
     public double getExpensesPaidByFlatmate(int FlatmateID) {
         double expenses = 0;
-        for (int i = 0; i < this.expenses.size(); i++) {
+       /* for (int i = 0; i < this.expenses.size(); i++) {
             if (this.expenses.get(i).getBuyer() == FlatmateID) {
                 expenses += (this.expenses.get(i).getPrice());
             }
-        }
+        }*/
         return expenses;
     }
 
@@ -127,11 +127,11 @@ public class Flat implements Serializable {
     }
 
     public void MarkEventFinished(int EventID) {
-        for (int i = 0; i < events.size(); i++) {
+       /* for (int i = 0; i < events.size(); i++) {
             if (events.get(i).getEventid() == EventID) {
                 events.remove(i);
             }
-        }
+        }*/
     }
 
 

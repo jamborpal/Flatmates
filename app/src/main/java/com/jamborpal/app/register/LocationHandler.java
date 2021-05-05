@@ -82,7 +82,7 @@ public class LocationHandler extends AppCompatActivity {
     }
 
     public void choose(String id) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LoginHandler.class);
         myRef.child("flats").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -90,9 +90,7 @@ public class LocationHandler extends AppCompatActivity {
                     String key = snapshot1.getKey();
                     if (key.equals(id)) {
                         flat = snapshot1.getValue(Flat.class);
-                        System.out.println(flatmate);
-                        flat.MoveIn(flatmate);
-                        myRef.child("flats").child(chooseflatID.getText().toString()).child("tenants").push().setValue(flatmate);
+                        myRef.child("flats").child(chooseflatID.getText().toString()).child("tenants").child(""+flatmate.getFlatmateid()).setValue(flatmate);
                     }
                 }
             }
@@ -103,8 +101,7 @@ public class LocationHandler extends AppCompatActivity {
             }
         });
         //sending the current user and flat to the MainActivity
-        intent.putExtra("LOGGED_IN_USER", flatmate);
-        intent.putExtra("FLAT_IN_USE", flat);
+
         startActivity(intent);
         finish();
     }

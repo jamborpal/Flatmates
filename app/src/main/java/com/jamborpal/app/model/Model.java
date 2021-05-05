@@ -3,8 +3,8 @@ package com.jamborpal.app.model;
 import java.util.ArrayList;
 
 public interface Model {
-    void setLoggedInUser(Flatmate flatmate);
-    void setFlatUsed(Flat flat);
+    void setLoggedInUser(String flatmate);
+    void setFlatUsed(String flat);
     void MoveIn(Flatmate flatmate);
 
     void MoveOut(int FlatmateID);
@@ -25,6 +25,7 @@ public interface Model {
     ArrayList<Chore> getChoresByFlatmate(int FlatmateID);
 
     void OrganizeEvent(Event event);
+    String getFlatmateNameByID();
 
     void MarkEventFinished(int EventID);
     Flatmate getLoggedInUser();
@@ -42,4 +43,7 @@ public interface Model {
      ArrayList<Chore> getChores();
 
      ArrayList<Expense> getExpenses();
+    public String getFlatID();
+
+    public String getFlatmateID();
 }

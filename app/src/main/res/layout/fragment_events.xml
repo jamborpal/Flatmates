@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/event_title"
         android:layout_width="316dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/event_desc"
         android:layout_width="319dp"
         android:layout_height="46dp"
         android:layout_marginStart="28dp"
@@ -37,10 +37,11 @@
         android:layout_marginBottom="36dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/organize_an_event"
-        android:textSize="18sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.857" />
 
     <TextView
         android:id="@+id/textView7"
@@ -59,16 +60,16 @@
         android:layout_marginStart="28dp"
         android:text="@string/description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/event_title" />
 
     <EditText
-        android:id="@+id/editTextTime"
+        android:id="@+id/event_t"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="432dp"
         android:ems="10"
-        android:inputType="time"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
@@ -81,15 +82,17 @@
         android:layout_marginStart="28dp"
         android:text="Time"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintTop_toBottomOf="@+id/event_desc" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rve"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_width="414dp"
+        android:layout_height="362dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_event" />
 
     <Button
         android:id="@+id/add_event"
@@ -99,7 +102,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/add_event"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+        app:layout_constraintTop_toBottomOf="@+id/event_t" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

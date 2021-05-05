@@ -28,19 +28,20 @@ public class LoginViewModel extends ViewModel {
         myRef = database.getReference();
     }
 
-    public Flatmate login(String username, String password) {
-        final Flatmate[] flatmate1 = {new Flatmate()};
+    public void login(String username, String password) {
         myRef.child("flats").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    List<Flatmate> flatmates = new ArrayList<>();
                     for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
                         Flatmate flatmate = snapshot2.getValue(Flatmate.class);
                         if (flatmate.getUsername().equals(username) && flatmate.getPassword().equals(password)) {
-                            flatmate1[0] = flatmate;
-                           model.setLoggedInUser(flatmate1[0]);
-                           return;
+                            model.setLoggedInUser(snapshot2.getKey());
+                            model.setFlatUsed(snapshot1.getKey());
+                            System.out.println(snapshot2.getKey());
+                            System.out.println(snapshot1.getKey());
+                            return;
+
                         }
                     }
 
@@ -52,7 +53,6 @@ public class LoginViewModel extends ViewModel {
 
             }
         });
-        return flatmate1[0];
     }
 
 }

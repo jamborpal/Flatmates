@@ -3,15 +3,26 @@ package com.jamborpal.app.model;
 import android.graphics.ColorSpace;
 import android.util.Log;
 
-import com.google.firebase.database.FirebaseDatabase;
+import androidx.annotation.NonNull;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.jamborpal.app.database.DatabaseAccess;
+
+import java.security.spec.ECField;
 import java.util.ArrayList;
 
 public class ModelManager implements Model {
     //Add variable of database instance
     public Flatmate LoggedInUser;
     public Flat flat;
+    public String flatID;
+    public String flatmateID;
     private FirebaseDatabase database;
+    private DatabaseReference myref;
     private static ModelManager modelManager;
 
     public synchronized static ModelManager getInstance() {
@@ -23,7 +34,8 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         database = FirebaseDatabase.getInstance();
-        Flatmate flatmate = new Flatmate("Pál Jámbor", "jamborpal0@gmail.com", "jamborpal", "hello");
+        myref = database.getReference();
+      /*  Flatmate flatmate = new Flatmate("Pál Jámbor", "jamborpal0@gmail.com", "jamborpal", "hello");
         Flat flat = new Flat("hello", "Horsens", "Country", "Address");
         this.flat = flat;
         this.LoggedInUser = flatmate;
@@ -31,7 +43,7 @@ public class ModelManager implements Model {
 
         Flatmate flatmate2 = new Flatmate("Emma", "jfdgfdg@gmail.com", "emma", "hello");
         MoveIn(flatmate1);
-        MoveIn(flatmate2);
+        MoveIn(flatmate2);*/
 
 
      /*   ArrayList<Room> rooms = new ArrayList<>();
@@ -49,15 +61,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setLoggedInUser(Flatmate flatmate) {
-        this.LoggedInUser = flatmate;
-        System.out.println(flatmate.getFullname());
+    public void setLoggedInUser(String flatmate) {
+        this.flatmateID = flatmate;
+
 
     }
 
     @Override
-    public void setFlatUsed(Flat flat) {
-        this.flat = flat;
+    public void setFlatUsed(String flat) {
+        this.flatID = flat;
     }
 
     @Override
@@ -72,7 +84,7 @@ public class ModelManager implements Model {
 
     @Override
     public void AddExpense(Expense expense) {
-        flat.AddExpense(expense);
+        myref.child("flats").child(getFlatID()).child("expenses").push().setValue(expense);
     }
 
     @Override
@@ -112,7 +124,25 @@ public class ModelManager implements Model {
 
     @Override
     public void OrganizeEvent(Event event) {
-        flat.OrganizeEvent(event);
+        myref.child("flats").child(getFlatID()).child("events").push().setValue(event);
+    }
+
+    @Override
+    public String getFlatmateNameByID() {
+        final String[] name = {""};
+        myref.child("flats").child(getFlatID()).child("tenants").child(getFlatmateID()).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                name[0] = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return name[0];
+
     }
 
     @Override
@@ -143,7 +173,23 @@ public class ModelManager implements Model {
 
     @Override
     public ArrayList<Event> getEvents() {
-        return flat.getEvents();
+        ArrayList<Event> events = new ArrayList<>();
+        myref.child("flats").child(flatID).child("events").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                events.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+
+                    events.add(snapshot1.getValue(Event.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Gettign events error", error.getDetails());
+            }
+        });
+        return events;
     }
 
     @Override
@@ -164,4 +210,11 @@ public class ModelManager implements Model {
         return flat;
     }
 
+    public String getFlatID() {
+        return flatID;
+    }
+
+    public String getFlatmateID() {
+        return flatmateID;
+    }
 }

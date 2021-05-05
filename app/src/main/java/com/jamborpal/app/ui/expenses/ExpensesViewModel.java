@@ -13,8 +13,8 @@ public class ExpensesViewModel extends ViewModel {
         this.model = ModelManager.getInstance();
     }
 
-    public int getCurrentUSerID() {
-       return model.getLoggedInUser().getFlatmateid();
+    public String getCurrentUserID() {
+       return model.getFlatmateID();
     }
     public void AddExpense(Expense expense){
         model.AddExpense(expense);

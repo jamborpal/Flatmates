@@ -1,13 +1,11 @@
 package com.jamborpal.app.ui.expenses;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,9 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.jamborpal.app.R;
-import com.jamborpal.app.login.LoginHandler;
 import com.jamborpal.app.model.Expense;
-import com.jamborpal.app.ui.profile.ProfileViewModel;
 
 public class ExpensesFragment extends Fragment {
     private ExpensesViewModel expensesViewModel;
@@ -47,8 +43,11 @@ public class ExpensesFragment extends Fragment {
 
     private void addNewExpense() {
 
-        Expense expense = new Expense(title.getText().toString(), description.getText().toString(), Double.parseDouble(expens.getText().toString()), expensesViewModel.getCurrentUSerID());
+        Expense expense = new Expense(title.getText().toString(), description.getText().toString(), Double.parseDouble(expens.getText().toString()), expensesViewModel.getCurrentUserID());
         expensesViewModel.AddExpense(expense);
+        title.setText("");
+        description.setText("");
+        expens.setText("");
     }
 
 }

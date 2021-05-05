@@ -45,6 +45,7 @@ public class LoginHandler extends AppCompatActivity {
 
     public void Login(String username, String password) {
         Intent intent = new Intent(this, MainActivity.class);
+        loginViewModel.login(username,password);
         startActivity(intent);
         finish();
     }

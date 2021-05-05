@@ -4,24 +4,24 @@ public class Expense {
     public String title;
     public String description;
     public double price;
-    public int buyer;
-    public int expenseid;
-public Expense(){
+    public String buyer;
 
-}
-    public Expense(String title, String description, double price, int buyer) {
-        this.title = title;
-       this. description = description;
-        this.price = price;
-        this.buyer = buyer;
-        expenseid = (int) (System.currentTimeMillis() & 0xfffffff);
+    public Expense() {
+
     }
 
-    public Expense(String title, double price, int buyer) {
+    public Expense(String title, String description, double price, String buyer) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.buyer = buyer;
+
+    }
+
+    public Expense(String title, double price, String buyer) {
         this.title = title;
         this.price = price;
         this.buyer = buyer;
-        expenseid = (int) (System.currentTimeMillis() & 0xfffffff);
     }
 
     public String getTitle() {
@@ -48,19 +48,13 @@ public Expense(){
         this.price = price;
     }
 
-    public int getBuyer() {
+    public String getBuyer() {
         return buyer;
     }
 
-    public void setBuyer(int buyer) {
+    public void setBuyer(String buyer) {
         this.buyer = buyer;
     }
 
-    public int getExpenseid() {
-        return expenseid;
-    }
 
-    public void setExpenseid(int expenseid) {
-        this.expenseid = expenseid;
-    }
 }
