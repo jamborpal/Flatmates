@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.jamborpal.app.MainActivity;
 import com.jamborpal.app.R;
+import com.jamborpal.app.model.Flatmate;
 import com.jamborpal.app.register.RegisterHandler;
 
 public class LoginHandler extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class LoginHandler extends AppCompatActivity {
         //initialize fields
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        this.loginViewModel = new LoginViewModel();
         //adding onClick listener to the login button
         final Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -42,10 +44,7 @@ public class LoginHandler extends AppCompatActivity {
     }
 
     public void Login(String username, String password) {
-        loginViewModel.login(username,password);
         Intent intent = new Intent(this, MainActivity.class);
-        Toast toast = Toast.makeText(getApplicationContext(), loginViewModel.getsomething()+"hiiii",Toast.LENGTH_LONG);
-        toast.show();
         startActivity(intent);
         finish();
     }

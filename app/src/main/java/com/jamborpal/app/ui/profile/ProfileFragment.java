@@ -7,22 +7,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.jamborpal.app.R;
 
-public class ProfileFragment  extends Fragment {
+import org.w3c.dom.Text;
+
+public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-
+        TextView fullname = root.findViewById(R.id.profile_fullname1);
+        fullname.setText(profileViewModel.getname().fullname);
         return root;
     }
+
 }

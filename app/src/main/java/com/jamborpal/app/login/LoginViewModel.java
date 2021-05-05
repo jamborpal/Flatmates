@@ -13,6 +13,7 @@ import com.jamborpal.app.model.Flatmate;
 import com.jamborpal.app.model.Model;
 import com.jamborpal.app.model.ModelManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginViewModel extends ViewModel {
@@ -22,30 +23,26 @@ public class LoginViewModel extends ViewModel {
     private Flat flat;
 
     public LoginViewModel() {
-        this.model = new ModelManager();
+        this.model = ModelManager.getInstance();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
     }
 
-    public void login(String username, String password) {
-
+    public Flatmate login(String username, String password) {
+        final Flatmate[] flatmate1 = {new Flatmate()};
         myRef.child("flats").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-
-
-                    flat = snapshot1.getValue(Flat.class);
-                    System.out.println(flat.address);
-                    for (Flatmate flatmate : flat.getTenants()) {
+                    List<Flatmate> flatmates = new ArrayList<>();
+                    for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
+                        Flatmate flatmate = snapshot2.getValue(Flatmate.class);
                         if (flatmate.getUsername().equals(username) && flatmate.getPassword().equals(password)) {
-
-                            model.setLoggedInUser(flatmate);
-                            model.setFlatUsed(flat);
-                            return;
+                            flatmate1[0] = flatmate;
+                           model.setLoggedInUser(flatmate1[0]);
+                           return;
                         }
                     }
-
 
                 }
             }
@@ -55,10 +52,7 @@ public class LoginViewModel extends ViewModel {
 
             }
         });
-    }
-
-    public String getsomething() {
-        return model.getLoggedInUser().getFullname();
+        return flatmate1[0];
     }
 
 }

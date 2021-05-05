@@ -55,6 +55,7 @@
     <string name="city">City</string>
     <string name="address">Address</string>
     <string name="username_used">Username already in use</string>
+    <string name="full_name">Full name:</string>
 
 
 </resources>

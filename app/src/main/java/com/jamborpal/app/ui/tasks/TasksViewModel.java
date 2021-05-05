@@ -14,7 +14,7 @@ public class TasksViewModel extends ViewModel {
     private Model model;
 
     public TasksViewModel() {
-        model = new ModelManager();
+        model = ModelManager.getInstance();
 
     }
 

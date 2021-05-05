@@ -2,14 +2,22 @@ package com.jamborpal.app.ui.expenses;
 
 import androidx.lifecycle.ViewModel;
 
+import com.jamborpal.app.model.Expense;
+import com.jamborpal.app.model.Model;
+import com.jamborpal.app.model.ModelManager;
+
 public class ExpensesViewModel extends ViewModel {
-    private String mText;
+    private Model model;
 
     public ExpensesViewModel() {
-        mText = "This is Expenses Fragment";
+        this.model = ModelManager.getInstance();
     }
 
-    public String getText() {
-        return mText;
+    public int getCurrentUSerID() {
+       return model.getLoggedInUser().getFlatmateid();
+    }
+    public void AddExpense(Expense expense){
+        model.AddExpense(expense);
+
     }
 }

@@ -1,5 +1,8 @@
 package com.jamborpal.app.model;
 
+import android.graphics.ColorSpace;
+import android.util.Log;
+
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -9,14 +12,28 @@ public class ModelManager implements Model {
     public Flatmate LoggedInUser;
     public Flat flat;
     private FirebaseDatabase database;
+    private static ModelManager modelManager;
 
-    public ModelManager(Flatmate loggedInUser) {
-        LoggedInUser = loggedInUser;
+    public synchronized static ModelManager getInstance() {
+        if (modelManager == null) {
+            modelManager = new ModelManager();
+        }
+        return modelManager;
     }
 
     public ModelManager() {
-        LoggedInUser = new Flatmate();
         database = FirebaseDatabase.getInstance();
+        Flatmate flatmate = new Flatmate("Pál Jámbor", "jamborpal0@gmail.com", "jamborpal", "hello");
+        Flat flat = new Flat("hello", "Horsens", "Country", "Address");
+        this.flat = flat;
+        this.LoggedInUser = flatmate;
+        Flatmate flatmate1 = new Flatmate("Lola", "jfdsgfdgdfgil.com", "lola", "hello");
+
+        Flatmate flatmate2 = new Flatmate("Emma", "jfdgfdg@gmail.com", "emma", "hello");
+        MoveIn(flatmate1);
+        MoveIn(flatmate2);
+
+
      /*   ArrayList<Room> rooms = new ArrayList<>();
         Room room1 = new Room("Room1");
         Room room2 = new Room("Room2");
@@ -34,6 +51,8 @@ public class ModelManager implements Model {
     @Override
     public void setLoggedInUser(Flatmate flatmate) {
         this.LoggedInUser = flatmate;
+        System.out.println(flatmate.getFullname());
+
     }
 
     @Override

@@ -24,7 +24,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     Model model;
 
     public TaskAdapter() {
-        model = new ModelManager();
+        model = ModelManager.getInstance();
     }
 
     @NonNull

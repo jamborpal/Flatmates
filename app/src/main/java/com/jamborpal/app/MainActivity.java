@@ -12,6 +12,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.jamborpal.app.login.LoginHandler;
+import com.jamborpal.app.model.Flatmate;
+import com.jamborpal.app.model.Model;
+import com.jamborpal.app.model.ModelManager;
 import com.jamborpal.app.register.RegisterHandler;
 import com.jamborpal.app.ui.settings.SettingsFragment;
 
@@ -24,7 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-
+private Model model;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -46,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        /*
+        model= ModelManager.getInstance();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();*/
+
     }
 
     @Override

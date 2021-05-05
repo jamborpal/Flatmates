@@ -17,7 +17,7 @@ public class ContactViewModel extends ViewModel {
 
     public ContactViewModel() {
         mtext = "This is the Contacts";
-        model = new ModelManager();
+        model = ModelManager.getInstance();
     }
 
     public String getText() {

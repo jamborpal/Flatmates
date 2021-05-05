@@ -4,14 +4,19 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.jamborpal.app.model.Flatmate;
+import com.jamborpal.app.model.Model;
+import com.jamborpal.app.model.ModelManager;
+
 public class ProfileViewModel extends ViewModel {
-    private String mText;
+    private Model model;
 
     public ProfileViewModel() {
-        mText = "This is Profile Fragment";
+        this.model = new ModelManager();
+
     }
 
-    public String getText() {
-        return mText;
+    public Flatmate getname() {
+        return model.getLoggedInUser();
     }
 }
