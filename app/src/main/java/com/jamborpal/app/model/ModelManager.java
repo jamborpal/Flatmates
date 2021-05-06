@@ -1,6 +1,5 @@
 package com.jamborpal.app.model;
 
-import android.graphics.ColorSpace;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -10,9 +9,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jamborpal.app.database.DatabaseAccess;
 
-import java.security.spec.ECField;
 import java.util.ArrayList;
 
 public class ModelManager implements Model {
@@ -64,7 +61,6 @@ public class ModelManager implements Model {
     public void setLoggedInUser(String flatmate) {
         this.flatmateID = flatmate;
 
-
     }
 
     @Override
@@ -85,6 +81,7 @@ public class ModelManager implements Model {
     @Override
     public void AddExpense(Expense expense) {
         myref.child("flats").child(getFlatID()).child("expenses").push().setValue(expense);
+
     }
 
     @Override
@@ -93,33 +90,125 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public double getExpensesPaidByFlatmate(int FlatmateID) {
-        return flat.getExpensesPaidByFlatmate(FlatmateID);
+    public double getExpensesPaidByFlatmate() {
+        double value = 0;
+        ArrayList<Expense> expenses = new ArrayList<>();
+        myref.child("flats").child(flatID).child("expenses").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                expenses.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+
+                    expenses.add(snapshot1.getValue(Expense.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Getting events error", error.getDetails());
+            }
+        });
+        for (Expense money : expenses) {
+            if (money.getBuyer().equals(flatmateID)) {
+                value += money.getPrice();
+            }
+        }
+        return value;
+
     }
 
     @Override
     public void AddChore(Chore chore) {
-        flat.AddChore(chore);
+        myref.child("flats").child(getFlatID()).child("chores").push().setValue(chore);
     }
 
     @Override
-    public void MarkChoreDone(int ChoreID) {
-        flat.MarkChoreDone(ChoreID);
+    public void deleteChore(String title) {
+        myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    if (snapshot1.getValue(Chore.class).getTitle().equals(title)) {
+                        snapshot1.getRef().setValue(null);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Getting chores error", error.getDetails());
+            }
+        });
     }
 
     @Override
-    public void AssignChore(int ChoreID, int FlatmateID) {
-        flat.AssignChore(ChoreID, FlatmateID);
+    public void AssignChore(String title) {
+        myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    if (snapshot1.getValue(Chore.class).getTitle().equals(title)) {
+                       snapshot1.child("assignedto").getRef().setValue(flatmateID);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Getting chores error", error.getDetails());
+            }
+        });
+
     }
 
     @Override
     public ArrayList<Chore> getChoresNotAssigned() {
-        return flat.getNotAssignedChores();
+        ArrayList<Chore> chores = new ArrayList<>();
+        myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                chores.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    if (snapshot1.getValue(Chore.class).getAssignedto() == "") {
+                        chores.add(snapshot1.getValue(Chore.class));
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Getting chores error", error.getDetails());
+            }
+        });
+        return chores;
     }
 
     @Override
     public ArrayList<Chore> getChoresByFlatmate(int FlatmateID) {
-        return flat.getChoresByFlatmate(FlatmateID);
+        ArrayList<Chore> chores = new ArrayList<>();
+        myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                chores.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    if (snapshot1.getValue(Chore.class).getAssignedto() == ""+FlatmateID) {
+                        chores.add(snapshot1.getValue(Chore.class));
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Getting chores error", error.getDetails());
+            }
+        });
+        return chores;
     }
 
     @Override

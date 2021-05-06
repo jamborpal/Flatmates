@@ -1,7 +1,5 @@
 package com.jamborpal.app.ui.tasks;
 
-import android.util.Log;
-
 import androidx.lifecycle.ViewModel;
 
 import com.jamborpal.app.model.Chore;
@@ -25,5 +23,11 @@ public class TasksViewModel extends ViewModel {
     }
     public ArrayList<Chore> getAllNotAssignedChores(){
         return  model.getChoresNotAssigned();
+    }
+    public void accept(String title){
+        model.AssignChore(title);
+    }
+    public void delete(String title){
+        model.deleteChore(title);
     }
 }

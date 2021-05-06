@@ -1,36 +1,26 @@
 package com.jamborpal.app.model;
 
 public class Chore {
-    public int choreid;
     public String title;
     public String description;
     public boolean isdone;
-    public int assignedto;
+    public String assignedto;
 public Chore(){
 
 }
     public Chore(String title, String description) {
         this.title = title;
         this.description = description;
-        this.choreid = (int) (System.currentTimeMillis() & 0xfffffff);
+
         this.isdone = false;
-        this.assignedto = 0;
+        this.assignedto = "";
     }
 
     public Chore(String title) {
         this.title = title;
         this.description = "";
-        this.choreid = (int) (System.currentTimeMillis() & 0xfffffff);
         this.isdone = false;
-        this.assignedto = 0;
-    }
-
-    public int getChoreid() {
-        return choreid;
-    }
-
-    public void setChoreid(int choreid) {
-        this.choreid = choreid;
+        this.assignedto = "";
     }
 
     public String getTitle() {
@@ -57,11 +47,11 @@ public Chore(){
         this.isdone = isdone;
     }
 
-    public int getAssignedto() {
+    public String getAssignedto() {
         return assignedto;
     }
 
-    public void setAssignedto(int assignedto) {
+    public void setAssignedto(String assignedto) {
         this.assignedto = assignedto;
     }
 }

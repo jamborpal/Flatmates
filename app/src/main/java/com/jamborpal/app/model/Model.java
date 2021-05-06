@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public interface Model {
     void setLoggedInUser(String flatmate);
+
     void setFlatUsed(String flat);
+
     void MoveIn(Flatmate flatmate);
 
     void MoveOut(int FlatmateID);
@@ -13,36 +15,40 @@ public interface Model {
 
     ArrayList<Expense> getExpensesByFlatmate(int FlatmateID);
 
-    double getExpensesPaidByFlatmate(int FlatmateID);
+    double getExpensesPaidByFlatmate();
 
     void AddChore(Chore chore);
+    void deleteChore(String title);
 
-    void MarkChoreDone(int ChoreID);
+    void AssignChore(String title);
 
-    void AssignChore(int ChoreID, int FlatmateID);
     ArrayList<Chore> getChoresNotAssigned();
 
     ArrayList<Chore> getChoresByFlatmate(int FlatmateID);
 
     void OrganizeEvent(Event event);
+
     String getFlatmateNameByID();
 
     void MarkEventFinished(int EventID);
+
     Flatmate getLoggedInUser();
-     String getCity();
 
-     String getCountry();
+    String getCity();
 
-     String getAddress();
+    String getCountry();
 
-     ArrayList<Flatmate> getTenants();
+    String getAddress();
+
+    ArrayList<Flatmate> getTenants();
 
 
-     ArrayList<Event> getEvents();
+    ArrayList<Event> getEvents();
 
-     ArrayList<Chore> getChores();
+    ArrayList<Chore> getChores();
 
-     ArrayList<Expense> getExpenses();
+    ArrayList<Expense> getExpenses();
+
     public String getFlatID();
 
     public String getFlatmateID();

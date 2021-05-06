@@ -29,7 +29,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void login(String username, String password) {
-        myRef.child("flats").addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.child("flats").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
@@ -38,8 +38,6 @@ public class LoginViewModel extends ViewModel {
                         if (flatmate.getUsername().equals(username) && flatmate.getPassword().equals(password)) {
                             model.setLoggedInUser(snapshot2.getKey());
                             model.setFlatUsed(snapshot1.getKey());
-                            System.out.println(snapshot2.getKey());
-                            System.out.println(snapshot1.getKey());
                             return;
 
                         }

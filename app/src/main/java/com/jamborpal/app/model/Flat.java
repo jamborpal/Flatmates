@@ -86,38 +86,38 @@ public class Flat implements Serializable {
     }
 
     public void MarkChoreDone(int ChoreID) {
-        for (int i = 0; i < chores.size(); i++) {
+     /*   for (int i = 0; i < chores.size(); i++) {
             if (chores.get(i).getChoreid() == ChoreID) {
                 chores.get(i).setIsdone(true);
             }
-        }
+        }*/
     }
 
     public void AssignChore(int ChoreID, int FlatmateID) {
-        for (int i = 0; i < chores.size(); i++) {
+      /*  for (int i = 0; i < chores.size(); i++) {
             if (chores.get(i).getChoreid() == ChoreID) {
                 chores.get(i).setAssignedto(FlatmateID);
             }
-        }
+        }*/
     }
 
     public ArrayList<Chore> getChoresByFlatmate(int FlatmateID) {
         ArrayList<Chore> chores = new ArrayList<>();
-        for (int i = 0; i < this.chores.size(); i++) {
+       /* for (int i = 0; i < this.chores.size(); i++) {
             if (this.chores.get(i).getAssignedto() == FlatmateID) {
                 chores.add(this.chores.get(i));
             }
-        }
+        }*/
         return chores;
     }
 
     public ArrayList<Chore> getNotAssignedChores() {
         ArrayList<Chore> chores = new ArrayList<>();
-        for (int i = 0; i < this.chores.size(); i++) {
+       /* for (int i = 0; i < this.chores.size(); i++) {
             if (this.chores.get(i).getAssignedto() == 0) {
                 chores.add(this.chores.get(i));
             }
-        }
+        }*/
         return chores;
     }
 
