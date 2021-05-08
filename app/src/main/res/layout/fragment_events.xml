@@ -37,7 +37,7 @@
         android:layout_marginBottom="36dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/organize_an_event"
-        android:textSize="28sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

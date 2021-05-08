@@ -57,6 +57,8 @@
     <string name="username_used">Username already in use</string>
     <string name="full_name">Full name:</string>
     <string name="by">By:</string>
+    <string name="expense_name">Expense name</string>
+    <string name="expense_cost">Expense cost</string>
 
 
 </resources>

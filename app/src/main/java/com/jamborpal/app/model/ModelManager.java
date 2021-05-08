@@ -1,15 +1,20 @@
 package com.jamborpal.app.model;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ModelManager implements Model {
@@ -55,6 +60,32 @@ public class ModelManager implements Model {
         Chore chore = new Chore("title", "desctiption");Chore chore1 = new Chore("titlsfdge", "descfdsgfdsfsfsaftiption");
         flat.AddChore(chore1);
         flat.AddChore(chore);*/
+    }
+
+    @Override
+    public void login(String username, String password) {
+        myref.child("flats").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
+                        Flatmate flatmate = snapshot2.getValue(Flatmate.class);
+                        if (flatmate.getUsername().equals(username) && flatmate.getPassword().equals(password)) {
+                            setLoggedInUser(snapshot2.getKey());
+                            setFlatUsed(snapshot1.getKey());
+                            return;
+
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -123,17 +154,22 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteChore(String title,String description) {
+    public void deleteChore(String ChoreID) {
         myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    if (snapshot1.getValue(Chore.class).getTitle().equals(title)&&snapshot1.getValue(Chore.class).getDescription().equals(description)) {
-                        System.out.println(snapshot.getValue(Chore.class).getTitle());
-                        snapshot1.getRef().setValue(null);
-                        return;
-                    }
+
+                    System.out.println(snapshot1);
+                        if (snapshot1.getKey().equals(ChoreID)) {
+                            snapshot1.getRef().setValue(null);
+                            return;
+                        }
+
+
+
+
 
                 }
             }
@@ -146,16 +182,22 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void AssignChore(String title, String description) {
+    public void AssignChore(String ChoreID) {
         myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    if (snapshot1.getValue(Chore.class).getTitle().equals(title)&&snapshot1.getValue(Chore.class).getDescription().equals(description)) {
-                       snapshot1.child("assignedto").getRef().setValue(flatmateID);
-                       return;
+
+                    System.out.println(snapshot1);
+                    if (snapshot1.getKey().equals(ChoreID)) {
+                        snapshot1.child("assignedto").getRef().setValue(flatmateID);
+                        return;
                     }
+
+
+
+
 
                 }
             }
@@ -278,7 +320,7 @@ public class ModelManager implements Model {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Gettign events error", error.getDetails());
+                Log.e("Getting events error", error.getDetails());
             }
         });
         return events;
@@ -290,8 +332,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<Expense> getExpenses() {
-        return flat.getExpenses();
+    public ArrayList<Expense> getExpensesByLoggedInFlatmate() {
+        ArrayList<Expense> expenses = new ArrayList<>();
+            myref.child("flats").child(flatID).child("expenses").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    expenses.clear();
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+
+                        expenses.add(snapshot1.getValue(Expense.class));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("Getting expenses error", error.getDetails());
+                }
+            });
+
+        return expenses;
     }
 
     public Flatmate getLoggedInUser() {

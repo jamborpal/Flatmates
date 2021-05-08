@@ -18,39 +18,12 @@ import java.util.List;
 
 public class LoginViewModel extends ViewModel {
     private Model model;
-    DatabaseReference myRef;
-    FirebaseDatabase database;
-    private Flat flat;
-
     public LoginViewModel() {
         this.model = ModelManager.getInstance();
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
     }
 
-    public void login(String username, String password) {
-        myRef.child("flats").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
-                        Flatmate flatmate = snapshot2.getValue(Flatmate.class);
-                        if (flatmate.getUsername().equals(username) && flatmate.getPassword().equals(password)) {
-                            model.setLoggedInUser(snapshot2.getKey());
-                            model.setFlatUsed(snapshot1.getKey());
-                            return;
-
-                        }
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+    public void login(String username,String password) {
+       model.login(username, password);
     }
 
 }

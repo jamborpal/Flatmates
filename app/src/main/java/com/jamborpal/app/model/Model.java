@@ -3,6 +3,7 @@ package com.jamborpal.app.model;
 import java.util.ArrayList;
 
 public interface Model {
+     void login(String username, String password);
     void setLoggedInUser(String flatmate);
 
     void setFlatUsed(String flat);
@@ -18,9 +19,9 @@ public interface Model {
     double getExpensesPaidByFlatmate();
 
     void AddChore(Chore chore);
-    void deleteChore(String title,String description);
+    void deleteChore(String ChoreID);
 
-    void AssignChore(String title, String description);
+    void AssignChore(String ChoreID);
 
     ArrayList<Chore> getChoresNotAssigned();
 
@@ -47,7 +48,7 @@ public interface Model {
 
     ArrayList<Chore> getChores();
 
-    ArrayList<Expense> getExpenses();
+    ArrayList<Expense> getExpensesByLoggedInFlatmate();
 
     public String getFlatID();
 
