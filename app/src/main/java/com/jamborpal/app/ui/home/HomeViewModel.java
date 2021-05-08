@@ -20,9 +20,14 @@ public class HomeViewModel extends ViewModel {
     }
 
     public ArrayList<Chore> getChoresByUser(){
-        return model.getChoresByFlatmate(Integer.parseInt(model.getFlatmateID()));
+        return model.getChoresByFlatmate();
     }
     public ArrayList<Expense> getExpenses(){
         return model.getExpensesByLoggedInFlatmate();
+    }
+    public void delete(String ChoreID){
+        model.deleteChore(ChoreID);
+
+
     }
 }

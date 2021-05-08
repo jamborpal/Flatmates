@@ -25,7 +25,7 @@ public interface Model {
 
     ArrayList<Chore> getChoresNotAssigned();
 
-    ArrayList<Chore> getChoresByFlatmate(int FlatmateID);
+    ArrayList<Chore> getChoresByFlatmate();
 
     void OrganizeEvent(Event event);
 

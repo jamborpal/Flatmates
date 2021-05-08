@@ -1,20 +1,15 @@
 package com.jamborpal.app.model;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ModelManager implements Model {
@@ -234,14 +229,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<Chore> getChoresByFlatmate(int FlatmateID) {
+    public ArrayList<Chore> getChoresByFlatmate() {
         ArrayList<Chore> chores = new ArrayList<>();
-        myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
+        myref.child("flats").child("hi").child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chores.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    if (snapshot1.getValue(Chore.class).getAssignedto() == ""+FlatmateID) {
+                    if (snapshot1.getValue(Chore.class).getAssignedto().equals(flatmateID)) {
                         chores.add(snapshot1.getValue(Chore.class));
                     }
 
@@ -253,6 +248,7 @@ public class ModelManager implements Model {
                 Log.e("Getting chores error", error.getDetails());
             }
         });
+        System.out.println(chores);
         return chores;
     }
 
@@ -334,13 +330,15 @@ public class ModelManager implements Model {
     @Override
     public ArrayList<Expense> getExpensesByLoggedInFlatmate() {
         ArrayList<Expense> expenses = new ArrayList<>();
-            myref.child("flats").child(flatID).child("expenses").addValueEventListener(new ValueEventListener() {
+        Expense expense = new Expense("fsdfds","dfsd",2131,"dfs");
+        expenses.add(expense);
+            /*myref.child("flats").child("hi").child("expenses").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     expenses.clear();
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-
-                        expenses.add(snapshot1.getValue(Expense.class));
+                        Expense expense =new Expense(snapshot1.child("title").getValue().toString(),Double.parseDouble(snapshot1.child("price").getValue().toString()),snapshot1.child("buyer").getValue().toString());
+                        expenses.add(expense);
                     }
                 }
 
@@ -348,8 +346,8 @@ public class ModelManager implements Model {
                 public void onCancelled(@NonNull DatabaseError error) {
                     Log.e("Getting expenses error", error.getDetails());
                 }
-            });
-
+            });*/
+        System.out.println(expenses);
         return expenses;
     }
 

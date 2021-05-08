@@ -21,6 +21,8 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     RecyclerView latestCosts;
     CostAdapter costAdapter;
+    RecyclerView ownchores;
+    OwnChoresAdapter ownChoresAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +36,13 @@ public class HomeFragment extends Fragment {
 
         costAdapter = new CostAdapter();
         latestCosts.setAdapter(costAdapter);
+
+        ownchores = root.findViewById(R.id.rvowntasks);
+        ownchores.hasFixedSize();
+        ownchores.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        ownChoresAdapter = new OwnChoresAdapter();
+        ownchores.setAdapter(ownChoresAdapter);
 
         return root;
     }

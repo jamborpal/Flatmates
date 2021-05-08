@@ -30,5 +30,6 @@ public class TasksViewModel extends ViewModel {
     public void delete(String ChoreID){
         model.deleteChore(ChoreID);
 
+
     }
 }

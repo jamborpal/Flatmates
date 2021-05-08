@@ -2,6 +2,7 @@ package com.jamborpal.app.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
@@ -45,7 +46,9 @@ public class LoginHandler extends AppCompatActivity {
 
     public void Login(String username, String password) {
         Intent intent = new Intent(this, MainActivity.class);
-        loginViewModel.login(username,password);
+
+        loginViewModel.login(username, password);
+
         startActivity(intent);
         finish();
     }
