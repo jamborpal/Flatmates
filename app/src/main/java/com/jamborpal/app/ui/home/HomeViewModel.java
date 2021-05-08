@@ -4,15 +4,21 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.jamborpal.app.model.Chore;
+import com.jamborpal.app.model.Model;
+import com.jamborpal.app.model.ModelManager;
+
+import java.util.ArrayList;
+
 public class HomeViewModel extends ViewModel {
 
-    private String mText;
+    private Model model;
 
     public HomeViewModel() {
-        mText = "This is Home Fragment";
+      model= ModelManager.getInstance();
     }
 
-    public String getText() {
-        return mText;
+    public ArrayList<Chore> getChoresByUser(){
+        return model.getChoresByFlatmate(Integer.parseInt(model.getFlatmateID()));
     }
 }

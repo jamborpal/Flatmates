@@ -8,61 +8,62 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="117dp"
-        android:layout_margin="30dp"
-        >
+        android:layout_margin="10dp"
+        android:background="@drawable/fragmentbackground">
+
 
         <TextView
             android:id="@+id/task_name"
-            android:layout_width="157dp"
-            android:layout_height="28dp"
+            android:layout_width="249dp"
+            android:layout_height="27dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/white"
             android:text="Task name"
             android:textAlignment="textStart"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.017" />
 
         <Button
             android:id="@+id/remove_task"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="308dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="44dp"
             android:background="@drawable/ic_baseline_remove"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/accept_task"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.457" />
+            app:layout_constraintVertical_bias="0.536" />
 
         <Button
             android:id="@+id/accept_task"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="256dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="24dp"
             android:background="@drawable/ic_baseline_check"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/task_desc"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.456" />
+            app:layout_constraintVertical_bias="0.536" />
 
         <TextView
             android:id="@+id/task_desc"
-            android:layout_width="157dp"
-            android:layout_height="66dp"
+            android:layout_width="214dp"
+            android:layout_height="64dp"
             android:layout_marginBottom="8dp"
             android:text="Description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.128"
+            app:layout_constraintHorizontal_bias="0.151"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/task_name"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

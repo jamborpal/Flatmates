@@ -119,18 +119,20 @@ public class ModelManager implements Model {
 
     @Override
     public void AddChore(Chore chore) {
-        myref.child("flats").child(getFlatID()).child("chores").push().setValue(chore);
+        myref.child("flats").child(getFlatID()).child("chores").child(chore.getChoreID()).setValue(chore);
     }
 
     @Override
-    public void deleteChore(String title) {
+    public void deleteChore(String title,String description) {
         myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    if (snapshot1.getValue(Chore.class).getTitle().equals(title)) {
+                    if (snapshot1.getValue(Chore.class).getTitle().equals(title)&&snapshot1.getValue(Chore.class).getDescription().equals(description)) {
+                        System.out.println(snapshot.getValue(Chore.class).getTitle());
                         snapshot1.getRef().setValue(null);
+                        return;
                     }
 
                 }
@@ -144,14 +146,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void AssignChore(String title) {
+    public void AssignChore(String title, String description) {
         myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    if (snapshot1.getValue(Chore.class).getTitle().equals(title)) {
+                    if (snapshot1.getValue(Chore.class).getTitle().equals(title)&&snapshot1.getValue(Chore.class).getDescription().equals(description)) {
                        snapshot1.child("assignedto").getRef().setValue(flatmateID);
+                       return;
                     }
 
                 }
@@ -173,7 +176,7 @@ public class ModelManager implements Model {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chores.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    if (snapshot1.getValue(Chore.class).getAssignedto() == "") {
+                    if (snapshot1.getValue(Chore.class).getAssignedto().equals("")) {
                         chores.add(snapshot1.getValue(Chore.class));
                     }
 

@@ -4,14 +4,20 @@ public class Chore {
     public String title;
     public String description;
     public boolean isdone;
-    public String assignedto;
-public Chore(){
 
-}
+
+
+    public String choreID;
+    public String assignedto;
+
+    public Chore() {
+
+    }
+
     public Chore(String title, String description) {
         this.title = title;
         this.description = description;
-
+        this.choreID = "" + (System.currentTimeMillis() & 0xfffffff);
         this.isdone = false;
         this.assignedto = "";
     }
@@ -53,5 +59,12 @@ public Chore(){
 
     public void setAssignedto(String assignedto) {
         this.assignedto = assignedto;
+    }
+    public String getChoreID() {
+        return choreID;
+    }
+
+    public void setChoreID(String choreID) {
+        this.choreID = choreID;
     }
 }

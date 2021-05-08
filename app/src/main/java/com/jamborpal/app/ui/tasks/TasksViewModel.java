@@ -24,10 +24,10 @@ public class TasksViewModel extends ViewModel {
     public ArrayList<Chore> getAllNotAssignedChores(){
         return  model.getChoresNotAssigned();
     }
-    public void accept(String title){
-        model.AssignChore(title);
+    public void accept(String title, String description){
+        model.AssignChore(title,description);
     }
-    public void delete(String title){
-        model.deleteChore(title);
+    public void delete(String title,String description){
+        model.deleteChore(title,description);
     }
 }

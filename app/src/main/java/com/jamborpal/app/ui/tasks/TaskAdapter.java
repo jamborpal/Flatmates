@@ -39,18 +39,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
         holder.title.setText(choreList.get(position).getTitle());
         holder.description.setText(choreList.get(position).getDescription());
-        holder.accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tasksViewModel.accept(choreList.get(position).getTitle());
-            }
-        });
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tasksViewModel.delete(choreList.get(position).getTitle());
-            }
-        });
+        holder.accept.setOnClickListener(v -> tasksViewModel.accept(choreList.get(position).getTitle(), choreList.get(position).getDescription()));
+        holder.delete.setOnClickListener(v -> tasksViewModel.delete(choreList.get(position).getTitle(),choreList.get(position).getDescription()));
     }
 
     @Override

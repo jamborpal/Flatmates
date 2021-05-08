@@ -18,9 +18,9 @@ public interface Model {
     double getExpensesPaidByFlatmate();
 
     void AddChore(Chore chore);
-    void deleteChore(String title);
+    void deleteChore(String title,String description);
 
-    void AssignChore(String title);
+    void AssignChore(String title, String description);
 
     ArrayList<Chore> getChoresNotAssigned();
 
