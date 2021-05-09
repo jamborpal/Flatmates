@@ -21,7 +21,6 @@ public class TasksFragment extends Fragment {
 
     private EditText title;
     private EditText description;
-    private Chore task;
     private RecyclerView taskList;
     private TaskAdapter taskAdapater;
     Button addTask;

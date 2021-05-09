@@ -1,21 +1,25 @@
 package com.jamborpal.app.model;
 
-import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.ChildEventListener;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.jamborpal.app.MainActivity;
+import com.jamborpal.app.R;
+import com.jamborpal.app.ui.messageboard.MessageAdapter;
+import com.jamborpal.app.ui.tasks.TaskAdapter;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -82,6 +86,7 @@ public class ModelManager implements Model {
                     for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
                         Flatmate flatmate = snapshot2.getValue(Flatmate.class);
                         if (flatmate.getUsername().equals(username) && flatmate.getPassword().equals(password)) {
+                            LoggedInUser = flatmate;
                             setLoggedInUser(snapshot2.getKey());
                             setFlatUsed(snapshot1.getKey());
                             return;
@@ -228,28 +233,29 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<Chore> getChoresByFlatmate() {
+    public void getChoresByFlatmate(RecyclerView recyclerView) {
 
-        ArrayList<Chore> chores = new ArrayList<>();
-        myref.child("flats").child(getFlatID()).child("chores").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                chores.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+        Query query = myref
+                .child("flats").child(getFlatID()).child("chores")
+                .limitToLast(50);
+        FirebaseRecyclerOptions<Chore> options = new FirebaseRecyclerOptions.Builder<Chore>()
+                .setQuery(query, Chore.class).build();
+        FirebaseRecyclerAdapter<Chore, TaskAdapter.ViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Chore, TaskAdapter.ViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull TaskAdapter.ViewHolder holder, int position, @NonNull Chore model) {
 
-                    if (snapshot1.child("assignedto").getValue().equals(getFlatmateID())) {
-                        chores.add(snapshot1.getValue(Chore.class));
                     }
 
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Getting chores error", error.getDetails());
-            }
-        });
-        return chores;
+                    @NonNull
+                    @Override
+                    public TaskAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singletask, parent, false);
+                        return new TaskAdapter.ViewHolder(v);
+                    }
+                };
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -276,47 +282,35 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<String> getMessages() {
-        ArrayList<String> messages = new ArrayList<>();
-        myref.child("flats").child(getFlatID()).child("messages").addChildEventListener(new ChildEventListener() {
-
+    public void getMessages(RecyclerView recyclerView) {
+        Query query = myref
+                .child("flats").child(getFlatID()).child("messages")
+                .limitToLast(50);
+        FirebaseRecyclerOptions<String> options = new FirebaseRecyclerOptions.Builder<String>()
+                .setQuery(query, String.class).build();
+        FirebaseRecyclerAdapter<String, MessageAdapter.ViewHolder> adapter =
+                new FirebaseRecyclerAdapter<String, MessageAdapter.ViewHolder>(options) {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                messages.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    messages.add(snapshot1.getValue(String.class));
-                    System.out.println(snapshot1.getValue(String.class));
-                }
+            protected void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position, @NonNull String model) {
+                holder.getMessage().setText(model);
             }
 
+            @NonNull
             @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+            public MessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlemessage, parent, false);
+                return new MessageAdapter.ViewHolder(v);
             }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return messages;
+        };
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void sendMessage(String message) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd HH:mm");
         LocalDateTime now = LocalDateTime.now();
-        myref.child("flats").child(getFlatID()).child("messages").push().setValue(dtf.format(now)+": "+message);
+        myref.child("flats").child(getFlatID()).child("messages").push().setValue(dtf.format(now)+" "+LoggedInUser.getFullname()+": "+message);
     }
 
     @Override

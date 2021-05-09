@@ -13,13 +13,19 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.jamborpal.app.R;
 
-public class MessageBoardFragment extends Fragment { private MessageBoardViewModel messageBoardViewModel;
+public class MessageBoardFragment extends Fragment {
+    private MessageBoardViewModel messageBoardViewModel;
     RecyclerView messageList;
-    MessageAdapter messageAdapter;
     private EditText message;
     Button send;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         messageBoardViewModel = new ViewModelProvider(this).get(MessageBoardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_messageboard, container, false);
@@ -28,8 +34,6 @@ public class MessageBoardFragment extends Fragment { private MessageBoardViewMod
         messageList.hasFixedSize();
         messageList.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        messageAdapter = new MessageAdapter();
-        messageList.setAdapter(messageAdapter);
 
         message = root.findViewById(R.id.type_message);
         send = root.findViewById(R.id.send);
@@ -40,6 +44,8 @@ public class MessageBoardFragment extends Fragment { private MessageBoardViewMod
                 message.setText("");
             }
         });
+        messageBoardViewModel.getMessages(messageList);
+
         return root;
     }
 }

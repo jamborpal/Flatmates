@@ -21,8 +21,7 @@ public class HomeViewModel extends ViewModel {
 
     public ArrayList<Chore> getChoresByUser() {
 
-
-        return model.getChoresByFlatmate();
+        return null;
 
 
     }

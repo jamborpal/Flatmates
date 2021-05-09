@@ -10,43 +10,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.jamborpal.app.R;
 
 import java.util.ArrayList;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
-    private ArrayList<String> messages;
-    private MessageBoardViewModel messageBoardViewModel;
+public class MessageAdapter{
 
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView getMessage() {
+            return message;
+        }
 
-    public MessageAdapter() {
-        messageBoardViewModel = new MessageBoardViewModel();
-        messages = messageBoardViewModel.getMessages();
-    }
-
-    @NonNull
-    @Override
-    public MessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.singlemessage, parent, false);
-
-        return new ViewHolder(view);
-
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
-        holder.message.setText(messages.get(position));
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return messages.size();
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-        TextView message;
+        public TextView message;
 
 
         public ViewHolder(@NonNull View itemView) {

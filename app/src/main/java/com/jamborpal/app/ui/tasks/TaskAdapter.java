@@ -49,13 +49,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView description;
+
+        public TextView getTitle() {
+            return title;
+        }
+
+        public TextView getDescription() {
+            return description;
+        }
+
         Button accept;
         Button delete;
 
-        ViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.task_name);
             description = itemView.findViewById(R.id.task_desc);

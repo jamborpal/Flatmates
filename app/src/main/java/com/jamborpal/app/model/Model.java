@@ -1,9 +1,16 @@
 package com.jamborpal.app.model;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 public interface Model {
-     void login(String username, String password);
+    void getMessages(RecyclerView recyclerView);
+    void getChoresByFlatmate(RecyclerView recyclerView);
+
+    void sendMessage(String message);
+    void login(String username, String password);
+
     void setLoggedInUser(String flatmate);
 
     void setFlatUsed(String flat);
@@ -15,19 +22,20 @@ public interface Model {
     double getExpensesPaidByFlatmate();
 
     void AddChore(Chore chore);
+
     void deleteChore(String ChoreID);
 
     void AssignChore(String ChoreID);
 
     ArrayList<Chore> getChoresNotAssigned();
 
-    ArrayList<Chore> getChoresByFlatmate();
+
 
     void OrganizeEvent(Event event);
 
     String getFlatmateNameByID();
-ArrayList<String> getMessages();
-void sendMessage(String message);
+
+
 
     String getCity();
 

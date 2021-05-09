@@ -31,12 +31,6 @@ public class HomeFragment extends Fragment {
         latestCosts.hasFixedSize();
         latestCosts.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
-            costAdapter = new CostAdapter();
-
-
-        latestCosts.setAdapter(costAdapter);
-
         ownchores = root.findViewById(R.id.rvowntasks);
         ownchores.hasFixedSize();
         ownchores.setLayoutManager(new LinearLayoutManager(getActivity()));
