@@ -22,7 +22,7 @@ public class HomeViewModel extends ViewModel {
 
     public void getChoresByUser(RecyclerView recyclerView) {
 
-        model.getChoresByFlatmate(recyclerView);
+        model.getChoresByFlatmate(recyclerView, model.getFlatmateID());
 
 
     }

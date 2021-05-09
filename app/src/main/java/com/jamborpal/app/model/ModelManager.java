@@ -165,16 +165,12 @@ public class ModelManager implements Model {
         myref.child("flats").child(getFlatID()).child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-
                     System.out.println(snapshot1);
                     if (snapshot1.getKey().equals(ChoreID)) {
                         snapshot1.getRef().setValue(null);
                         return;
                     }
-
-
                 }
             }
 
@@ -214,7 +210,7 @@ public class ModelManager implements Model {
     @Override
     public void getChoresNotAssigned(RecyclerView recyclerView) {
         Query query = myref
-                .child("flats").child(getFlatID()).child("chores")
+                .child("flats").child(getFlatID()).child("chores").orderByChild("assignedto").equalTo("")
                 .limitToLast(50);
         FirebaseRecyclerOptions<Chore> options = new FirebaseRecyclerOptions.Builder<Chore>()
                 .setQuery(query, Chore.class).build();
@@ -224,6 +220,18 @@ public class ModelManager implements Model {
                     protected void onBindViewHolder(@NonNull TaskAdapter.ViewHolder holder, int position, @NonNull Chore model) {
                         holder.getTitle().setText(model.getTitle());
                         holder.getDescription().setText(model.getDescription());
+                        holder.getAccept().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AssignChore(model.getChoreID());
+                            }
+                        });
+                        holder.getDelete().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                deleteChore(model.getChoreID());
+                            }
+                        });
                     }
 
                     @NonNull
@@ -238,10 +246,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void getChoresByFlatmate(RecyclerView recyclerView) {
+    public void getChoresByFlatmate(RecyclerView recyclerView,String id) {
 
         Query query = myref
-                .child("flats").child(getFlatID()).child("chores")
+                .child("flats").child(getFlatID()).child("chores").orderByChild("assignedto").equalTo(id)
                 .limitToLast(50);
         FirebaseRecyclerOptions<Chore> options = new FirebaseRecyclerOptions.Builder<Chore>()
                 .setQuery(query, Chore.class).build();
