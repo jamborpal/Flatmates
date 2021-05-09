@@ -3,6 +3,7 @@ package com.jamborpal.app.ui.home;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jamborpal.app.model.Chore;
 import com.jamborpal.app.model.Expense;
@@ -19,15 +20,15 @@ public class HomeViewModel extends ViewModel {
         model = ModelManager.getInstance();
     }
 
-    public ArrayList<Chore> getChoresByUser() {
+    public void getChoresByUser(RecyclerView recyclerView) {
 
-        return null;
+        model.getChoresByFlatmate(recyclerView);
 
 
     }
 
-    public ArrayList<Expense> getExpenses() {
-        return model.getExpensesByLoggedInFlatmate();
+    public void getExpenses(RecyclerView recyclerView) {
+       model.getExpenses(recyclerView);
     }
 
     public void delete(String ChoreID) {

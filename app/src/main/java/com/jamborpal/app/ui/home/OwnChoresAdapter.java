@@ -15,39 +15,27 @@ import com.jamborpal.app.model.Chore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OwnChoresAdapter extends RecyclerView.Adapter<OwnChoresAdapter.ViewHolder> {
+public class OwnChoresAdapter {
 
-    private List<Chore> chores;
-    private HomeViewModel homeViewModel;
 
-    public OwnChoresAdapter() {
-        homeViewModel = new HomeViewModel();
-        chores = new ArrayList<>();
-    }
 
-    @NonNull
-    @Override
-    public OwnChoresAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.singleownchore, parent, false);
 
-        return new OwnChoresAdapter.ViewHolder(view);
-
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull OwnChoresAdapter.ViewHolder holder, int position) {
-        holder.done.setOnClickListener(v -> homeViewModel.delete(chores.get(position).getChoreID()));
-    }
-
-    @Override
-    public int getItemCount() {
-        return chores.size();
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public static  class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView desc;
+
+        public TextView getTitle() {
+            return title;
+        }
+
+        public TextView getDesc() {
+            return desc;
+        }
+
+        public Button getDone() {
+            return done;
+        }
+
         Button done;
 
         public ViewHolder(@NonNull View itemView) {

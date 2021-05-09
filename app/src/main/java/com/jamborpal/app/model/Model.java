@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public interface Model {
     void getMessages(RecyclerView recyclerView);
     void getChoresByFlatmate(RecyclerView recyclerView);
+    void getExpenses(RecyclerView recyclerView);
 
     void sendMessage(String message);
     void login(String username, String password);

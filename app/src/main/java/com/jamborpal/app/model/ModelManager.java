@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jamborpal.app.R;
+import com.jamborpal.app.ui.home.CostAdapter;
 import com.jamborpal.app.ui.messageboard.MessageAdapter;
 import com.jamborpal.app.ui.tasks.TaskAdapter;
 
@@ -244,7 +245,8 @@ public class ModelManager implements Model {
                 new FirebaseRecyclerAdapter<Chore, TaskAdapter.ViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull TaskAdapter.ViewHolder holder, int position, @NonNull Chore model) {
-
+                        holder.getTitle().setText(model.getTitle());
+                        holder.getDescription().setText(model.getDescription());
                     }
 
                     @NonNull
@@ -252,6 +254,32 @@ public class ModelManager implements Model {
                     public TaskAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singletask, parent, false);
                         return new TaskAdapter.ViewHolder(v);
+                    }
+                };
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void getExpenses(RecyclerView recyclerView) {
+        Query query = myref
+                .child("flats").child(getFlatID()).child("expenses")
+                .limitToLast(50);
+        FirebaseRecyclerOptions<Expense> options = new FirebaseRecyclerOptions.Builder<Expense>()
+                .setQuery(query, Expense.class).build();
+        FirebaseRecyclerAdapter<Expense, CostAdapter.ViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Expense, CostAdapter.ViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull CostAdapter.ViewHolder holder, int position, @NonNull Expense model) {
+                        holder.getExpenseName().setText(model.title);
+                        holder.getExpenseCost().setText("" + model.price);
+                    }
+
+                    @NonNull
+                    @Override
+                    public CostAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singelexpense, parent, false);
+                        return new CostAdapter.ViewHolder(v);
                     }
                 };
         adapter.startListening();
@@ -290,18 +318,18 @@ public class ModelManager implements Model {
                 .setQuery(query, String.class).build();
         FirebaseRecyclerAdapter<String, MessageAdapter.ViewHolder> adapter =
                 new FirebaseRecyclerAdapter<String, MessageAdapter.ViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position, @NonNull String model) {
-                holder.getMessage().setText(model);
-            }
+                    @Override
+                    protected void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position, @NonNull String model) {
+                        holder.getMessage().setText(model);
+                    }
 
-            @NonNull
-            @Override
-            public MessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlemessage, parent, false);
-                return new MessageAdapter.ViewHolder(v);
-            }
-        };
+                    @NonNull
+                    @Override
+                    public MessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlemessage, parent, false);
+                        return new MessageAdapter.ViewHolder(v);
+                    }
+                };
         adapter.startListening();
         recyclerView.setAdapter(adapter);
     }
@@ -310,7 +338,7 @@ public class ModelManager implements Model {
     public void sendMessage(String message) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd HH:mm");
         LocalDateTime now = LocalDateTime.now();
-        myref.child("flats").child(getFlatID()).child("messages").push().setValue(dtf.format(now)+" "+LoggedInUser.getFullname()+": "+message);
+        myref.child("flats").child(getFlatID()).child("messages").push().setValue(dtf.format(now) + " " + LoggedInUser.getFullname() + ": " + message);
     }
 
     @Override
@@ -364,22 +392,6 @@ public class ModelManager implements Model {
     public ArrayList<Expense> getExpensesByLoggedInFlatmate() {
         ArrayList<Expense> expenses = new ArrayList<>();
 
-        /*myref.child("flats").child(getFlatID()).child("expenses").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                expenses.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    Expense expense = snapshot1.getValue(Expense.class);
-                    expenses.add(expense);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Getting expenses error", error.getDetails());
-            }
-        });
-        System.out.println(expenses);*/
         return expenses;
     }
 
