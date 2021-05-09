@@ -40,8 +40,12 @@ public class ContactFragment extends Fragment {
         return root;
     }
     public void call(String phoneNumber){
-            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(phoneNumber));
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:"+phoneNumber));
+        if(isAdded()){
             startActivity(intent);
+        }
+
 
     }
     public void email(String email){

@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,6 +16,8 @@ import com.jamborpal.app.MainActivity;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ModelManager implements Model {
@@ -245,7 +249,6 @@ public class ModelManager implements Model {
                 Log.e("Getting chores error", error.getDetails());
             }
         });
-        System.out.println(chores);
         return chores;
     }
 
@@ -270,6 +273,50 @@ public class ModelManager implements Model {
         });
         return name[0];
 
+    }
+
+    @Override
+    public ArrayList<String> getMessages() {
+        ArrayList<String> messages = new ArrayList<>();
+        myref.child("flats").child(getFlatID()).child("messages").addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                messages.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    messages.add(snapshot1.getValue(String.class));
+                    System.out.println(snapshot1.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return messages;
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+        myref.child("flats").child(getFlatID()).child("messages").push().setValue(dtf.format(now)+": "+message);
     }
 
     @Override

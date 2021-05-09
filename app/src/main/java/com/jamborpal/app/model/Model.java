@@ -26,7 +26,8 @@ public interface Model {
     void OrganizeEvent(Event event);
 
     String getFlatmateNameByID();
-
+ArrayList<String> getMessages();
+void sendMessage(String message);
 
     String getCity();
 

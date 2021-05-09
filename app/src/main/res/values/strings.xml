@@ -59,6 +59,8 @@
     <string name="by">By:</string>
     <string name="expense_name">Expense name</string>
     <string name="expense_cost">Expense cost</string>
+    <string name="flat_message_board">Flat message board</string>
+    <string name="send">Send</string>
 
 
 </resources>
