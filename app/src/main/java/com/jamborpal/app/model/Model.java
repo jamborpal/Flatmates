@@ -28,7 +28,7 @@ public interface Model {
 
     void AssignChore(String ChoreID);
 
-    ArrayList<Chore> getChoresNotAssigned();
+    void getChoresNotAssigned(RecyclerView recyclerView);
 
 
 

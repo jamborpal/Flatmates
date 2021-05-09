@@ -18,6 +18,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jamborpal.app.R;
 import com.jamborpal.app.ui.home.CostAdapter;
+import com.jamborpal.app.ui.home.OwnChoresAdapter;
 import com.jamborpal.app.ui.messageboard.MessageAdapter;
 import com.jamborpal.app.ui.tasks.TaskAdapter;
 
@@ -211,31 +212,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<Chore> getChoresNotAssigned() {
-        ArrayList<Chore> chores = new ArrayList<>();
-        myref.child("flats").child(getFlatID()).child("chores").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                chores.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    if (snapshot1.getValue(Chore.class).getAssignedto().equals("")) {
-                        chores.add(snapshot1.getValue(Chore.class));
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Getting chores error", error.getDetails());
-            }
-        });
-        return chores;
-    }
-
-    @Override
-    public void getChoresByFlatmate(RecyclerView recyclerView) {
-
+    public void getChoresNotAssigned(RecyclerView recyclerView) {
         Query query = myref
                 .child("flats").child(getFlatID()).child("chores")
                 .limitToLast(50);
@@ -254,6 +231,33 @@ public class ModelManager implements Model {
                     public TaskAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singletask, parent, false);
                         return new TaskAdapter.ViewHolder(v);
+                    }
+                };
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void getChoresByFlatmate(RecyclerView recyclerView) {
+
+        Query query = myref
+                .child("flats").child(getFlatID()).child("chores")
+                .limitToLast(50);
+        FirebaseRecyclerOptions<Chore> options = new FirebaseRecyclerOptions.Builder<Chore>()
+                .setQuery(query, Chore.class).build();
+        FirebaseRecyclerAdapter<Chore, OwnChoresAdapter.ViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Chore, OwnChoresAdapter.ViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull OwnChoresAdapter.ViewHolder holder, int position, @NonNull Chore model) {
+                        holder.getTitle().setText(model.getTitle());
+                        holder.getDesc().setText(model.getDescription());
+                    }
+
+                    @NonNull
+                    @Override
+                    public OwnChoresAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singleownchore, parent, false);
+                        return new OwnChoresAdapter.ViewHolder(v);
                     }
                 };
         adapter.startListening();

@@ -18,16 +18,10 @@ import com.jamborpal.app.model.Chore;
 
 public class TasksFragment extends Fragment {
     private TasksViewModel tasksViewModel;
-
     private EditText title;
     private EditText description;
     private RecyclerView taskList;
-    private TaskAdapter taskAdapater;
-    Button addTask;
 
-    public TasksFragment() {
-
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -38,8 +32,6 @@ public class TasksFragment extends Fragment {
         taskList = root.findViewById(R.id.rvt);
         taskList.hasFixedSize();
         taskList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        taskAdapater = new TaskAdapter();
-        taskList.setAdapter(taskAdapater);
         final Button addTask = root.findViewById(R.id.add_task);
         addTask.setOnClickListener(new View.OnClickListener() {
 
@@ -47,11 +39,14 @@ public class TasksFragment extends Fragment {
                 addTask();
             }
         });
+
+        tasksViewModel.getAllNotAssignedChores(taskList);
         return root;
+
     }
 
     public void addTask() {
-        Chore chore = new Chore(title.getText().toString(),description.getText().toString());
+        Chore chore = new Chore(title.getText().toString(), description.getText().toString());
         tasksViewModel.addTask(chore);
         title.setText("");
         description.setText("");

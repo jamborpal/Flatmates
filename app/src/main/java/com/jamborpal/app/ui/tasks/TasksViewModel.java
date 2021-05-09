@@ -1,6 +1,7 @@
 package com.jamborpal.app.ui.tasks;
 
 import androidx.lifecycle.ViewModel;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jamborpal.app.model.Chore;
 import com.jamborpal.app.model.Model;
@@ -21,8 +22,8 @@ public class TasksViewModel extends ViewModel {
         model.AddChore(task);
 
     }
-    public ArrayList<Chore> getAllNotAssignedChores(){
-        return  model.getChoresNotAssigned();
+    public void getAllNotAssignedChores(RecyclerView recyclerView){
+        model.getChoresNotAssigned(recyclerView);
     }
     public void accept(String ChoreID){
         model.AssignChore(ChoreID);

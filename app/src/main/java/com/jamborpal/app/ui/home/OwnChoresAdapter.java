@@ -17,9 +17,6 @@ import java.util.List;
 
 public class OwnChoresAdapter {
 
-
-
-
     public static  class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView desc;
