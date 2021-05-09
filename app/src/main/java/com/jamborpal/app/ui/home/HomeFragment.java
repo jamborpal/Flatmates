@@ -18,7 +18,6 @@ import com.jamborpal.app.R;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
     RecyclerView latestCosts;
     CostAdapter costAdapter;
     RecyclerView ownchores;
@@ -26,15 +25,16 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         latestCosts = root.findViewById(R.id.rvlatestexpenses);
         latestCosts.hasFixedSize();
         latestCosts.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        costAdapter = new CostAdapter();
+
+            costAdapter = new CostAdapter();
+
+
         latestCosts.setAdapter(costAdapter);
 
         ownchores = root.findViewById(R.id.rvowntasks);

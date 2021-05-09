@@ -16,9 +16,7 @@ public class ProfileViewModel extends ViewModel {
 
     }
 
-    public Flatmate getname() {
-        return model.getLoggedInUser();
-    }
+
     public double getMoneySpent(){
         return model.getExpensesPaidByFlatmate();
     }

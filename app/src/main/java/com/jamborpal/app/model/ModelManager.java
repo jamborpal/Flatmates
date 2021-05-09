@@ -1,5 +1,6 @@
 package com.jamborpal.app.model;
 
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -9,15 +10,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jamborpal.app.MainActivity;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ModelManager implements Model {
     //Add variable of database instance
     public Flatmate LoggedInUser;
     public Flat flat;
-    public String flatID;
-    public String flatmateID;
+    private String flatID;
+    private String flatmateID;
     private FirebaseDatabase database;
     private DatabaseReference myref;
     private static ModelManager modelManager;
@@ -27,6 +31,13 @@ public class ModelManager implements Model {
             modelManager = new ModelManager();
         }
         return modelManager;
+    }
+
+    public ModelManager(String flatmateID, String flatID) {
+        database = FirebaseDatabase.getInstance();
+        myref = database.getReference();
+        setFlatUsed(flatID);
+        setLoggedInUser(flatmateID);
     }
 
     public ModelManager() {
@@ -59,9 +70,10 @@ public class ModelManager implements Model {
 
     @Override
     public void login(String username, String password) {
-        myref.child("flats").addValueEventListener(new ValueEventListener() {
+
+        myref.child("flats").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public synchronized void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
                         Flatmate flatmate = snapshot2.getValue(Flatmate.class);
@@ -83,6 +95,7 @@ public class ModelManager implements Model {
         });
     }
 
+
     @Override
     public void setLoggedInUser(String flatmate) {
         this.flatmateID = flatmate;
@@ -92,17 +105,9 @@ public class ModelManager implements Model {
     @Override
     public void setFlatUsed(String flat) {
         this.flatID = flat;
+
     }
 
-    @Override
-    public void MoveIn(Flatmate flatmate) {
-        flat.MoveIn(flatmate);
-    }
-
-    @Override
-    public void MoveOut(int FlatmateID) {
-        flat.MoveOut(FlatmateID);
-    }
 
     @Override
     public void AddExpense(Expense expense) {
@@ -110,16 +115,12 @@ public class ModelManager implements Model {
 
     }
 
-    @Override
-    public ArrayList<Expense> getExpensesByFlatmate(int FlatmateID) {
-        return flat.getExpensesByFlatmate(FlatmateID);
-    }
 
     @Override
     public double getExpensesPaidByFlatmate() {
         double value = 0;
         ArrayList<Expense> expenses = new ArrayList<>();
-        myref.child("flats").child(flatID).child("expenses").addValueEventListener(new ValueEventListener() {
+        myref.child("flats").child(getFlatID()).child("expenses").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 expenses.clear();
@@ -150,20 +151,17 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteChore(String ChoreID) {
-        myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
+        myref.child("flats").child(getFlatID()).child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
 
                     System.out.println(snapshot1);
-                        if (snapshot1.getKey().equals(ChoreID)) {
-                            snapshot1.getRef().setValue(null);
-                            return;
-                        }
-
-
-
+                    if (snapshot1.getKey().equals(ChoreID)) {
+                        snapshot1.getRef().setValue(null);
+                        return;
+                    }
 
 
                 }
@@ -178,7 +176,7 @@ public class ModelManager implements Model {
 
     @Override
     public void AssignChore(String ChoreID) {
-        myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
+        myref.child("flats").child(getFlatID()).child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -186,12 +184,9 @@ public class ModelManager implements Model {
 
                     System.out.println(snapshot1);
                     if (snapshot1.getKey().equals(ChoreID)) {
-                        snapshot1.child("assignedto").getRef().setValue(flatmateID);
+                        snapshot1.child("assignedto").getRef().setValue(getFlatmateID());
                         return;
                     }
-
-
-
 
 
                 }
@@ -208,7 +203,7 @@ public class ModelManager implements Model {
     @Override
     public ArrayList<Chore> getChoresNotAssigned() {
         ArrayList<Chore> chores = new ArrayList<>();
-        myref.child("flats").child(flatID).child("chores").addValueEventListener(new ValueEventListener() {
+        myref.child("flats").child(getFlatID()).child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chores.clear();
@@ -230,13 +225,15 @@ public class ModelManager implements Model {
 
     @Override
     public ArrayList<Chore> getChoresByFlatmate() {
+
         ArrayList<Chore> chores = new ArrayList<>();
-        myref.child("flats").child("hi").child("chores").addValueEventListener(new ValueEventListener() {
+        myref.child("flats").child(getFlatID()).child("chores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chores.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    if (snapshot1.getValue(Chore.class).getAssignedto().equals(flatmateID)) {
+
+                    if (snapshot1.child("assignedto").getValue().equals(getFlatmateID())) {
                         chores.add(snapshot1.getValue(Chore.class));
                     }
 
@@ -276,11 +273,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void MarkEventFinished(int EventID) {
-        flat.MarkEventFinished(EventID);
-    }
-
-    @Override
     public String getCity() {
         return flat.getCity();
     }
@@ -304,7 +296,7 @@ public class ModelManager implements Model {
     @Override
     public ArrayList<Event> getEvents() {
         ArrayList<Event> events = new ArrayList<>();
-        myref.child("flats").child(flatID).child("events").addValueEventListener(new ValueEventListener() {
+        myref.child("flats").child(getFlatID()).child("events").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 events.clear();
@@ -330,33 +322,24 @@ public class ModelManager implements Model {
     @Override
     public ArrayList<Expense> getExpensesByLoggedInFlatmate() {
         ArrayList<Expense> expenses = new ArrayList<>();
-        Expense expense = new Expense("fsdfds","dfsd",2131,"dfs");
-        expenses.add(expense);
-            /*myref.child("flats").child("hi").child("expenses").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    expenses.clear();
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        Expense expense =new Expense(snapshot1.child("title").getValue().toString(),Double.parseDouble(snapshot1.child("price").getValue().toString()),snapshot1.child("buyer").getValue().toString());
-                        expenses.add(expense);
-                    }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.e("Getting expenses error", error.getDetails());
+        /*myref.child("flats").child(getFlatID()).child("expenses").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                expenses.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    Expense expense = snapshot1.getValue(Expense.class);
+                    expenses.add(expense);
                 }
-            });*/
-        System.out.println(expenses);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Getting expenses error", error.getDetails());
+            }
+        });
+        System.out.println(expenses);*/
         return expenses;
-    }
-
-    public Flatmate getLoggedInUser() {
-        return LoggedInUser;
-    }
-
-    public Flat getFlat() {
-        return flat;
     }
 
     public String getFlatID() {

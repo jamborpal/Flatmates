@@ -16,16 +16,22 @@ public class HomeViewModel extends ViewModel {
     private Model model;
 
     public HomeViewModel() {
-      model= ModelManager.getInstance();
+        model = ModelManager.getInstance();
     }
 
-    public ArrayList<Chore> getChoresByUser(){
+    public ArrayList<Chore> getChoresByUser() {
+
+
         return model.getChoresByFlatmate();
+
+
     }
-    public ArrayList<Expense> getExpenses(){
+
+    public ArrayList<Expense> getExpenses() {
         return model.getExpensesByLoggedInFlatmate();
     }
-    public void delete(String ChoreID){
+
+    public void delete(String ChoreID) {
         model.deleteChore(ChoreID);
 
 

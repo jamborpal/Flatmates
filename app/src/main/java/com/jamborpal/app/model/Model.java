@@ -8,13 +8,9 @@ public interface Model {
 
     void setFlatUsed(String flat);
 
-    void MoveIn(Flatmate flatmate);
-
-    void MoveOut(int FlatmateID);
 
     void AddExpense(Expense expense);
 
-    ArrayList<Expense> getExpensesByFlatmate(int FlatmateID);
 
     double getExpensesPaidByFlatmate();
 
@@ -31,9 +27,6 @@ public interface Model {
 
     String getFlatmateNameByID();
 
-    void MarkEventFinished(int EventID);
-
-    Flatmate getLoggedInUser();
 
     String getCity();
 

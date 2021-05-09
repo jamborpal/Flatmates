@@ -21,9 +21,10 @@ public class CostAdapter extends RecyclerView.Adapter<CostAdapter.ViewHolder> {
     private List<Expense> expenses;
     private HomeViewModel homeViewModel;
 
-    public CostAdapter() {
+    public CostAdapter(){
         homeViewModel = new HomeViewModel();
         expenses = homeViewModel.getExpenses();
+
     }
 
     @NonNull

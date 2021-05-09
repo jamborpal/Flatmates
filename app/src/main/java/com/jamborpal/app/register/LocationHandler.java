@@ -89,7 +89,6 @@ public class LocationHandler extends AppCompatActivity {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     String key = snapshot1.getKey();
                     if (key.equals(id)) {
-                        flat = snapshot1.getValue(Flat.class);
                         myRef.child("flats").child(chooseflatID.getText().toString()).child("tenants").child(""+flatmate.getFlatmateid()).setValue(flatmate);
                     }
                 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jamborpal.app.R;
 import com.jamborpal.app.model.Chore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OwnChoresAdapter extends RecyclerView.Adapter<OwnChoresAdapter.ViewHolder> {
@@ -21,7 +22,7 @@ public class OwnChoresAdapter extends RecyclerView.Adapter<OwnChoresAdapter.View
 
     public OwnChoresAdapter() {
         homeViewModel = new HomeViewModel();
-        chores = homeViewModel.getChoresByUser();
+        chores = new ArrayList<>();
     }
 
     @NonNull
@@ -29,6 +30,7 @@ public class OwnChoresAdapter extends RecyclerView.Adapter<OwnChoresAdapter.View
     public OwnChoresAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.singleownchore, parent, false);
+        chores = homeViewModel.getChoresByUser();
         return new OwnChoresAdapter.ViewHolder(view);
 
     }

@@ -1,5 +1,6 @@
 package com.jamborpal.app.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,8 @@ import com.jamborpal.app.MainActivity;
 import com.jamborpal.app.R;
 import com.jamborpal.app.model.Flatmate;
 import com.jamborpal.app.register.RegisterHandler;
+
+import java.io.File;
 
 public class LoginHandler extends AppCompatActivity {
     private LoginViewModel loginViewModel;
@@ -39,18 +42,36 @@ public class LoginHandler extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Login(username.getText().toString(), password.getText().toString());
+                try {
+                    Login(username.getText().toString(), password.getText().toString());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    public void Login(String username, String password) {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void Login(String username, String password) throws InterruptedException {
 
-        loginViewModel.login(username, password);
+       try{
+           loginViewModel.login(username, password);
+           Thread.sleep(1000);
 
-        startActivity(intent);
-        finish();
+       }
+       catch (Exception e){
+
+       }
+       finally {
+           Intent intent = new Intent(this, MainActivity.class);
+           startActivity(intent);
+           finish();
+       }
+
+
+
+
+
+
     }
 
     public void Register(View view) {
