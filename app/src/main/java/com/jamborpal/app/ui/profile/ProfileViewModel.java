@@ -16,8 +16,19 @@ public class ProfileViewModel extends ViewModel {
 
     }
 
+    public String getEmail() {
+        return model.getEmail();
+    }
 
-    public double getMoneySpent(){
+    public String getFullname() {
+        return model.getFullName();
+    }
+
+    public String getPhoneNumber() {
+        return model.getPhoneNumber();
+    }
+
+    public String getMoneySpent() {
         return model.getExpensesPaidByFlatmate();
     }
 }

@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jamborpal.app.R;
+import com.jamborpal.app.ui.events.EventAdapter;
 import com.jamborpal.app.ui.home.CostAdapter;
 import com.jamborpal.app.ui.home.OwnChoresAdapter;
 import com.jamborpal.app.ui.messageboard.MessageAdapter;
@@ -53,31 +54,22 @@ public class ModelManager implements Model {
     public ModelManager() {
         database = FirebaseDatabase.getInstance();
         myref = database.getReference();
-      /*  Flatmate flatmate = new Flatmate("Pál Jámbor", "jamborpal0@gmail.com", "jamborpal", "hello");
-        Flat flat = new Flat("hello", "Horsens", "Country", "Address");
-        this.flat = flat;
-        this.LoggedInUser = flatmate;
-        Flatmate flatmate1 = new Flatmate("Lola", "jfdsgfdgdfgil.com", "lola", "hello");
-
-        Flatmate flatmate2 = new Flatmate("Emma", "jfdgfdg@gmail.com", "emma", "hello");
-        MoveIn(flatmate1);
-        MoveIn(flatmate2);*/
-
-
-     /*   ArrayList<Room> rooms = new ArrayList<>();
-        Room room1 = new Room("Room1");
-        Room room2 = new Room("Room2");
-        Room room3 = new Room("Room3");
-        this.flat = new Flat("firstflat","Horsens", "Denmark", "Radhustorvet");
-        this.LoggedInUser = new Flatmate("Pál Jámbor", "jamborpal@gmail.com", "jamborpal", "1234");
-        LoggedInUser.setPhoneNumber(0211313);
-        Flatmate flatmate = new Flatmate("Toyota", "toyi@gmail.om", "toy", "1234");
-        flatmate.setPhoneNumber(32432432);
-        Chore chore = new Chore("title", "desctiption");Chore chore1 = new Chore("titlsfdge", "descfdsgfdsfsfsaftiption");
-        flat.AddChore(chore1);
-        flat.AddChore(chore);*/
+    }
+    @Override
+    public String getEmail() {
+        return "LoggedInUser.getEmail()";
     }
 
+    @Override
+    public String getPhoneNumber() {
+        return "LoggedInUser.getPhonenumber()";
+    }
+
+
+    @Override
+    public String getExpensesPaidByFlatmate() {
+        return "LoggedInUser.getMoneyspent()";
+    }
     @Override
     public void login(String username, String password) {
 
@@ -122,38 +114,20 @@ public class ModelManager implements Model {
 
     @Override
     public void AddExpense(Expense expense) {
+        double spent = expense.getPrice() + LoggedInUser.getMoneyspent();
+        LoggedInUser.setMoneyspent(spent);
         myref.child("flats").child(getFlatID()).child("expenses").push().setValue(expense);
+        myref.child("flats").child(getFlatID()).child("tenants").child(getFlatmateID()).child("moneyspent").setValue(spent);
+
 
     }
-
 
     @Override
-    public double getExpensesPaidByFlatmate() {
-        double value = 0;
-        ArrayList<Expense> expenses = new ArrayList<>();
-        myref.child("flats").child(getFlatID()).child("expenses").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                expenses.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-
-                    expenses.add(snapshot1.getValue(Expense.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Getting events error", error.getDetails());
-            }
-        });
-        for (Expense money : expenses) {
-            if (money.getBuyer().equals(flatmateID)) {
-                value += money.getPrice();
-            }
-        }
-        return value;
-
+    public String getFullName() {
+        return myref.child("flats").child("hi").child("tenants").child("17641908").get().getResult().getValue(Flatmate.class).getFullname();
     }
+
+
 
     @Override
     public void AddChore(Chore chore) {
@@ -246,8 +220,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void getChoresByFlatmate(RecyclerView recyclerView,String id) {
-
+    public void getChoresByFlatmate(RecyclerView recyclerView, String id) {
         Query query = myref
                 .child("flats").child(getFlatID()).child("chores").orderByChild("assignedto").equalTo(id)
                 .limitToLast(50);
@@ -304,24 +277,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getFlatmateNameByID() {
-        final String[] name = {""};
-        myref.child("flats").child(getFlatID()).child("tenants").child(getFlatmateID()).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                name[0] = snapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return name[0];
-
-    }
-
-    @Override
     public void getMessages(RecyclerView recyclerView) {
         Query query = myref
                 .child("flats").child(getFlatID()).child("messages")
@@ -375,37 +330,60 @@ public class ModelManager implements Model {
 
 
     @Override
-    public ArrayList<Event> getEvents() {
-        ArrayList<Event> events = new ArrayList<>();
+    public void getEvents(RecyclerView recyclerView) {
+        Query query = myref
+                .child("flats").child(getFlatID()).child("events")
+                .limitToLast(50);
+        FirebaseRecyclerOptions<Event> options = new FirebaseRecyclerOptions.Builder<Event>()
+                .setQuery(query, Event.class).build();
+        FirebaseRecyclerAdapter<Event, EventAdapter.ViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Event, EventAdapter.ViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull EventAdapter.ViewHolder holder, int position, @NonNull Event model) {
+                        holder.getTitle().setText(model.getTitle());
+                        holder.getDesc().setText(model.getDescription());
+                        holder.getTime().setText(model.getTime());
+                        holder.getOrganizer().setText(model.getOrganiser());
+                        holder.getDelete().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                deleteEvent(model.getTitle(),model.getDescription());
+                            }
+                        });
+                    }
+
+                    @NonNull
+                    @Override
+                    public EventAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singleevent, parent, false);
+                        return new EventAdapter.ViewHolder(v);
+                    }
+                };
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void deleteEvent(String title, String description) {
         myref.child("flats").child(getFlatID()).child("events").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                events.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-
-                    events.add(snapshot1.getValue(Event.class));
+                    if (snapshot1.getValue(Event.class).getDescription().equals(description)&&snapshot1.getValue(Event.class).getTitle().equals(title)) {
+                        snapshot1.getRef().setValue(null);
+                        return;
+                    }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Getting events error", error.getDetails());
+                Log.e("Getting chores error", error.getDetails());
             }
         });
-        return events;
     }
 
-    @Override
-    public ArrayList<Chore> getChores() {
-        return flat.getChores();
-    }
-
-    @Override
-    public ArrayList<Expense> getExpensesByLoggedInFlatmate() {
-        ArrayList<Expense> expenses = new ArrayList<>();
-
-        return expenses;
-    }
 
     public String getFlatID() {
         return flatID;

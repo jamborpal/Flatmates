@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -40,16 +41,18 @@ public class EventsFragment extends Fragment {
         organize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddEvent();
+                if (!title.getText().toString().isEmpty() && !description.getText().toString().isEmpty() && !time.getText().toString().isEmpty()) {
+                    AddEvent();
+                    Toast.makeText(getContext(), "Event successfully added", Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(getContext(), "Don't forget to fill out all the fields!", Toast.LENGTH_SHORT).show();
             }
         });
         //setting up the recycle view part
         eventList = root.findViewById(R.id.rve);
         eventList.hasFixedSize();
         eventList.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        adapter = new EventAdapter();
-        eventList.setAdapter(adapter);
+        eventsViewModel.getEvents(eventList);
         return root;
     }
 

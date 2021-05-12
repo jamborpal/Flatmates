@@ -7,48 +7,60 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/contactspanel"
-        android:layout_margin="20dp">
+        android:layout_height="70dp"
+        android:layout_margin="5dp"
+        android:background="@color/lemon_meringue">
 
         <TextView
             android:id="@+id/rv_item_name"
             android:layout_width="157dp"
             android:layout_height="28dp"
-            android:layout_marginTop="26dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#911F1F"
             android:text="Pál Jámbor"
             android:textAlignment="textStart"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.141"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.333" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/contact_call"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="56dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/ic_baseline_call_24"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rv_item_name"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.506" />
+            app:layout_constraintTop_toTopOf="@+id/rv_item_name" />
 
         <Button
             android:id="@+id/contact_email"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="29dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="28dp"
             android:background="@drawable/ic_email"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/contact_call"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.506" />
+            app:layout_constraintTop_toTopOf="@+id/contact_call" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="1dp"
+            android:text="Money spent: "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_item_name" />
+
+        <TextView
+            android:id="@+id/moneyspent"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toBottomOf="@+id/rv_item_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

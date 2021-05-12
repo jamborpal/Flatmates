@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -40,8 +41,12 @@ public class MessageBoardFragment extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                messageBoardViewModel.sendMessage(message.getText().toString());
-                message.setText("");
+                if (!message.getText().toString().isEmpty()) {
+                    messageBoardViewModel.sendMessage(message.getText().toString());
+                    message.setText("");
+                }
+
+
             }
         });
         messageBoardViewModel.getMessages(messageList);

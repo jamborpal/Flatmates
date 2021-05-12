@@ -19,6 +19,7 @@ import com.jamborpal.app.model.Flatmate;
 import com.jamborpal.app.register.RegisterHandler;
 
 import java.io.File;
+import java.util.concurrent.CountDownLatch;
 
 public class LoginHandler extends AppCompatActivity {
     private LoginViewModel loginViewModel;
@@ -52,24 +53,26 @@ public class LoginHandler extends AppCompatActivity {
     }
 
     public void Login(String username, String password) throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(3);
+        try {
+            Thread thread = new Thread(() ->
+            {
+                loginViewModel.login(username, password);
 
-       try{
-           loginViewModel.login(username, password);
-           Thread.sleep(1000);
+            });
+            thread.start();
+            Thread.sleep(1000);
 
-       }
-       catch (Exception e){
-
-       }
-       finally {
-           Intent intent = new Intent(this, MainActivity.class);
-           startActivity(intent);
-           finish();
-       }
-
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
 
 
+        } catch (Exception e) {
 
+        } finally {
+
+        }
 
 
     }

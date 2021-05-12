@@ -1,6 +1,7 @@
 package com.jamborpal.app.ui.events;
 
 import androidx.lifecycle.ViewModel;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jamborpal.app.model.Event;
 import com.jamborpal.app.model.Model;
@@ -19,10 +20,10 @@ public class EventsViewModel extends ViewModel {
         model.OrganizeEvent(event);
     }
     public String getLoggedInUser(){
-        return model.getFlatmateNameByID();
+        return "model.getFlatmateNameByID()";
     }
-    public List<Event> getEvents(){
-        return model.getEvents();
+    public void getEvents(RecyclerView recyclerView){
+         model.getEvents(recyclerView);
     }
 
 }

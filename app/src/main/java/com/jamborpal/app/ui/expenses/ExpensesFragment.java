@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.common.internal.Objects;
 import com.jamborpal.app.R;
 import com.jamborpal.app.model.Expense;
 
@@ -35,7 +37,13 @@ public class ExpensesFragment extends Fragment {
         addExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addNewExpense();
+                if (!title.getText().toString().equals("") &&
+                        !description.getText().toString().equals("") && !expens.getText().toString().equals("")){
+                    addNewExpense();
+                    Toast.makeText(getContext(), "Expense of " + expens.getText().toString() + " has been added!", Toast.LENGTH_SHORT).show();
+                }
+                else Toast.makeText(getContext(), "Don't forget to fill out all the fields!", Toast.LENGTH_SHORT).show();
+
             }
         });
         return root;
@@ -43,11 +51,13 @@ public class ExpensesFragment extends Fragment {
 
     private void addNewExpense() {
 
-        Expense expense = new Expense(title.getText().toString(), description.getText().toString(), Double.parseDouble(expens.getText().toString()), expensesViewModel.getCurrentUserID());
-        expensesViewModel.AddExpense(expense);
-        title.setText("");
-        description.setText("");
-        expens.setText("");
+            Expense expense = new Expense(title.getText().toString(), description.getText().toString(), Double.parseDouble(expens.getText().toString()), expensesViewModel.getCurrentUserID());
+            expensesViewModel.AddExpense(expense);
+            title.setText("");
+            description.setText("");
+            expens.setText("");
+
+
     }
 
 }

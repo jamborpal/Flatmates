@@ -8,7 +8,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="117dp"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:background="@color/lemon_meringue">
 
 
         <TextView
@@ -33,12 +34,10 @@
             android:id="@+id/accept_taskown"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="84dp"
+            android:layout_marginStart="72dp"
             android:background="@drawable/ic_baseline_check"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/task_descown"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.658" />
+            app:layout_constraintTop_toBottomOf="@+id/task_nameown" />
 
         <TextView
             android:id="@+id/task_descown"

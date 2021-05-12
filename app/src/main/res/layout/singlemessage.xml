@@ -11,5 +11,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text=""
-        android:padding="10dp"/>
+        android:padding="15dp"/>
 </LinearLayout>

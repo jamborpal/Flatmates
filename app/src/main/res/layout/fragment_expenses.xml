@@ -61,7 +61,7 @@
     <EditText
         android:id="@+id/expense_title"
         android:layout_width="359dp"
-        android:layout_height="48dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -72,7 +72,7 @@
     <EditText
         android:id="@+id/expense_description"
         android:layout_width="359dp"
-        android:layout_height="46dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:ems="10"
         android:gravity="start|top"
@@ -83,7 +83,7 @@
     <EditText
         android:id="@+id/expense_price"
         android:layout_width="359dp"
-        android:layout_height="41dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:ems="10"
         android:inputType="numberDecimal"

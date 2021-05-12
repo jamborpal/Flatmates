@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/event_title"
         android:layout_width="316dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -20,7 +20,7 @@
     <EditText
         android:id="@+id/event_desc"
         android:layout_width="319dp"
-        android:layout_height="46dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:ems="10"
         android:gravity="start|top"
@@ -65,7 +65,7 @@
     <EditText
         android:id="@+id/event_t"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="432dp"
         android:ems="10"
@@ -86,10 +86,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rve"
-        android:layout_width="414dp"
-        android:layout_height="362dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="419dp"
+        android:layout_height="481dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_event" />

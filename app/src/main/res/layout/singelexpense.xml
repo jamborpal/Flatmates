@@ -6,9 +6,10 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="394dp"
+        android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:layout_margin="15dp">
+        android:layout_margin="5dp"
+        android:background="@color/lemon_meringue">
 
         <TextView
             android:id="@+id/expense_name"

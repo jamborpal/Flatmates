@@ -50,9 +50,6 @@ public class TaskAdapter {
             description = itemView.findViewById(R.id.task_desc);
             accept = itemView.findViewById(R.id.accept_task);
             delete = itemView.findViewById(R.id.remove_task);
-           // accept.setOnClickListener(v -> tasksViewModel.accept());
-
-            //delete.setOnClickListener(v -> tasksViewModel.delete());
 
         }
     }
