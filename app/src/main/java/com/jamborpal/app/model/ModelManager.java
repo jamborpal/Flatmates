@@ -280,7 +280,7 @@ public class ModelManager implements Model {
     public void getMessages(RecyclerView recyclerView) {
         Query query = myref
                 .child("flats").child(getFlatID()).child("messages")
-                .limitToLast(50);
+                .limitToLast(7);
         FirebaseRecyclerOptions<String> options = new FirebaseRecyclerOptions.Builder<String>()
                 .setQuery(query, String.class).build();
         FirebaseRecyclerAdapter<String, MessageAdapter.ViewHolder> adapter =

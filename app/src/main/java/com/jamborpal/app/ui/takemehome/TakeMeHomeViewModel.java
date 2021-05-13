@@ -6,14 +6,18 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.jamborpal.app.model.Model;
+import com.jamborpal.app.model.ModelManager;
+
 public class TakeMeHomeViewModel extends ViewModel {
-    private String mtext;
+    private Model model;
 
     public TakeMeHomeViewModel() {
-        mtext = "This is the TAKE ME HOME FRAGMENT";
+       model = ModelManager.getInstance();
+    }
+    public String getAddress(){
+        String address= model.getAddress()+","+model.getCity()+","+model.getCountry();
+        return address;
     }
 
-    public String getText() {
-        return mtext;
-    }
 }
