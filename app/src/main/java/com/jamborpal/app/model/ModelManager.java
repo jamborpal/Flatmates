@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jamborpal.app.R;
+import com.jamborpal.app.ui.contact.ContactsAdapter;
 import com.jamborpal.app.ui.events.EventAdapter;
 import com.jamborpal.app.ui.home.CostAdapter;
 import com.jamborpal.app.ui.home.OwnChoresAdapter;
@@ -25,7 +27,6 @@ import com.jamborpal.app.ui.tasks.TaskAdapter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class ModelManager implements Model {
     //Add variable of database instance
@@ -280,7 +281,7 @@ public class ModelManager implements Model {
     public void getMessages(RecyclerView recyclerView) {
         Query query = myref
                 .child("flats").child(getFlatID()).child("messages")
-                .limitToLast(7);
+                .limitToLast(20);
         FirebaseRecyclerOptions<String> options = new FirebaseRecyclerOptions.Builder<String>()
                 .setQuery(query, String.class).build();
         FirebaseRecyclerAdapter<String, MessageAdapter.ViewHolder> adapter =
@@ -324,8 +325,31 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<Flatmate> getTenants() {
-        return flat.getTenants();
+    public void getTenants(RecyclerView recyclerView) {
+        Query query = myref
+                .child("flats").child(getFlatID()).child("tenants")
+                .limitToLast(50);
+        FirebaseRecyclerOptions<Flatmate> options = new FirebaseRecyclerOptions.Builder<Flatmate>()
+                .setQuery(query, Flatmate.class).build();
+        FirebaseRecyclerAdapter<Flatmate, ContactsAdapter.ViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Flatmate, ContactsAdapter.ViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull ContactsAdapter.ViewHolder holder, int position, @NonNull Flatmate model) {
+                        holder.getName().setText(model.getFullname());
+                        holder.getMoneySpent().setText(model.getMoneyspent()+"");
+
+
+                    }
+
+                    @NonNull
+                    @Override
+                    public ContactsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlecontact, parent, false);
+                        return new ContactsAdapter.ViewHolder(v);
+                    }
+                };
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
     }
 
 

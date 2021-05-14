@@ -5,34 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_messageboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/flat_message_board"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rm"
         android:layout_width="match_parent"
-        android:layout_height="501dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="700dp"
+        android:layout_marginBottom="20dp"
         android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/type_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_messageboard" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/type_message"
         android:layout_width="308dp"
         android:layout_height="50dp"
-        android:background="@color/white"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -38,18 +38,20 @@ public class MessageBoardFragment extends Fragment {
 
         message = root.findViewById(R.id.type_message);
         send = root.findViewById(R.id.send);
+       messageBoardViewModel.getMessages(messageList);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!message.getText().toString().isEmpty()) {
                     messageBoardViewModel.sendMessage(message.getText().toString());
                     message.setText("");
+                   messageList.scrollToPosition( 19);
                 }
 
 
             }
         });
-        messageBoardViewModel.getMessages(messageList);
+
 
         return root;
     }

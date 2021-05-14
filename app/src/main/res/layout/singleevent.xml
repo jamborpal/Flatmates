@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="132dp"
         android:layout_margin="15dp"
-        android:background="@drawable/contactspanel">
+        android:background="@color/lemon_meringue">
 
         <TextView
             android:id="@+id/event_name"

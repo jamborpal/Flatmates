@@ -2,8 +2,6 @@ package com.jamborpal.app.model;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 public interface Model {
     void getMessages(RecyclerView recyclerView);
 
@@ -48,7 +46,7 @@ public interface Model {
 
     String getAddress();
 
-    ArrayList<Flatmate> getTenants();
+    void getTenants(RecyclerView recyclerView);
 
 
     void getEvents(RecyclerView recyclerView);

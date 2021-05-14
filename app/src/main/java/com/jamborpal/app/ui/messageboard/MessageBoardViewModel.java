@@ -26,7 +26,7 @@ public class MessageBoardViewModel extends ViewModel {
     }
 
     public void getMessages(RecyclerView recyclerView) {
-        model.getMessages(recyclerView);
+       model.getMessages(recyclerView);
     }
 
     public void sendMessage(String message) {

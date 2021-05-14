@@ -23,7 +23,7 @@ import com.jamborpal.app.ui.home.HomeViewModel;
 public class ContactFragment extends Fragment {
     private ContactViewModel contactViewModel;
     private RecyclerView contactList;
-    private ContactsAdapter contactsAdapter;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,31 +31,10 @@ public class ContactFragment extends Fragment {
         contactViewModel =
                 new ViewModelProvider(this).get(ContactViewModel.class);
         View root = inflater.inflate(R.layout.fragment_contact, container, false);
-
-       contactsAdapter= new ContactsAdapter();
         contactList = root.findViewById(R.id.rv);
         contactList.hasFixedSize();
         contactList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        contactList.setAdapter(contactsAdapter);
+        contactViewModel.getTenants(contactList);
         return root;
-    }
-    public void call(String phoneNumber){
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:"+phoneNumber));
-        if(isAdded()){
-            startActivity(intent);
-        }
-
-
-    }
-    public void email(String email){
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_EMAIL,email);
-        startActivity(intent);
-
-    }
-    public ContactViewModel getContactViewModel(){
-        return  contactViewModel;
     }
 }
