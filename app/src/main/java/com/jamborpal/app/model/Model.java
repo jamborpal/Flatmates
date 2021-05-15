@@ -5,17 +5,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public interface Model {
     void getMessages(RecyclerView recyclerView);
 
-    void getChoresByFlatmate(RecyclerView recyclerView, String id);
+    void getChoresByFlatmate(RecyclerView recyclerView);
 
     void getExpenses(RecyclerView recyclerView);
 
     void sendMessage(String message);
 
     void login(String username, String password);
-
-    void setLoggedInUser(String flatmate);
-
-    void setFlatUsed(String flat);
 
 
     void AddExpense(Expense expense);
@@ -52,7 +48,6 @@ public interface Model {
     void getEvents(RecyclerView recyclerView);
     void deleteEvent(String title, String description);
 
-    public String getFlatID();
 
     public String getFlatmateID();
 }

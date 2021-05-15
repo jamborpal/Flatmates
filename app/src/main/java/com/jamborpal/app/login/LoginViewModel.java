@@ -23,8 +23,6 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void login(String username,String password) {
-
-
           model.login(username, password);
     }
 

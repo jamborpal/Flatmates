@@ -50,12 +50,11 @@ public class ExpensesFragment extends Fragment {
     }
 
     private void addNewExpense() {
-
-            Expense expense = new Expense(title.getText().toString(), description.getText().toString(), Double.parseDouble(expens.getText().toString()), expensesViewModel.getCurrentUserID());
-            expensesViewModel.AddExpense(expense);
-            title.setText("");
-            description.setText("");
-            expens.setText("");
+        Expense expense = new Expense(title.getText().toString(), description.getText().toString(), Double.parseDouble(expens.getText().toString()), expensesViewModel.getCurrentUserID());
+        expensesViewModel.AddExpense(expense);
+        title.setText("");
+        description.setText("");
+        expens.setText("");
 
 
     }
