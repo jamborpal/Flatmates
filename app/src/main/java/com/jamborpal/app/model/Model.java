@@ -36,9 +36,6 @@ public interface Model {
     void OrganizeEvent(Event event);
 
 
-    String getCity();
-
-    String getCountry();
 
     String getAddress();
 

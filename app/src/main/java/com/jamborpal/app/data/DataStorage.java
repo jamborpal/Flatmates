@@ -16,6 +16,7 @@ public interface DataStorage {
     void deleteChore(String ChoreID);
     void deleteEvent(String title, String description);
     String getFlatmateID();
+    String getAddress();
 
     void assignChore(String choreID);
 

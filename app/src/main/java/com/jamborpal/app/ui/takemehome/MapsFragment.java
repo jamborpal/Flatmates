@@ -49,7 +49,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
             address = new ArrayList<>();
             Geocoder geocoder = new Geocoder(getContext());
             try {
-                address = geocoder.getFromLocationName("Horsens, Radhustorvet 11A, Denmark", 1);
+                address = geocoder.getFromLocationName(takeMeHomeViewModel.getAddress(), 1);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -36,6 +36,7 @@ public class DataStorageImpl implements DataStorage {
     private DatabaseReference myRef;
     private String flatID;
     private String flatmateID;
+    private String flatAddress;
     private Flatmate flatmate;
 
     public DataStorageImpl() {
@@ -60,12 +61,13 @@ public class DataStorageImpl implements DataStorage {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    System.out.println(snapshot1);
                     for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
                         Flatmate flatmateTemp = snapshot2.getValue(Flatmate.class);
                         if (flatmateTemp.getUsername().equals(username) && flatmateTemp.getPassword().equals(password)) {
-                            Log.e("wergfdsavdfssf", username);
                             flatmate = flatmateTemp;
+                            flatAddress = (String) snapshot1.child("address").getValue()+","+
+                                    (String) snapshot1.child("city").getValue()+","
+                                    + (String) snapshot1.child("country").getValue();
                             setLoggedInUser(snapshot2.getKey());
                             setFlatUsed(snapshot1.getKey());
                             return;
@@ -157,6 +159,13 @@ public class DataStorageImpl implements DataStorage {
     public String getFlatmateID() {
         return flatmateID;
     }
+
+    @Override
+    public String getAddress() {
+        return flatAddress;
+    }
+
+
 
     @Override
     public void assignChore(String choreID) {

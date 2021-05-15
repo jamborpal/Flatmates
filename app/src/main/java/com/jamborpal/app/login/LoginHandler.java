@@ -60,25 +60,21 @@ public class LoginHandler extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                try {
 
-                    /*countDownTimer = new CountDownTimer(2000, 1000) {
-                        @Override
-                        public void onTick(long millisUntilFinished) {
-                            TempDialog.setMessage("Please wait...");
-                        }
+                countDownTimer = new CountDownTimer(2000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        TempDialog.setMessage("Please wait...");
+                    }
 
-                        @Override
-                        public void onFinish() {
-                            TempDialog.dismiss();
+                    @Override
+                    public void onFinish() {
+                        TempDialog.dismiss();
 
-                        }
-                    }.start();
-                    TempDialog.show();*/
-                    Login(username.getText().toString(), password.getText().toString());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                    }
+                }.start();
+                TempDialog.show();
+                Login(username.getText().toString(), password.getText().toString());
             }
         });
     }
@@ -86,11 +82,10 @@ public class LoginHandler extends AppCompatActivity {
     public void Login(String username, String password) {
         try {
             loginViewModel.login(username, password);
-            Log.e("wergfdsavdfssf", username);
-            Thread.sleep(1000);
-
             Intent intent = new Intent(this, MainActivity.class);
-            startActivityForResult(intent,RESULT_OK);
+            TempDialog.dismiss();
+            startActivityForResult(intent, RESULT_OK);
+            finish();
 
 
         } catch (Exception e) {

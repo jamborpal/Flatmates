@@ -106,20 +106,11 @@ public class ModelManager implements Model {
     public void sendMessage(String message) {
         database.addMessage(message);
     }
-
-    @Override
-    public String getCity() {
-        return "";
-    }
-
-    @Override
-    public String getCountry() {
-        return "";
-    }
+    
 
     @Override
     public String getAddress() {
-        return "";
+        return database.getAddress();
     }
 
     @Override

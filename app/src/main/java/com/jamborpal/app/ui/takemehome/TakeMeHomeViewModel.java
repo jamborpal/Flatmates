@@ -16,7 +16,7 @@ public class TakeMeHomeViewModel extends ViewModel {
        model = ModelManager.getInstance();
     }
     public String getAddress(){
-        String address= model.getAddress()+","+model.getCity()+","+model.getCountry();
+        String address= model.getAddress();
         return address;
     }
 
