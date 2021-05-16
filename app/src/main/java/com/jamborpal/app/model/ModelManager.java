@@ -106,7 +106,7 @@ public class ModelManager implements Model {
     public void sendMessage(String message) {
         database.addMessage(message);
     }
-    
+
 
     @Override
     public String getAddress() {

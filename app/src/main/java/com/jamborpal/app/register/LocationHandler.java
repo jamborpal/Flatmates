@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,10 +26,13 @@ import com.jamborpal.app.model.Expense;
 import com.jamborpal.app.model.Flat;
 import com.jamborpal.app.model.Flatmate;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class LocationHandler extends AppCompatActivity {
     Flatmate flatmate;
@@ -40,6 +44,8 @@ public class LocationHandler extends AppCompatActivity {
     FirebaseDatabase database;
     Flat flat;
     DatabaseReference myRef;
+    boolean isUsed;
+    TextView error;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +61,7 @@ public class LocationHandler extends AppCompatActivity {
         address = findViewById(R.id.address);
         flatid = findViewById(R.id.flatID);
         chooseflatID = findViewById(R.id.location_id);
+        error = findViewById(R.id.location_error);
 
         //initializing flatmate variable
         this.flatmate = new Flatmate(getIntent().getStringExtra("FLATMATE_FULLNAME"),
@@ -79,6 +86,7 @@ public class LocationHandler extends AppCompatActivity {
                 add();
             }
         });
+        this.isUsed = false;
     }
 
     public void choose(String id) {
@@ -89,7 +97,7 @@ public class LocationHandler extends AppCompatActivity {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     String key = snapshot1.getKey();
                     if (key.equals(id)) {
-                        myRef.child("flats").child(chooseflatID.getText().toString()).child("tenants").child(""+flatmate.getFlatmateid()).setValue(flatmate);
+                        myRef.child("flats").child(chooseflatID.getText().toString()).child("tenants").child("" + flatmate.getFlatmateid()).setValue(flatmate);
                     }
                 }
             }
@@ -107,12 +115,37 @@ public class LocationHandler extends AppCompatActivity {
 
     public void add() {
         Intent intent = new Intent(this, LoginHandler.class);
-        flat = new Flat(flatid.getText().toString(), city.getText().toString(), country.getText().toString(), address.getText().toString());
-        flat.MoveIn(flatmate);
-        myRef.child("flats").child(flatid.getText().toString()).setValue(flat);
-        intent.putExtra("LOGGED_IN_USER", flatmate);
-        intent.putExtra("FLAT_IN_USE", flat);
-        startActivity(intent);
-        finish();
+        myRef.child("flats").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    if (snapshot1.getKey().equals(flatid.getText().toString())) {
+                        isUsed = true;
+                        error.setText(R.string.location_error);
+
+                        return;
+                    } else {
+                        isUsed = false;
+                        error.setText("");
+                    }
+
+                }
+                if (!isUsed) {
+
+                    flat = new Flat(flatid.getText().toString(), city.getText().toString(), country.getText().toString(), address.getText().toString());
+                    flat.MoveIn(flatmate);
+                    myRef.child("flats").child(flatid.getText().toString()).setValue(flat);
+                    intent.putExtra("LOGGED_IN_USER", flatmate);
+                    intent.putExtra("FLAT_IN_USE", flat);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            }
+        });
+
     }
 }

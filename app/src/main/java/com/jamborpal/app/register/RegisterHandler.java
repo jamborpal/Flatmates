@@ -78,14 +78,15 @@ public class RegisterHandler extends AppCompatActivity {
     public void Register() {
         Intent intent = new Intent(this, LocationHandler.class);
 
-        if (repeatpassword.getText().toString().equals(password.getText().toString())) {
+        if (repeatpassword.getText().toString().equals(password.getText().toString())&&repeatpassword.getText().toString().length()>7) {
 
            myRef.child("flats").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                         for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
-                            if (username.getText().toString().equals(Objects.requireNonNull(snapshot2.getValue(Flatmate.class)).username)) {
+                            if (username.getText().toString().equals(Objects.requireNonNull(snapshot2
+                                    .getValue(Flatmate.class)).username)) {
                                 error.setText(R.string.username_used);
                                 checkIfUsed = true;
                                 return;
