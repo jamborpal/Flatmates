@@ -243,6 +243,12 @@ public class DataStorageImpl implements DataStorage {
                     protected void onBindViewHolder(@NonNull OwnChoresAdapter.ViewHolder holder, int position, @NonNull Chore model) {
                         holder.getTitle().setText(model.getTitle());
                         holder.getDesc().setText(model.getDescription());
+                        holder.getDone().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                deleteChore(model.getChoreID());
+                            }
+                        });
                     }
 
                     @NonNull

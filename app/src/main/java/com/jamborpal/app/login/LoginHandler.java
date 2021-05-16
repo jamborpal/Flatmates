@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.ui.NavigationUI;
 
 import com.jamborpal.app.MainActivity;
 import com.jamborpal.app.R;
@@ -60,37 +62,32 @@ public class LoginHandler extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if(!username.getText().toString().equals("") && !password.getText().toString().equals("")){
+                    countDownTimer = new CountDownTimer(2000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            TempDialog.setMessage("Please wait...");
+                        }
 
-                countDownTimer = new CountDownTimer(2000, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        TempDialog.setMessage("Please wait...");
-                    }
+                        @Override
+                        public void onFinish() {
+                            TempDialog.dismiss();
 
-                    @Override
-                    public void onFinish() {
-                        TempDialog.dismiss();
-
-                    }
-                }.start();
-                TempDialog.show();
-                Login(username.getText().toString(), password.getText().toString());
+                        }
+                    }.start();
+                    TempDialog.show();
+                    Login(username.getText().toString(), password.getText().toString());
+                }
             }
         });
     }
 
     public void Login(String username, String password) {
-        try {
-            loginViewModel.login(username, password);
-            Intent intent = new Intent(this, MainActivity.class);
-            TempDialog.dismiss();
-            startActivityForResult(intent, RESULT_OK);
-            finish();
-
-
-        } catch (Exception e) {
-            Log.e("Login error", e.getMessage());
-        }
+        loginViewModel.login(username, password);
+        Intent intent = new Intent(this, MainActivity.class);
+        TempDialog.dismiss();
+        startActivityForResult(intent, RESULT_OK);
+        finish();
 
 
     }

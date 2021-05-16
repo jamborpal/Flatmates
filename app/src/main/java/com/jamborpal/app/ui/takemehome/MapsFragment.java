@@ -54,7 +54,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 e.printStackTrace();
             }
             LatLng sydney = new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude());
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Home"));
+            googleMap.addMarker(new MarkerOptions().position(sydney).title(getString(R.string.home)));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         }
     };

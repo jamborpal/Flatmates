@@ -28,7 +28,7 @@
     <string name="organize_an_event">Szervezz egy eseményt</string>
     <string name="description">Leírás</string>
     <string name="add_event">Létrehozás</string>
-    <string name="add_an_expense">Hozzáad</string>
+    <string name="add_an_expense">Költség hozzáadása</string>
     <string name="title">Cím</string>
     <string name="price">Ár</string>
     <string name="money_spent_on_apartment">Apartmanra költött pénz:</string>
@@ -37,4 +37,21 @@
     <string name="your_tasks">Teendőid</string>
     <string name="latest_costs">Legutóbbi kiadások</string>
     <string name="title_activity_maps">Térkép</string>
+    <string name="register_error">A jelszavak nem egyeznek vagy túl rövidek, próbáld újra</string>
+    <string name="country">Ország</string>
+    <string name="city">Város</string>
+    <string name="address">Cím</string>
+    <string name="username_used">A felhasználónév foglalt</string>
+    <string name="full_name">Teljes név:</string>
+    <string name="expense_name">Kiadás neve</string>
+    <string name="expense_cost">Kiadás ára</string>
+    <string name="flat_message_board">Üzenőfal</string>
+    <string name="send">Küldés</string>
+    <string name="location_error">A megadott ID foglalt</string>
+    <string name="add_expense">Hozzáad</string>
+    <string name="money_spent">Elköltött pénz</string>
+    <string name="add_task">Hozzáadás</string>
+    <string name="by">Szervező</string>
+    <string name="add_a_new_task">Teendő hozzáadása</string>
+    <string name="home">Otthon</string>
 </resources>

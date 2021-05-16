@@ -11,12 +11,7 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
     </fragment>
-    <fragment
-        android:id="@+id/nav_profile"
-        android:name="com.jamborpal.app.ui.profile.ProfileFragment"
-        android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_home" />
-    <fragment
+  <fragment
         android:id="@+id/nav_takemehome"
         android:name="com.jamborpal.app.ui.takemehome.MapsFragment"
         android:label="@string/menu_takemehome"
@@ -53,6 +48,15 @@
         android:name="com.jamborpal.app.login.LoginHandler"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
-
+    <activity
+        android:id="@+id/locationHandler"
+        android:name="com.jamborpal.app.register.LocationHandler"
+        android:label="activity_location"
+        tools:layout="@layout/activity_location" />
+    <activity
+        android:id="@+id/registerHandler"
+        android:name="com.jamborpal.app.register.RegisterHandler"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
 
 </navigation>
