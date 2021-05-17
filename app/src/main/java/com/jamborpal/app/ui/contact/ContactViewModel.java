@@ -16,20 +16,15 @@ import java.util.ArrayList;
 
 public class ContactViewModel extends ViewModel {
     Model model;
-    private DataStorage dataStorage;
+
 
     public ContactViewModel() {
         model = ModelManager.getInstance();
-
-        dataStorage = new DataStorageImpl();
     }
 
 
     public void getTenants(RecyclerView recyclerView) {
          model.getTenants(recyclerView);
-    }
-    public void giveContext(Context context){
-        dataStorage.giveContext(context);
     }
 
 

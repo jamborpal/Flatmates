@@ -42,7 +42,6 @@ public class ContactFragment extends Fragment {
         contactList.hasFixedSize();
         contactList.setLayoutManager(new LinearLayoutManager(getActivity()));
         contactViewModel.getTenants(contactList);
-        contactViewModel.giveContext(getContext());
         return root;
     }
 }

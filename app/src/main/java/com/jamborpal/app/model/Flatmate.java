@@ -8,14 +8,14 @@ public class Flatmate implements Serializable {
     public String email;
     public String username;
     public String password;
-    public int phonenumber;
+    public long phonenumber;
     public double moneyspent;
 
     public Flatmate() {
 
     }
 
-    public Flatmate(int flatmateid, String fullname, String email, String username, String password, int phonenumber, double moneyspent) {
+    public Flatmate(int flatmateid, String fullname, String email, String username, String password, long phonenumber, double moneyspent) {
         this.flatmateid = flatmateid;
         this.fullname = fullname;
         this.email = email;
@@ -65,11 +65,11 @@ public class Flatmate implements Serializable {
         this.password = password;
     }
 
-    public int getPhonenumber() {
+    public long getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(int phonenumber) {
+    public void setPhonenumber(long phonenumber) {
         this.phonenumber = phonenumber;
     }
 
@@ -81,14 +81,14 @@ public class Flatmate implements Serializable {
         this.moneyspent = moneyspent;
     }
 
-    public Flatmate(String fullName, String email, String username, String password) {
+    public Flatmate(String fullName, String email, String username, String password, long phoneNumber) {
         this.fullname = fullName;
         this.email = email;
         this.username = username;
         this.password = password;
         this.flatmateid = (int) (System.currentTimeMillis() & 0xfffffff);
         this.moneyspent = 0;
-        this.phonenumber = 0;
+        this.phonenumber = phoneNumber;
     }
 
 

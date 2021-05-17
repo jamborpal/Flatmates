@@ -22,20 +22,17 @@ import java.util.ArrayList;
 public class ContactsAdapter {
    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
-        Button call;
-        Button email;
-        String phoneNumber;
-        String emailAddress;
+        TextView phoneNumber;
+        TextView email;
         TextView moneySpent;
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.rv_item_name);
-            call = itemView.findViewById(R.id.contact_call);
             email = itemView.findViewById(R.id.contact_email);
             moneySpent = itemView.findViewById(R.id.moneyspent);
-            phoneNumber = "";
-            emailAddress = "";
+            phoneNumber = itemView.findViewById(R.id.contact_number);
+
 
         }
 
@@ -47,20 +44,12 @@ public class ContactsAdapter {
            return name;
        }
 
-       public Button getCall() {
-           return call;
-       }
-
-       public Button getEmail() {
-           return email;
-       }
-
-       public String getPhoneNumber() {
+       public TextView getPhoneNumber() {
            return phoneNumber;
        }
 
-       public String getEmailAddress() {
-           return emailAddress;
+       public TextView getEmail() {
+           return email;
        }
    }
 }

@@ -35,6 +35,7 @@ public class RegisterHandler extends AppCompatActivity {
     private EditText password;
     private EditText repeatpassword;
     private TextView error;
+    private EditText phone;
     boolean checkIfUsed;
     DatabaseReference myRef;
     FirebaseDatabase database;
@@ -57,6 +58,7 @@ public class RegisterHandler extends AppCompatActivity {
         fullname = findViewById(R.id.fullname);
         email = findViewById(R.id.email);
         error = findViewById(R.id.error_register);
+        phone = findViewById(R.id.phoneNum);
 
         //adding onClick listener to buttons
         final Button register = findViewById(R.id.register_1);
@@ -106,6 +108,7 @@ public class RegisterHandler extends AppCompatActivity {
                         intent.putExtra("FLATMATE_PASSWORD",password.getText().toString());
                         intent.putExtra("FLATMATE_FULLNAME",fullname.getText().toString());
                         intent.putExtra("FLATMATE_EMAIL",email.getText().toString());
+                        intent.putExtra("FLATMATE_PHONENUMBER",phone.getText().toString());
 
                         startActivity(intent);
                     }

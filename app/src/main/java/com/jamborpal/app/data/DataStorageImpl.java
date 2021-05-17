@@ -343,9 +343,8 @@ public class DataStorageImpl implements DataStorage {
                     protected void onBindViewHolder(@NonNull ContactsAdapter.ViewHolder holder, int position, @NonNull Flatmate model) {
                         holder.getName().setText(model.getFullname());
                         holder.getMoneySpent().setText(model.getMoneyspent() + "");
-                        Intent intent = new Intent(Intent.ACTION_DIAL);
-                        intent.setData(Uri.parse("tel:" + model.getPhonenumber()));
-                        context.startActivity(intent);
+                        holder.getEmail().setText(model.getEmail());
+                        holder.getPhoneNumber().setText(model.getPhonenumber()+"");
 
 
                     }

@@ -66,5 +66,6 @@
     <string name="add_a_new_task">Add a new task</string>
     <string name="home">Home</string>
     <string name="login_error">Please check your credentials.</string>
+    <string name="phone_number2">Phone number</string>
 
 </resources>
