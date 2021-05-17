@@ -6,6 +6,7 @@ The issue of sharing tasks or expenses is something that is not often talked abo
 
 As far as the requirements of the application are concered, they have been MoSCoW prioritized and presented below. The actor is the flatmate using the app.
 
+
 |          No.          |                              User story                              |
 |-----------------------|----------------------------------------------------------------------|
 ||Must have|
@@ -26,8 +27,9 @@ As far as the requirements of the application are concered, they have been MoSCo
 |11.|As a flatmate, I want to be able to register the rooms and its tenants and common spaces of the flat, so the rooms can be managed accordingly.|
 |8.|As a flatmate, I want to know when my flatmates are home, so that I know if I am home alone.|
 
-Non functional requirements:
- Markup : *The app should support the follwing languages: English and Hungarian.
-          *The app should support devices from SDK version from API level 27.
 
+Non functional requirements:
+  - The app should support the follwing languages: English and Hungarian.
+  
+ - The app should support devices from SDK version from API level 27.
 
