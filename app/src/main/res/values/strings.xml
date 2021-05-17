@@ -68,5 +68,8 @@
     <string name="login_error">Please check your credentials.</string>
     <string name="phone_number2">Phone number</string>
     <string name="valid_email">Use a valid email address</string>
+    <string name="landlord">Landlord</string>
+    <string name="save">Save</string>
+    <string name="credentials">CREDENTIALS</string>
 
 </resources>

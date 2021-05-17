@@ -33,6 +33,7 @@ public class RegisterHandler extends AppCompatActivity {
     boolean checkIfNotCorrect;
     DatabaseReference myRef;
     FirebaseDatabase database;
+
     public RegisterHandler() {
 
     }
@@ -63,7 +64,7 @@ public class RegisterHandler extends AppCompatActivity {
         });
 
         //initializin variables
-        this.checkIfNotCorrect =false;
+        this.checkIfNotCorrect = false;
     }
 
     public void Login(View view) {
@@ -74,9 +75,9 @@ public class RegisterHandler extends AppCompatActivity {
     public void Register() {
         Intent intent = new Intent(this, LocationHandler.class);
 
-        if (repeatpassword.getText().toString().equals(password.getText().toString())&&repeatpassword.getText().toString().length()>7) {
+        if (repeatpassword.getText().toString().equals(password.getText().toString()) && repeatpassword.getText().toString().length() > 7) {
 
-           myRef.child("flats").addListenerForSingleValueEvent(new ValueEventListener() {
+            myRef.child("flats").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {
@@ -87,13 +88,12 @@ public class RegisterHandler extends AppCompatActivity {
                                 checkIfNotCorrect = true;
                                 return;
                             }
-                            if(!(email.getText().toString().contains("@"))){
+                            if (!(email.getText().toString().contains("@"))) {
                                 error.setText(R.string.valid_email);
 
                                 return;
-                            }
-                            else{
-                                checkIfNotCorrect =false;
+                            } else {
+                                checkIfNotCorrect = false;
                                 error.setText("");
                             }
 
@@ -102,12 +102,11 @@ public class RegisterHandler extends AppCompatActivity {
                     }
                     if (!checkIfNotCorrect) {
 
-
                         intent.putExtra("FLATMATE_USERNAME", username.getText().toString());
-                        intent.putExtra("FLATMATE_PASSWORD",password.getText().toString());
-                        intent.putExtra("FLATMATE_FULLNAME",fullname.getText().toString());
-                        intent.putExtra("FLATMATE_EMAIL",email.getText().toString());
-                        intent.putExtra("FLATMATE_PHONENUMBER",phone.getText().toString());
+                        intent.putExtra("FLATMATE_PASSWORD", password.getText().toString());
+                        intent.putExtra("FLATMATE_FULLNAME", fullname.getText().toString());
+                        intent.putExtra("FLATMATE_EMAIL", email.getText().toString());
+                        intent.putExtra("FLATMATE_PHONENUMBER", phone.getText().toString());
 
                         startActivity(intent);
                     }

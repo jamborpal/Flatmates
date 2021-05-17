@@ -36,7 +36,7 @@ public class LoginHandler extends AppCompatActivity {
     private EditText password;
     ProgressDialog TempDialog;
     CountDownTimer countDownTimer;
-   public static TextView error;
+    public TextView error;
 
     public LoginHandler() {
         this.loginViewModel = new LoginViewModel();
@@ -90,13 +90,11 @@ public class LoginHandler extends AppCompatActivity {
 
     public void Login(String username, String password) {
 
-            loginViewModel.login(username, password);
-            Intent intent = new Intent(this, MainActivity.class);
-            TempDialog.dismiss();
-            startActivityForResult(intent, RESULT_OK);
-            finish();
-
-
+        loginViewModel.login(username, password);
+        Intent intent = new Intent(this, MainActivity.class);
+        TempDialog.dismiss();
+        startActivityForResult(intent, RESULT_OK);
+        finish();
 
 
     }

@@ -58,5 +58,10 @@
         android:name="com.jamborpal.app.register.RegisterHandler"
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
+  <activity
+      android:id="@+id/landlordHandler"
+      android:name="com.jamborpal.app.register.LandlordHandler"
+      android:label="activity_landlord"
+      tools:layout="@layout/activity_landlord" />
 
 </navigation>

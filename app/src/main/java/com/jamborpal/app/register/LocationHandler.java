@@ -36,6 +36,7 @@ import java.util.Objects;
 
 public class LocationHandler extends AppCompatActivity {
     Flatmate flatmate;
+    Flatmate landlord;
     EditText country;
     EditText city;
     EditText address;
@@ -63,11 +64,12 @@ public class LocationHandler extends AppCompatActivity {
         chooseflatID = findViewById(R.id.location_id);
         error = findViewById(R.id.location_error);
 
-        //initializing flatmate variable
+        //initializing flatmate and landlord variable
         this.flatmate = new Flatmate(getIntent().getStringExtra("FLATMATE_FULLNAME"),
                 getIntent().getStringExtra("FLATMATE_EMAIL"),
                 getIntent().getStringExtra("FLATMATE_USERNAME"),
-                getIntent().getStringExtra("FLATMATE_PASSWORD"),Long.parseLong(getIntent().getStringExtra("FLATMATE_PHONENUMBER")));
+                getIntent().getStringExtra("FLATMATE_PASSWORD"), Long.parseLong(getIntent().getStringExtra("FLATMATE_PHONENUMBER")));
+        this.landlord = null;
 
         //adding onClick listeners to buttons
 
@@ -86,7 +88,26 @@ public class LocationHandler extends AppCompatActivity {
                 add();
             }
         });
+
+        final Button landlord = findViewById(R.id.landlord);
+        landlord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToLandlord();
+
+            }
+        });
         this.isUsed = false;
+    }
+
+    private void goToLandlord() {
+        Intent intent = new Intent(this, LandlordHandler.class);
+        intent.putExtra("FLATMATE_USERNAME",   getIntent().getStringExtra("FLATMATE_USERNAME"));
+        intent.putExtra("FLATMATE_PASSWORD", getIntent().getStringExtra("FLATMATE_PASSWORD"));
+        intent.putExtra("FLATMATE_FULLNAME", getIntent().getStringExtra("FLATMATE_FULLNAME"));
+        intent.putExtra("FLATMATE_EMAIL", getIntent().getStringExtra("FLATMATE_EMAIL"));
+        intent.putExtra("FLATMATE_PHONENUMBER", getIntent().getStringExtra("FLATMATE_PHONENUMBER"));
+        startActivity(intent);
     }
 
     public void choose(String id) {
@@ -131,8 +152,12 @@ public class LocationHandler extends AppCompatActivity {
 
                 }
                 if (!isUsed) {
-
+                    landlord = new Flatmate(getIntent().getStringExtra("LANDLORD_NAME"),
+                            getIntent().getStringExtra("LANDLORD_EMAIL"),
+                           "Landlord",
+                            "", Long.parseLong(getIntent().getStringExtra("LANDLORD_PHONE")));
                     flat = new Flat(flatid.getText().toString(), city.getText().toString(), country.getText().toString(), address.getText().toString());
+                    flat.MoveIn(landlord);
                     flat.MoveIn(flatmate);
                     myRef.child("flats").child(flatid.getText().toString()).setValue(flat);
                     intent.putExtra("LOGGED_IN_USER", flatmate);
