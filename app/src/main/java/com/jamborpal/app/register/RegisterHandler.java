@@ -2,8 +2,6 @@ package com.jamborpal.app.register;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,12 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jamborpal.app.R;
 import com.jamborpal.app.login.LoginHandler;
-import com.jamborpal.app.model.Flat;
 import com.jamborpal.app.model.Flatmate;
 
-import java.io.Serializable;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
 
 public class RegisterHandler extends AppCompatActivity {
@@ -36,7 +30,7 @@ public class RegisterHandler extends AppCompatActivity {
     private EditText repeatpassword;
     private TextView error;
     private EditText phone;
-    boolean checkIfUsed;
+    boolean checkIfNotCorrect;
     DatabaseReference myRef;
     FirebaseDatabase database;
     public RegisterHandler() {
@@ -69,7 +63,7 @@ public class RegisterHandler extends AppCompatActivity {
         });
 
         //initializin variables
-        this.checkIfUsed=false;
+        this.checkIfNotCorrect =false;
     }
 
     public void Login(View view) {
@@ -90,18 +84,23 @@ public class RegisterHandler extends AppCompatActivity {
                             if (username.getText().toString().equals(Objects.requireNonNull(snapshot2
                                     .getValue(Flatmate.class)).username)) {
                                 error.setText(R.string.username_used);
-                                checkIfUsed = true;
+                                checkIfNotCorrect = true;
+                                return;
+                            }
+                            if(!(email.getText().toString().contains("@"))){
+                                error.setText(R.string.valid_email);
+
                                 return;
                             }
                             else{
-                                checkIfUsed=false;
+                                checkIfNotCorrect =false;
                                 error.setText("");
                             }
 
                         }
 
                     }
-                    if (!checkIfUsed) {
+                    if (!checkIfNotCorrect) {
 
 
                         intent.putExtra("FLATMATE_USERNAME", username.getText().toString());

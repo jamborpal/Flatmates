@@ -67,5 +67,6 @@
     <string name="home">Home</string>
     <string name="login_error">Please check your credentials.</string>
     <string name="phone_number2">Phone number</string>
+    <string name="valid_email">Use a valid email address</string>
 
 </resources>
