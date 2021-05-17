@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 
 public class ContactsAdapter {
-
    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         Button call;
@@ -37,6 +36,7 @@ public class ContactsAdapter {
             moneySpent = itemView.findViewById(R.id.moneyspent);
             phoneNumber = "";
             emailAddress = "";
+
         }
 
        public TextView getMoneySpent() {

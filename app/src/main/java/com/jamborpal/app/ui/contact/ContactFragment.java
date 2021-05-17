@@ -17,13 +17,20 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.jamborpal.app.R;
+import com.jamborpal.app.data.DataStorage;
+import com.jamborpal.app.data.DataStorageImpl;
+import com.jamborpal.app.model.Flatmate;
 import com.jamborpal.app.ui.home.HomeViewModel;
 
 public class ContactFragment extends Fragment {
     private ContactViewModel contactViewModel;
     private RecyclerView contactList;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +42,7 @@ public class ContactFragment extends Fragment {
         contactList.hasFixedSize();
         contactList.setLayoutManager(new LinearLayoutManager(getActivity()));
         contactViewModel.getTenants(contactList);
+        contactViewModel.giveContext(getContext());
         return root;
     }
 }

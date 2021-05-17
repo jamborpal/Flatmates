@@ -1,5 +1,9 @@
 package com.jamborpal.app.data;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jamborpal.app.R;
+import com.jamborpal.app.login.LoginHandler;
 import com.jamborpal.app.model.Chore;
 import com.jamborpal.app.model.Event;
 import com.jamborpal.app.model.Expense;
@@ -38,15 +43,18 @@ public class DataStorageImpl implements DataStorage {
     private String flatmateID;
     private String flatAddress;
     private Flatmate flatmate;
+    private Context context;
+
 
     public DataStorageImpl() {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        database= FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
         myRef = database.getReference().child("flats");
     }
 
     private void setLoggedInUser(String id) {
         this.flatmateID = id;
+
     }
 
     private void setFlatUsed(String id) {
@@ -56,33 +64,41 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public void retrieveUser(String username, String password) {
-        myRef.addValueEventListener(new ValueEventListener() {
 
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
-                        Flatmate flatmateTemp = snapshot2.getValue(Flatmate.class);
-                        if (flatmateTemp.getUsername().equals(username) && flatmateTemp.getPassword().equals(password)) {
-                            flatmate = flatmateTemp;
-                            flatAddress = (String) snapshot1.child("address").getValue()+","+
-                                    (String) snapshot1.child("city").getValue()+","
-                                    + (String) snapshot1.child("country").getValue();
-                            setLoggedInUser(snapshot2.getKey());
-                            setFlatUsed(snapshot1.getKey());
-                            return;
+        try{
+            myRef.addValueEventListener(new ValueEventListener() {
 
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
+                            Flatmate flatmateTemp = snapshot2.getValue(Flatmate.class);
+                            if (flatmateTemp.getUsername().equals(username) && flatmateTemp.getPassword().equals(password)) {
+                                flatmate = flatmateTemp;
+                                flatAddress = (String) snapshot1.child("address").getValue() + "," +
+                                        (String) snapshot1.child("city").getValue() + ","
+                                        + (String) snapshot1.child("country").getValue();
+                                setLoggedInUser(snapshot2.getKey());
+                                setFlatUsed(snapshot1.getKey());
+                                return;
+
+                            }
+                            else{
+
+                            }
                         }
+
                     }
-
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        } catch (Exception e) {
 
-            }
-        });
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -164,7 +180,6 @@ public class DataStorageImpl implements DataStorage {
     public String getAddress() {
         return flatAddress;
     }
-
 
 
     @Override
@@ -315,6 +330,7 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public void getTenants(RecyclerView recyclerView) {
+
         Query query = myRef
                 .child(flatID).child("tenants")
                 .limitToLast(50);
@@ -322,10 +338,14 @@ public class DataStorageImpl implements DataStorage {
                 .setQuery(query, Flatmate.class).build();
         FirebaseRecyclerAdapter<Flatmate, ContactsAdapter.ViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Flatmate, ContactsAdapter.ViewHolder>(options) {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     protected void onBindViewHolder(@NonNull ContactsAdapter.ViewHolder holder, int position, @NonNull Flatmate model) {
                         holder.getName().setText(model.getFullname());
                         holder.getMoneySpent().setText(model.getMoneyspent() + "");
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:" + model.getPhonenumber()));
+                        context.startActivity(intent);
 
 
                     }
@@ -373,5 +393,10 @@ public class DataStorageImpl implements DataStorage {
                 };
         adapter.startListening();
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void giveContext(Context context) {
+        this.context = context;
     }
 }

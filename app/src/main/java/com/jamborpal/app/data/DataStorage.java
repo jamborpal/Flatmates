@@ -1,5 +1,7 @@
 package com.jamborpal.app.data;
 
+import android.content.Context;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jamborpal.app.model.Chore;
@@ -26,5 +28,7 @@ public interface DataStorage {
     void getMessages(RecyclerView recyclerView);
     void getTenants(RecyclerView recyclerView);
     void getEvents(RecyclerView recyclerView);
+
+    void giveContext(Context context);
 
 }

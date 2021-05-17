@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -35,6 +36,7 @@ public class LoginHandler extends AppCompatActivity {
     private EditText password;
     ProgressDialog TempDialog;
     CountDownTimer countDownTimer;
+   public static TextView error;
 
     public LoginHandler() {
         this.loginViewModel = new LoginViewModel();
@@ -48,6 +50,7 @@ public class LoginHandler extends AppCompatActivity {
         //initialize fields
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        error = findViewById(R.id.error_login);
         this.loginViewModel = new LoginViewModel();
 
         TempDialog = new ProgressDialog(LoginHandler.this);
@@ -62,7 +65,8 @@ public class LoginHandler extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!username.getText().toString().equals("") && !password.getText().toString().equals("")){
+                if (!username.getText().toString().equals("") && !password.getText().toString().equals("")) {
+
                     countDownTimer = new CountDownTimer(2000, 1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
@@ -77,17 +81,22 @@ public class LoginHandler extends AppCompatActivity {
                     }.start();
                     TempDialog.show();
                     Login(username.getText().toString(), password.getText().toString());
+
+
                 }
             }
         });
     }
 
     public void Login(String username, String password) {
-        loginViewModel.login(username, password);
-        Intent intent = new Intent(this, MainActivity.class);
-        TempDialog.dismiss();
-        startActivityForResult(intent, RESULT_OK);
-        finish();
+
+            loginViewModel.login(username, password);
+            Intent intent = new Intent(this, MainActivity.class);
+            TempDialog.dismiss();
+            startActivityForResult(intent, RESULT_OK);
+            finish();
+
+
 
 
     }
