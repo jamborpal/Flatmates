@@ -27,6 +27,7 @@ As far as the requirements of the application are concered, they have been MoSCo
 |8.|As a flatmate, I want to know when my flatmates are home, so that I know if I am home alone.|
 
 Non functional requirements:
-Markup: *The app should support the follwing languages: English and Hungarian.
-*The app should support devices from SDK version from API level 27.
+ Markup : *The app should support the follwing languages: English and Hungarian.
+          *The app should support devices from SDK version from API level 27.
+
 
