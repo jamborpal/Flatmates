@@ -15,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvlatestexpenses"
         android:layout_width="match_parent"

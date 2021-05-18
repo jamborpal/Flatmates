@@ -29,6 +29,10 @@ public interface DataStorage {
     void getTenants(RecyclerView recyclerView);
     void getEvents(RecyclerView recyclerView);
 
+    void setPhone(String phone);
+    void setEmail(String email);
+    void setPassword(String password);
+
     void giveContext(Context context);
 
 }

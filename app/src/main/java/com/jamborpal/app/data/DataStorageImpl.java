@@ -395,6 +395,21 @@ public class DataStorageImpl implements DataStorage {
     }
 
     @Override
+    public void setPhone(String phone) {
+        myRef.child(flatID).child("tenants").child(getFlatmateID()).child("phonenumber").setValue(phone);
+    }
+
+    @Override
+    public void setEmail(String email) {
+        myRef.child(flatID).child("tenants").child(getFlatmateID()).child("email").setValue(email);
+    }
+
+    @Override
+    public void setPassword(String password) {
+        myRef.child(flatID).child("tenants").child(getFlatmateID()).child("password").setValue(password);
+    }
+
+    @Override
     public void giveContext(Context context) {
         this.context = context;
     }

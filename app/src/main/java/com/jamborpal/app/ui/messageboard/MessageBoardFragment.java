@@ -45,7 +45,7 @@ public class MessageBoardFragment extends Fragment {
                 if (!message.getText().toString().isEmpty()) {
                     messageBoardViewModel.sendMessage(message.getText().toString());
                     message.setText("");
-                   messageList.scrollToPosition( 19);
+                   messageList.scrollToPosition( 20);
                 }
 
 

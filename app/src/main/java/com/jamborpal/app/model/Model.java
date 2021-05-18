@@ -36,15 +36,18 @@ public interface Model {
     void OrganizeEvent(Event event);
 
 
-
     String getAddress();
 
     void getTenants(RecyclerView recyclerView);
 
 
     void getEvents(RecyclerView recyclerView);
+
     void deleteEvent(String title, String description);
 
+    void ChangePhone(String phone);
+    void ChangeEmail(String email);
+    void ChangePassword(String password);
 
     public String getFlatmateID();
 }

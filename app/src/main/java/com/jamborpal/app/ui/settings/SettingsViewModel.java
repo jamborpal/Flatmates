@@ -13,5 +13,16 @@ public class SettingsViewModel extends ViewModel {
         this.model = ModelManager.getInstance();
     }
 
+    public void SavePhone(String number) {
+        model.ChangePhone(number);
+    }
+
+    public void SaveEmail(String email) {
+        model.ChangeEmail(email);
+    }
+    public void SavePassword(String password){
+        model.ChangePassword(password);
+    }
+
 
 }

@@ -12,7 +12,7 @@ import com.jamborpal.app.R;
 
 public class LandlordHandler extends AppCompatActivity {
 
-    EditText name;
+
     EditText phone;
     EditText email;
     Button saveing;
@@ -23,7 +23,7 @@ public class LandlordHandler extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landlord);
         saveing = this.findViewById(R.id.saveLandlord);
-        name = findViewById(R.id.fullname_landlord);
+
         phone = findViewById(R.id.phoneNum_landlord);
         email = findViewById(R.id.email_landlord);
         Intent intent = new Intent(this, LocationHandler.class);
@@ -32,7 +32,6 @@ public class LandlordHandler extends AppCompatActivity {
         saveing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("LANDLORD_NAME", name.getText().toString());
                 intent.putExtra("LANDLORD_EMAIL", email.getText().toString());
                 intent.putExtra("LANDLORD_PHONE", phone.getText().toString());
 

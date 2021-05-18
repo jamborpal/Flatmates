@@ -71,5 +71,6 @@
     <string name="landlord">Landlord</string>
     <string name="save">Save</string>
     <string name="credentials">CREDENTIALS</string>
+    <string name="change_your_phone_number">Change your phone number</string>
 
 </resources>

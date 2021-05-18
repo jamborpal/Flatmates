@@ -58,7 +58,8 @@ public class ModelManager implements Model {
 
     @Override
     public String getFullName() {
-        return "";  }
+        return "";
+    }
 
 
     @Override
@@ -130,7 +131,20 @@ public class ModelManager implements Model {
         database.deleteEvent(title, description);
     }
 
+    @Override
+    public void ChangePhone(String phone) {
+        database.setPhone(phone);
+    }
 
+    @Override
+    public void ChangeEmail(String email) {
+        database.setEmail(email);
+    }
+
+    @Override
+    public void ChangePassword(String password) {
+        database.setPassword(password);
+    }
 
 
     public String getFlatmateID() {

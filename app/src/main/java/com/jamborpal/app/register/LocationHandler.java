@@ -68,7 +68,7 @@ public class LocationHandler extends AppCompatActivity {
         this.flatmate = new Flatmate(getIntent().getStringExtra("FLATMATE_FULLNAME"),
                 getIntent().getStringExtra("FLATMATE_EMAIL"),
                 getIntent().getStringExtra("FLATMATE_USERNAME"),
-                getIntent().getStringExtra("FLATMATE_PASSWORD"), Long.parseLong(getIntent().getStringExtra("FLATMATE_PHONENUMBER")));
+                getIntent().getStringExtra("FLATMATE_PASSWORD"), getIntent().getStringExtra("FLATMATE_PHONENUMBER"));
         this.landlord = null;
 
         //adding onClick listeners to buttons
@@ -152,10 +152,10 @@ public class LocationHandler extends AppCompatActivity {
 
                 }
                 if (!isUsed) {
-                    landlord = new Flatmate(getIntent().getStringExtra("LANDLORD_NAME"),
+                    landlord = new Flatmate(getIntent().getStringExtra("Landlord"),
                             getIntent().getStringExtra("LANDLORD_EMAIL"),
                            "Landlord",
-                            "", Long.parseLong(getIntent().getStringExtra("LANDLORD_PHONE")));
+                            "", getIntent().getStringExtra("LANDLORD_PHONE"));
                     flat = new Flat(flatid.getText().toString(), city.getText().toString(), country.getText().toString(), address.getText().toString());
                     flat.MoveIn(landlord);
                     flat.MoveIn(flatmate);
