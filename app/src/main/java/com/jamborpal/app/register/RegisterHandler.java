@@ -82,8 +82,8 @@ public class RegisterHandler extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                         for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
-                            if (username.getText().toString().equals(Objects.requireNonNull(snapshot2
-                                    .getValue(Flatmate.class)).username)) {
+                            if (username.getText().toString().equals(Objects.requireNonNull(snapshot2.child("username")
+                                    .getValue()))) {
                                 error.setText(R.string.username_used);
                                 checkIfNotCorrect = true;
                                 return;
