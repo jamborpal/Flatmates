@@ -25,6 +25,7 @@ public class ContactsAdapter {
         TextView phoneNumber;
         TextView email;
         TextView moneySpent;
+        Button kickout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -32,9 +33,14 @@ public class ContactsAdapter {
             email = itemView.findViewById(R.id.contact_email);
             moneySpent = itemView.findViewById(R.id.moneyspent);
             phoneNumber = itemView.findViewById(R.id.contact_number);
+            kickout = itemView.findViewById(R.id.kick);
 
 
         }
+
+       public Button getKickout() {
+           return kickout;
+       }
 
        public TextView getMoneySpent() {
            return moneySpent;

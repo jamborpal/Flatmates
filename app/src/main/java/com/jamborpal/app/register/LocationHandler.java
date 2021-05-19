@@ -152,7 +152,7 @@ public class LocationHandler extends AppCompatActivity {
 
                 }
                 if (!isUsed) {
-                    landlord = new Flatmate(getIntent().getStringExtra("Landlord"),
+                    landlord = new Flatmate("Landlord",
                             getIntent().getStringExtra("LANDLORD_EMAIL"),
                            "Landlord",
                             "", getIntent().getStringExtra("LANDLORD_PHONE"));

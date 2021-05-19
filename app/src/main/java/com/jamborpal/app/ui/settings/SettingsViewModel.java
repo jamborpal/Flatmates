@@ -23,6 +23,12 @@ public class SettingsViewModel extends ViewModel {
     public void SavePassword(String password){
         model.ChangePassword(password);
     }
+    public void deleteProfile(){
+        model.removeProfile();
+    }
+    public void deleteFlat(){
+        model.removeFlat();
+    }
 
 
 }

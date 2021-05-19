@@ -132,6 +132,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeFlatmate(String username) {
+        database.removeFlatmate(username);
+    }
+
+    @Override
+    public void removeProfile() {
+        database.removeProfile();
+    }
+
+    @Override
+    public void removeFlat() {
+        database.removeFlat();
+    }
+
+    @Override
     public void ChangePhone(String phone) {
         database.setPhone(phone);
     }

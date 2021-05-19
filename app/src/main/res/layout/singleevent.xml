@@ -7,9 +7,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="132dp"
+        android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:background="@color/lemon_meringue">
+        android:padding="5dp"
+        android:background="@drawable/single_background">
 
         <TextView
             android:id="@+id/event_name"
@@ -69,24 +70,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/event_name" />
-
-        <TextView
-
-            android:id="@+id/textView32"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="@string/by"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/event_description" />
-
-        <TextView
-            android:id="@+id/organizer_name"
-            android:layout_width="188dp"
-            android:layout_height="19dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/textView32"
-            app:layout_constraintTop_toBottomOf="@+id/event_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

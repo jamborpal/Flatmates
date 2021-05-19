@@ -74,5 +74,9 @@
     <string name="change_your_phone_number">Change your phone number</string>
     <string name="change_your_email">Change your email</string>
     <string name="change_your_password">Change your password</string>
+    <string name="dark_mode">Dark mode:</string>
+    <string name="delete_profile">Delete profile</string>
+    <string name="remove_apartment">Remove apartment</string>
+    <string name="kick_out">Kick out</string>
 
 </resources>

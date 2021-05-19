@@ -10,7 +10,8 @@
         android:layout_height="117dp"
         android:layout_margin="15dp"
         android:padding="5dp"
-        android:background="@color/lemon_meringue">
+
+        android:background="@drawable/single_background">
 
 
         <TextView

@@ -7,9 +7,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@color/lemon_meringue">
+        android:background="@drawable/single_background"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/rv_item_name"
@@ -28,27 +29,27 @@
             android:id="@+id/textView35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
             android:text="@string/money_spent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_item_name" />
+            app:layout_constraintStart_toEndOf="@+id/rv_item_name"
+            app:layout_constraintTop_toBottomOf="@+id/contact_number" />
 
         <TextView
             android:id="@+id/moneyspent"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintStart_toEndOf="@+id/textView35"
-            app:layout_constraintTop_toBottomOf="@+id/rv_item_name" />
+            app:layout_constraintTop_toBottomOf="@+id/contact_number" />
 
         <TextView
             android:id="@+id/contact_email"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text=""
             app:layout_constraintStart_toEndOf="@+id/rv_item_name"
             app:layout_constraintTop_toTopOf="parent" />
@@ -58,10 +59,21 @@
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text=""
             app:layout_constraintStart_toEndOf="@+id/rv_item_name"
             app:layout_constraintTop_toBottomOf="@+id/contact_email" />
+
+        <Button
+            android:id="@+id/kick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#CF6262"
+            android:text="@string/kick_out"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_item_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

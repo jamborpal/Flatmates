@@ -36,9 +36,5 @@ public class HomeViewModel extends ViewModel {
 
     }
 
-    public void delete(String ChoreID) {
-        model.deleteChore(ChoreID);
 
-
-    }
 }

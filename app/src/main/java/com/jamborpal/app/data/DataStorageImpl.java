@@ -1,15 +1,19 @@
 package com.jamborpal.app.data;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -26,12 +30,15 @@ import com.jamborpal.app.model.Chore;
 import com.jamborpal.app.model.Event;
 import com.jamborpal.app.model.Expense;
 import com.jamborpal.app.model.Flatmate;
+import com.jamborpal.app.ui.contact.ContactFragment;
 import com.jamborpal.app.ui.contact.ContactsAdapter;
 import com.jamborpal.app.ui.events.EventAdapter;
 import com.jamborpal.app.ui.home.CostAdapter;
 import com.jamborpal.app.ui.home.OwnChoresAdapter;
 import com.jamborpal.app.ui.messageboard.MessageAdapter;
 import com.jamborpal.app.ui.tasks.TaskAdapter;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +50,6 @@ public class DataStorageImpl implements DataStorage {
     private String flatmateID;
     private String flatAddress;
     private Flatmate flatmate;
-    private Context context;
 
 
     public DataStorageImpl() {
@@ -65,7 +71,7 @@ public class DataStorageImpl implements DataStorage {
     @Override
     public void retrieveUser(String username, String password) {
 
-        try{
+        try {
             myRef.addValueEventListener(new ValueEventListener() {
 
                 @Override
@@ -82,8 +88,7 @@ public class DataStorageImpl implements DataStorage {
                                 setFlatUsed(snapshot1.getKey());
                                 return;
 
-                            }
-                            else{
+                            } else {
 
                             }
                         }
@@ -169,6 +174,37 @@ public class DataStorageImpl implements DataStorage {
                 Log.e("Getting chores error", error.getDetails());
             }
         });
+    }
+
+    @Override
+    public void removeFlatmate(String username) {
+        myRef.child(flatID).child("tenants").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+
+                    if (snapshot1.child("username").getValue().equals(username)) {
+                        snapshot1.getRef().setValue(null);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public void removeProfile() {
+        myRef.child(flatID).child("tenants").child(getFlatmateID()).setValue(null);
+    }
+
+    @Override
+    public void removeFlat() {
+        myRef.child(flatID).setValue(null);
     }
 
     @Override
@@ -330,7 +366,7 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public void getTenants(RecyclerView recyclerView) {
-
+ContactFragment contactFragment = new ContactFragment();
         Query query = myRef
                 .child(flatID).child("tenants")
                 .limitToLast(50);
@@ -344,8 +380,16 @@ public class DataStorageImpl implements DataStorage {
                         holder.getName().setText(model.getFullname());
                         holder.getMoneySpent().setText(model.getMoneyspent() + "");
                         holder.getEmail().setText(model.getEmail());
-                        holder.getPhoneNumber().setText(model.getPhonenumber()+"");
+                        holder.getPhoneNumber().setText(model.getPhonenumber() + "");
+                        holder.getKickout().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                               if(!((model.getFlatmateid()+"").equals(getFlatmateID()))){
+                                   removeFlatmate(model.getUsername());
+                               }
 
+                            }
+                        });
 
                     }
 
@@ -358,6 +402,8 @@ public class DataStorageImpl implements DataStorage {
                 };
         adapter.startListening();
         recyclerView.setAdapter(adapter);
+
+
     }
 
     @Override
@@ -409,8 +455,4 @@ public class DataStorageImpl implements DataStorage {
         myRef.child(flatID).child("tenants").child(getFlatmateID()).child("password").setValue(password);
     }
 
-    @Override
-    public void giveContext(Context context) {
-        this.context = context;
-    }
 }

@@ -1,5 +1,6 @@
 package com.jamborpal.app.ui.contact;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +29,8 @@ import com.jamborpal.app.data.DataStorage;
 import com.jamborpal.app.data.DataStorageImpl;
 import com.jamborpal.app.model.Flatmate;
 import com.jamborpal.app.ui.home.HomeViewModel;
+
+import org.jetbrains.annotations.NotNull;
 
 public class ContactFragment extends Fragment {
     private ContactViewModel contactViewModel;
@@ -42,6 +46,8 @@ public class ContactFragment extends Fragment {
         contactList.hasFixedSize();
         contactList.setLayoutManager(new LinearLayoutManager(getActivity()));
         contactViewModel.getTenants(contactList);
+
+
         return root;
     }
 }

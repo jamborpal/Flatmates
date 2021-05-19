@@ -17,6 +17,9 @@ public interface DataStorage {
 
     void deleteChore(String ChoreID);
     void deleteEvent(String title, String description);
+    void removeFlatmate(String username);
+    void removeProfile();
+    void removeFlat();
     String getFlatmateID();
     String getAddress();
 
@@ -33,6 +36,5 @@ public interface DataStorage {
     void setEmail(String email);
     void setPassword(String password);
 
-    void giveContext(Context context);
 
 }
