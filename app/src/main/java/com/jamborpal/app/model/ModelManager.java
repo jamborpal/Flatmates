@@ -44,9 +44,18 @@ public class ModelManager implements Model {
     @Override
     public boolean login(String username, String password) {
 
-       return database.retrieveUser(username, password);
+        return database.retrieveUser(username, password);
     }
 
+    @Override
+    public void saveLandLordEmail(String email) {
+        database.saveLandLordEmail(email);
+    }
+
+    @Override
+    public void saveLandLordPhone(String phone) {
+        database.saveLandLordPhone(phone);
+    }
 
 
     @Override

@@ -13,7 +13,9 @@ public interface Model {
 
     boolean login(String username, String password);
 
+    void saveLandLordEmail(String email);
 
+    void saveLandLordPhone(String phone);
 
     void AddExpense(Expense expense);
 
@@ -45,11 +47,17 @@ public interface Model {
     void getEvents(RecyclerView recyclerView);
 
     void deleteEvent(String title, String description);
+
     void removeFlatmate(String username);
+
     void removeProfile();
+
     void removeFlat();
+
     void ChangePhone(String phone);
+
     void ChangeEmail(String email);
+
     void ChangePassword(String password);
 
     public String getFlatmateID();

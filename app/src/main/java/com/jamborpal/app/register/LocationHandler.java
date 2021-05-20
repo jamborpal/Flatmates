@@ -102,7 +102,7 @@ public class LocationHandler extends AppCompatActivity {
 
     private void goToLandlord() {
         Intent intent = new Intent(this, LandlordHandler.class);
-        intent.putExtra("FLATMATE_USERNAME",   getIntent().getStringExtra("FLATMATE_USERNAME"));
+        intent.putExtra("FLATMATE_USERNAME", getIntent().getStringExtra("FLATMATE_USERNAME"));
         intent.putExtra("FLATMATE_PASSWORD", getIntent().getStringExtra("FLATMATE_PASSWORD"));
         intent.putExtra("FLATMATE_FULLNAME", getIntent().getStringExtra("FLATMATE_FULLNAME"));
         intent.putExtra("FLATMATE_EMAIL", getIntent().getStringExtra("FLATMATE_EMAIL"));
@@ -128,7 +128,6 @@ public class LocationHandler extends AppCompatActivity {
 
             }
         });
-        //sending the current user and flat to the MainActivity
 
         startActivity(intent);
         finish();
@@ -151,10 +150,15 @@ public class LocationHandler extends AppCompatActivity {
                     }
 
                 }
-                if (!isUsed) {
+                if (!isUsed && !flatid.getText().toString().equals("")
+                        && !city.getText().toString().equals("") && !country.getText().toString().equals("")
+                        &&! address.getText().toString().equals("")) {
+                    System.out.println(!(flatid.getText().toString().equals("")
+                            && city.getText().toString().equals("") && country.getText().toString().equals("")
+                            && address.getText().toString().equals("")));
                     landlord = new Flatmate("Landlord",
                             getIntent().getStringExtra("LANDLORD_EMAIL"),
-                           "Landlord",
+                            "Landlord",
                             "", getIntent().getStringExtra("LANDLORD_PHONE"));
                     flat = new Flat(flatid.getText().toString(), city.getText().toString(), country.getText().toString(), address.getText().toString());
                     flat.MoveIn(landlord);
@@ -164,6 +168,8 @@ public class LocationHandler extends AppCompatActivity {
                     intent.putExtra("FLAT_IN_USE", flat);
                     startActivity(intent);
                     finish();
+                } else {
+                    error.setText(R.string.fill);
                 }
             }
 

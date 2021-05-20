@@ -68,7 +68,7 @@
     <string name="login_error">Please check your credentials.</string>
     <string name="phone_number2">Phone number</string>
     <string name="valid_email">Use a valid email address</string>
-    <string name="landlord">Landlord</string>
+    <string name="landlord">Landlord info</string>
     <string name="save">Save</string>
     <string name="credentials">CREDENTIALS</string>
     <string name="change_your_phone_number">Change your phone number</string>
@@ -79,5 +79,7 @@
     <string name="kick_out">Kick out</string>
     <string name="fill">Fill out all the fields</string>
     <string name="login_exists">Not valid credentials or profile does not exist</string>
+    <string name="change_landlord_s_email">Change landlord email</string>
+    <string name="change_landlord_phone">Change landlord phone</string>
 
 </resources>

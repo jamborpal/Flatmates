@@ -35,6 +35,10 @@ public class SettingsFragment extends Fragment {
     private TextView email;
     private String Email = "";
     private TextView pass;
+    private TextView land_email;
+    private String land_e = "";
+    private TextView land_phone;
+    private String land_p = "";
     private String Pass = "";
     private View root;
 
@@ -48,12 +52,15 @@ public class SettingsFragment extends Fragment {
         email = root.findViewById(R.id.change_email);
 
         pass = root.findViewById(R.id.change_pass);
-
+        land_email = root.findViewById(R.id.change_landlord_email);
+        land_phone = root.findViewById(R.id.change_landlord_phone);
         setEmailListener();
         setPassListener();
         setPhoneListener();
         setDeleteFlatListener();
         setDeleteProfileListener();
+        setLand_emailListener();
+        setLand_phoneListener();
         Logout(root);
         return root;
     }
@@ -66,6 +73,82 @@ public class SettingsFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), LoginHandler.class);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+    }
+
+    private void setLand_phoneListener() {
+        land_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                builder.setTitle("New phone number for the landlord");
+
+                final EditText input = new EditText(root.getContext());
+                input.setInputType(InputType.TYPE_CLASS_PHONE);
+                builder.setView(input);
+
+                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (!(input.getText().toString().equals(""))) {
+                            land_p = input.getText().toString();
+                            settingsViewModel.saveLandPhone(land_p);
+                            Toast.makeText(getContext(), "Phone number changed successfully", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+                            Toast.makeText(getContext(), "Try again, provide a phone number", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            }
+        });
+    }
+
+    private void setLand_emailListener() {
+        land_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                builder.setTitle("New email for the landlord");
+
+                final EditText input = new EditText(root.getContext());
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (!(input.getText().toString().equals(""))) {
+                            land_e = input.getText().toString();
+                            settingsViewModel.saveLandEmail(land_e);
+                            Toast.makeText(getContext(), "Email changed successfully", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+                            Toast.makeText(getContext(), "Try again, provide an email", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
             }
         });
     }
@@ -200,7 +283,8 @@ public class SettingsFragment extends Fragment {
             }
         });
     }
-    private void setDeleteProfileListener(){
+
+    private void setDeleteProfileListener() {
         Intent intent = new Intent(getActivity(), LoginHandler.class);
         final Button deleteProf = root.findViewById(R.id.delete_profile);
         deleteProf.setOnClickListener(new View.OnClickListener() {
@@ -225,7 +309,8 @@ public class SettingsFragment extends Fragment {
         });
 
     }
-    private void setDeleteFlatListener(){
+
+    private void setDeleteFlatListener() {
         Intent intent = new Intent(getActivity(), LoginHandler.class);
         final Button deleteFlat = root.findViewById(R.id.delete_flat);
         deleteFlat.setOnClickListener(new View.OnClickListener() {
@@ -250,7 +335,6 @@ public class SettingsFragment extends Fragment {
         });
 
     }
-
 
 
 }

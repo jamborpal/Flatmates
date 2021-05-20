@@ -55,6 +55,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_email" />
 
+    <TextView
+        android:id="@+id/change_landlord_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:fontFamily="sans-serif-light"
+        android:padding="10dp"
+        android:text="@string/change_landlord_s_email"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_pass" />
+
+    <TextView
+        android:id="@+id/change_landlord_phone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:fontFamily="sans-serif-light"
+        android:padding="10dp"
+        android:text="@string/change_landlord_phone"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_landlord_email" />
+
     <Button
         android:id="@+id/logout"
         android:layout_width="wrap_content"

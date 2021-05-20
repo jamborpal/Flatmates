@@ -455,4 +455,14 @@ public class DataStorageImpl implements DataStorage {
         myRef.child(flatID).child("tenants").child(getFlatmateID()).child("password").setValue(password);
     }
 
+    @Override
+    public void saveLandLordEmail(String email) {
+        myRef.child(flatID).child("tenants").child("0").child("email").setValue(email);
+    }
+
+    @Override
+    public void saveLandLordPhone(String phone) {
+        myRef.child(flatID).child("tenants").child("0").child("phonenumber").setValue(phone);
+    }
+
 }
