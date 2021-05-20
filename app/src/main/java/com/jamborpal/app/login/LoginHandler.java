@@ -58,7 +58,7 @@ public class LoginHandler extends AppCompatActivity {
         TempDialog.setCancelable(false);
         TempDialog.setProgress(0);
         TempDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        TempDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.YELLOW));
+        TempDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
 
 
         //adding onClick listener to the login button
@@ -82,19 +82,26 @@ public class LoginHandler extends AppCompatActivity {
                     TempDialog.show();
                     Login(username.getText().toString(), password.getText().toString());
 
-
+                } else {
+                    error.setText(R.string.fill);
                 }
+
+
             }
         });
     }
 
-    public void Login(String username, String password) {
 
-        loginViewModel.login(username, password);
-        Intent intent = new Intent(this, MainActivity.class);
-        TempDialog.dismiss();
-        startActivityForResult(intent, RESULT_OK);
-        finish();
+    public void Login(String username, String password) {
+        if (loginViewModel.login(username, password)) {
+            Intent intent = new Intent(this, MainActivity.class);
+            TempDialog.dismiss();
+            startActivityForResult(intent, RESULT_OK);
+            finish();
+        } else {
+            TempDialog.dismiss();
+            error.setText(R.string.login_exists);
+        }
 
 
     }

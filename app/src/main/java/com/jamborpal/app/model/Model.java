@@ -11,7 +11,8 @@ public interface Model {
 
     void sendMessage(String message);
 
-    void login(String username, String password);
+    boolean login(String username, String password);
+
 
 
     void AddExpense(Expense expense);

@@ -1,19 +1,12 @@
 package com.jamborpal.app.data;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -25,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jamborpal.app.R;
-import com.jamborpal.app.login.LoginHandler;
 import com.jamborpal.app.model.Chore;
 import com.jamborpal.app.model.Event;
 import com.jamborpal.app.model.Expense;
@@ -42,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class DataStorageImpl implements DataStorage {
     private FirebaseDatabase database;
@@ -50,7 +43,7 @@ public class DataStorageImpl implements DataStorage {
     private String flatmateID;
     private String flatAddress;
     private Flatmate flatmate;
-
+    boolean check = false;
 
     public DataStorageImpl() {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -69,7 +62,7 @@ public class DataStorageImpl implements DataStorage {
 
 
     @Override
-    public void retrieveUser(String username, String password) {
+    public boolean retrieveUser(String username, String password) {
 
         try {
             myRef.addValueEventListener(new ValueEventListener() {
@@ -80,16 +73,20 @@ public class DataStorageImpl implements DataStorage {
                         for (DataSnapshot snapshot2 : snapshot1.child("tenants").getChildren()) {
                             Flatmate flatmateTemp = snapshot2.getValue(Flatmate.class);
                             if (flatmateTemp.getUsername().equals(username) && flatmateTemp.getPassword().equals(password)) {
-                                flatmate = flatmateTemp;
-                                flatAddress = (String) snapshot1.child("address").getValue() + "," +
-                                        (String) snapshot1.child("city").getValue() + ","
-                                        + (String) snapshot1.child("country").getValue();
-                                setLoggedInUser(snapshot2.getKey());
-                                setFlatUsed(snapshot1.getKey());
-                                return;
+                                check = true;
+                                if (check) {
+                                    flatmate = flatmateTemp;
+                                    flatAddress = (String) snapshot1.child("address").getValue() + "," +
+                                            (String) snapshot1.child("city").getValue() + ","
+                                            + (String) snapshot1.child("country").getValue();
+                                    setLoggedInUser(snapshot2.getKey());
+                                    setFlatUsed(snapshot1.getKey());
+                                    return;
+                                }
+
 
                             } else {
-
+                                check = false;
                             }
                         }
 
@@ -104,6 +101,8 @@ public class DataStorageImpl implements DataStorage {
 
             System.out.println(e.getMessage());
         }
+        return check;
+
     }
 
     @Override
@@ -281,6 +280,7 @@ public class DataStorageImpl implements DataStorage {
         recyclerView.setAdapter(adapter);
     }
 
+
     @Override
     public void getChoresByFlatmate(RecyclerView recyclerView) {
         Query query = myRef
@@ -366,7 +366,7 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public void getTenants(RecyclerView recyclerView) {
-ContactFragment contactFragment = new ContactFragment();
+        ContactFragment contactFragment = new ContactFragment();
         Query query = myRef
                 .child(flatID).child("tenants")
                 .limitToLast(50);
@@ -384,9 +384,9 @@ ContactFragment contactFragment = new ContactFragment();
                         holder.getKickout().setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                               if(!((model.getFlatmateid()+"").equals(getFlatmateID()))){
-                                   removeFlatmate(model.getUsername());
-                               }
+                                if (!((model.getFlatmateid() + "").equals(getFlatmateID()))) {
+                                    removeFlatmate(model.getUsername());
+                                }
 
                             }
                         });

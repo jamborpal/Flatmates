@@ -1,7 +1,5 @@
 package com.jamborpal.app.data;
 
-import android.content.Context;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jamborpal.app.model.Chore;
@@ -9,7 +7,8 @@ import com.jamborpal.app.model.Event;
 import com.jamborpal.app.model.Expense;
 
 public interface DataStorage {
-    void retrieveUser(String username, String password);
+    boolean retrieveUser(String username, String password);
+
     void addExpense(Expense expense);
     void addChore(Chore chore);
     void addEvent(Event event);

@@ -1,7 +1,5 @@
 package com.jamborpal.app.model;
 
-import android.util.Log;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jamborpal.app.data.DataStorage;
@@ -44,10 +42,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void login(String username, String password) {
+    public boolean login(String username, String password) {
 
-        database.retrieveUser(username, password);
+       return database.retrieveUser(username, password);
     }
+
 
 
     @Override

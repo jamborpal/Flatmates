@@ -95,9 +95,10 @@
     <TextView
         android:id="@+id/error_login"
         android:layout_width="300dp"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:text=""
+        android:textColor="#FF0000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 

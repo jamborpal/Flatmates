@@ -22,8 +22,9 @@ public class LoginViewModel extends ViewModel {
         this.model = ModelManager.getInstance();
     }
 
-    public void login(String username,String password) {
-          model.login(username, password);
+    public boolean login(String username,String password) {
+          return model.login(username, password);
     }
+
 
 }

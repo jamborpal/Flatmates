@@ -63,7 +63,7 @@ public class RegisterHandler extends AppCompatActivity {
             }
         });
 
-        //initializin variables
+        //initializing variables
         this.checkIfNotCorrect = false;
     }
 

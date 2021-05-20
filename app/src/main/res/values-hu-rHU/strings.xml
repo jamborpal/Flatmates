@@ -54,4 +54,18 @@
     <string name="by">Szervező</string>
     <string name="add_a_new_task">Teendő hozzáadása</string>
     <string name="home">Otthon</string>
+    <string name="phone_number2">Telefonszám</string>
+    <string name="valid_email">Használj egy létező email címet</string>
+    <string name="landlord">Tulajdonos</string>
+    <string name="save">Mentés</string>
+    <string name="credentials">ADATOK</string>
+    <string name="change_your_phone_number">Változtassa meg a telefonszámát</string>
+    <string name="change_your_email">Változtassa meg az email címét</string>
+    <string name="change_your_password">Változtassa meg a jelszavát</string>
+    <string name="delete_profile">Profil törlése</string>
+    <string name="remove_apartment">Apartman törlése</string>
+    <string name="kick_out">Eltávolítás</string>
+    <string name="fill">Töltse ki az összes mezőt</string>
+    <string name="login_exists">A megadott adatok helytelenek vagy a profil nem létezik</string>
+    <string name="login_error">Nézze át az adatait</string>
 </resources>
