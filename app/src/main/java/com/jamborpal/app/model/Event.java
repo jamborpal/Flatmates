@@ -4,17 +4,15 @@ public class Event {
     public String title;
     public String description;
     public String time;
-    public String organiser;
 
     public Event() {
 
     }
 
-    public Event(String title, String description, String time, String organiser) {
+    public Event(String title, String description, String time) {
         this.title = title;
         this.description = description;
         this.time = time;
-        this.organiser = organiser;
     }
 
     public String getTitle() {
@@ -41,12 +39,5 @@ public class Event {
         this.time = time;
     }
 
-    public String getOrganiser() {
-        return organiser;
-    }
-
-    public void setOrganiser(String organiser) {
-        this.organiser = organiser;
-    }
 
 }

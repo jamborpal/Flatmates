@@ -2,7 +2,6 @@ package com.jamborpal.app.ui.settings;
 
 import androidx.lifecycle.ViewModel;
 
-import com.jamborpal.app.model.Flatmate;
 import com.jamborpal.app.model.Model;
 import com.jamborpal.app.model.ModelManager;
 

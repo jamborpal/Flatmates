@@ -41,9 +41,7 @@ public class SettingsFragment extends Fragment {
                 new ViewModelProvider(this).get(SettingsViewModel.class);
         root = inflater.inflate(R.layout.fragment_settings, container, false);
         number = root.findViewById(R.id.change_phone);
-
         email = root.findViewById(R.id.change_email);
-
         pass = root.findViewById(R.id.change_pass);
         land_email = root.findViewById(R.id.change_landlord_email);
         land_phone = root.findViewById(R.id.change_landlord_phone);
@@ -235,19 +233,13 @@ public class SettingsFragment extends Fragment {
 
                 final EditText password1 = new EditText(root.getContext());
                 password1.setHint("Password");
-                layout.addView(password1); // Notice this is an add method
+                layout.addView(password1);
 
 
                 final EditText password = new EditText(root.getContext());
                 password.setHint("Repeat password");
-                layout.addView(password); // Another add method
+                layout.addView(password);
 
-
-               /* final EditText input1 = new EditText(root.getContext());
-                input1.setInputType(InputType.TYPE_CLASS_TEXT);
-                builder.setView(input1);
-                final EditText input2 = new EditText(root.getContext());
-                input2.setInputType(InputType.TYPE_CLASS_TEXT);*/
                 builder.setView(layout);
 
                 builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {

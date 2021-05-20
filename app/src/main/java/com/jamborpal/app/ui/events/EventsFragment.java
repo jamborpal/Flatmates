@@ -25,7 +25,6 @@ public class EventsFragment extends Fragment {
     private EditText description;
     private EditText time;
     private RecyclerView eventList;
-    private EventAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         eventsViewModel = new ViewModelProvider(this).get(EventsViewModel.class);
@@ -57,7 +56,7 @@ public class EventsFragment extends Fragment {
     }
 
     public void AddEvent() {
-        Event event = new Event(title.getText().toString(), description.getText().toString(), time.getText().toString(), eventsViewModel.getLoggedInUser());
+        Event event = new Event(title.getText().toString(), description.getText().toString(), time.getText().toString());
         title.setText("");
         description.setText("");
         time.setText("");

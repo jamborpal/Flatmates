@@ -50,17 +50,12 @@ public class DataStorageImpl implements DataStorage {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference().child("flats");
     }
-
     private void setLoggedInUser(String id) {
         this.flatmateID = id;
-
     }
-
     private void setFlatUsed(String id) {
         this.flatID = id;
     }
-
-
     @Override
     public boolean retrieveUser(String username, String password) {
 
@@ -76,9 +71,9 @@ public class DataStorageImpl implements DataStorage {
                                 check = true;
                                 if (check) {
                                     flatmate = flatmateTemp;
-                                    flatAddress = (String) snapshot1.child("address").getValue() + "," +
-                                            (String) snapshot1.child("city").getValue() + ","
-                                            + (String) snapshot1.child("country").getValue();
+                                    flatAddress = snapshot1.child("address").getValue() + "," +
+                                            snapshot1.child("city").getValue() + ","
+                                            + snapshot1.child("country").getValue();
                                     setLoggedInUser(snapshot2.getKey());
                                     setFlatUsed(snapshot1.getKey());
                                     return;

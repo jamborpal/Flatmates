@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,10 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.jamborpal.app.R;
 
 public class MessageBoardFragment extends Fragment {
@@ -38,14 +33,14 @@ public class MessageBoardFragment extends Fragment {
 
         message = root.findViewById(R.id.type_message);
         send = root.findViewById(R.id.send);
-       messageBoardViewModel.getMessages(messageList);
+        messageBoardViewModel.getMessages(messageList);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!message.getText().toString().isEmpty()) {
                     messageBoardViewModel.sendMessage(message.getText().toString());
                     message.setText("");
-                   messageList.scrollToPosition( 20);
+                    messageList.scrollToPosition(20);
                 }
 
 

@@ -19,9 +19,6 @@ public class EventsViewModel extends ViewModel {
     public void AddEvent(Event event) {
         model.OrganizeEvent(event);
     }
-    public String getLoggedInUser(){
-        return "model.getFlatmateNameByID()";
-    }
     public void getEvents(RecyclerView recyclerView){
          model.getEvents(recyclerView);
     }

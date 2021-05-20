@@ -1,9 +1,5 @@
 package com.jamborpal.app.ui.takemehome;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.jamborpal.app.model.Model;
@@ -13,10 +9,11 @@ public class TakeMeHomeViewModel extends ViewModel {
     private Model model;
 
     public TakeMeHomeViewModel() {
-       model = ModelManager.getInstance();
+        model = ModelManager.getInstance();
     }
-    public String getAddress(){
-        String address= model.getAddress();
+
+    public String getAddress() {
+        String address = model.getAddress();
         return address;
     }
 

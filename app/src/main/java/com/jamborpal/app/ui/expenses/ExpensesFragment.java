@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.google.android.gms.common.internal.Objects;
 import com.jamborpal.app.R;
 import com.jamborpal.app.model.Expense;
 
@@ -34,6 +32,7 @@ public class ExpensesFragment extends Fragment {
         this.description = root.findViewById(R.id.expense_description);
         this.expens = root.findViewById(R.id.expense_price);
         final Button addExpense = root.findViewById(R.id.add_expense);
+        //initializing Button
         addExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -33,16 +33,13 @@ import com.jamborpal.app.ui.home.HomeViewModel;
 import org.jetbrains.annotations.NotNull;
 
 public class ContactFragment extends Fragment {
-    private ContactViewModel contactViewModel;
-    private RecyclerView contactList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        contactViewModel =
-                new ViewModelProvider(this).get(ContactViewModel.class);
+        ContactViewModel contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
         View root = inflater.inflate(R.layout.fragment_contact, container, false);
-        contactList = root.findViewById(R.id.rv);
+        RecyclerView contactList = root.findViewById(R.id.rv);
         contactList.hasFixedSize();
         contactList.setLayoutManager(new LinearLayoutManager(getActivity()));
         contactViewModel.getTenants(contactList);

@@ -22,18 +22,12 @@ public class HomeViewModel extends ViewModel {
 
     public void getChoresByUser(RecyclerView recyclerView) {
 
-    model.getChoresByFlatmate(recyclerView);
-
-
-
-
+        model.getChoresByFlatmate(recyclerView);
     }
 
     public void getExpenses(RecyclerView recyclerView) {
 
-            model.getExpenses(recyclerView);
-
-
+        model.getExpenses(recyclerView);
     }
 
 

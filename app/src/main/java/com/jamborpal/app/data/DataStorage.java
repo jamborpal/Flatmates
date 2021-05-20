@@ -7,8 +7,10 @@ import com.jamborpal.app.model.Event;
 import com.jamborpal.app.model.Expense;
 
 public interface DataStorage {
+    //login
     boolean retrieveUser(String username, String password);
 
+    //adding
     void addExpense(Expense expense);
 
     void addChore(Chore chore);
@@ -17,6 +19,7 @@ public interface DataStorage {
 
     void addMessage(String message);
 
+    //deleting
     void deleteChore(String ChoreID);
 
     void deleteEvent(String title, String description);
@@ -27,12 +30,15 @@ public interface DataStorage {
 
     void removeFlat();
 
+    //getters
     String getFlatmateID();
 
     String getAddress();
 
+    //set chore to a flatmate
     void assignChore(String choreID);
 
+    //get lists to recycleviews
     void getChoresNotAssigned(RecyclerView recyclerView);
 
     void getChoresByFlatmate(RecyclerView recyclerView);
@@ -45,6 +51,7 @@ public interface DataStorage {
 
     void getEvents(RecyclerView recyclerView);
 
+    //setters
     void setPhone(String phone);
 
     void setEmail(String email);

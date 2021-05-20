@@ -68,4 +68,6 @@
     <string name="fill">Töltse ki az összes mezőt</string>
     <string name="login_exists">A megadott adatok helytelenek vagy a profil nem létezik</string>
     <string name="login_error">Nézze át az adatait</string>
+    <string name="change_landlord_s_email">Változtassa meg a tulajdonos email címét</string>
+    <string name="change_landlord_phone">Változtassa meg a tulajdonos telefonszámát</string>
 </resources>
