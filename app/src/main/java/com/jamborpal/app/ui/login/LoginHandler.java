@@ -81,15 +81,16 @@ public class LoginHandler extends AppCompatActivity {
 
 
     public void Login(String username, String password) {
-        if (!loginViewModel.login(username, password)) {
-            error.setText(R.string.login_exists);
-            TempDialog.dismiss();
-        } else {
+        if (loginViewModel.login(username, password)) {
             Intent intent = new Intent(this, MainActivity.class);
             TempDialog.dismiss();
             startActivityForResult(intent, RESULT_OK);
             finish();
 
+        } else {
+
+            error.setText(R.string.login_exists);
+            TempDialog.dismiss();
         }
 
 
