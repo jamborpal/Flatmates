@@ -7,21 +7,21 @@ The issue of sharing tasks or expenses is something that is not often talked abo
 As far as the requirements of the application are concered, they have been MoSCoW prioritized and presented below. The actor is the flatmate using the app.
 
 
-|          No.          |                              User story                              |
-|-----------------------|----------------------------------------------------------------------|
+|          No.          |                              User story                              |Progress|
+|-----------------------|----------------------------------------------------------------------|--------|
 ||Must have|
-|1.|As a flatmate, I want to be able to share household costs with my flatmates, so that expenses are equal.|
-|2.|As a flatmate, I want to be able to share tasks with my flatmates, so I don’t have to do all of them alone.|
-|3.|As a flatmate, I want to be able to have my own account so that my data is saved|
+|1.|As a flatmate, I want to be able to share household costs with my flatmates, so that expenses are equal.|DONE|
+|2.|As a flatmate, I want to be able to share tasks with my flatmates, so I don’t have to do all of them alone.|DONE|
+|3.|As a flatmate, I want to be able to have my own account so that my data is saved|DONE|
 ||Should have|
-|5.|As a flatmate, I want to be able to see the location of my home so I can navigate back in case I am lost.|
-|7.|As a flatmate, I want to be able to add and remove flatmates in case of tenant changes.|
-|9.|As a flatmate, I want to be able to organize events with my flatmates, so that we are not strangers living together.|
-|10.|As a flatmate, I want to be able to ask questions/talk to my flatmates, so that it’s easier to keep in touch.|
+|5.|As a flatmate, I want to be able to see the location of my home so I can navigate back in case I am lost.|DONE|
+|7.|As a flatmate, I want to be able to add and remove flatmates in case of tenant changes.|DONE|
+|9.|As a flatmate, I want to be able to organize events with my flatmates, so that we are not strangers living together.|DONE|
+|10.|As a flatmate, I want to be able to ask questions/talk to my flatmates, so that it’s easier to keep in touch.|DONE|
 ||Could have|
-|13.|As a flatmate, I want to be able to contact my flatmates through email or phone if needed.|
-|14.|As a flatmate, I want to be able to contact my landlord through email or phone if needed.|
-|12.|As a flatmate, I want to be able to schedule meetings to discuss apartment issues, so that they are easily resolved.|
+|13.|As a flatmate, I want to be able to contact my flatmates through email or phone if needed.|DONE|
+|14.|As a flatmate, I want to be able to contact my landlord through email or phone if needed.|DONE|
+|12.|As a flatmate, I want to be able to schedule meetings to discuss apartment issues, so that they are easily resolved.|DONE|
 |4.|As a flatmate, I want to be notifed when I have something to do in regards to the apartment, so that I don’t forget.|
 |6.|As a flatmate, I want to be able to notify my flatmates if they are too loud or disturbing, so that I can live peacefully.|
 |11.|As a flatmate, I want to be able to register the rooms and its tenants and common spaces of the flat, so the rooms can be managed accordingly.|
@@ -30,6 +30,8 @@ As far as the requirements of the application are concered, they have been MoSCo
 
 Non functional requirements:
   - The app should support the follwing languages: English and Hungarian.
-  
- - The app should support devices from SDK version from API level 27.
+
+Link to the demostration of the application: https://youtu.be/fzOTElLxj0o
+
+Throughout the developement of the project, the requirements have been reprioritized, as I have realized some would me more important than others and some became unimportant in the scope of the project.
 
