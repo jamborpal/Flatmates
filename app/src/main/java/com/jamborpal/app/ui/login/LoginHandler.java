@@ -1,34 +1,22 @@
-package com.jamborpal.app.login;
+package com.jamborpal.app.ui.login;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.ui.NavigationUI;
 
 import com.jamborpal.app.MainActivity;
 import com.jamborpal.app.R;
-import com.jamborpal.app.model.Flatmate;
-import com.jamborpal.app.register.RegisterHandler;
-
-import java.io.File;
-import java.util.concurrent.CountDownLatch;
+import com.jamborpal.app.ui.register.RegisterHandler;
 
 public class LoginHandler extends AppCompatActivity {
     private LoginViewModel loginViewModel;
@@ -93,14 +81,15 @@ public class LoginHandler extends AppCompatActivity {
 
 
     public void Login(String username, String password) {
-        if (loginViewModel.login(username, password)) {
+        if (!loginViewModel.login(username, password)) {
+            error.setText(R.string.login_exists);
+            TempDialog.dismiss();
+        } else {
             Intent intent = new Intent(this, MainActivity.class);
             TempDialog.dismiss();
             startActivityForResult(intent, RESULT_OK);
             finish();
-        } else {
-            TempDialog.dismiss();
-            error.setText(R.string.login_exists);
+
         }
 
 

@@ -6,9 +6,10 @@ public class Event {
     public String time;
     public String organiser;
 
-    public Event(){
+    public Event() {
 
-}
+    }
+
     public Event(String title, String description, String time, String organiser) {
         this.title = title;
         this.description = description;

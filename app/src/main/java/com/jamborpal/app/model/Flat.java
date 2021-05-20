@@ -6,8 +6,6 @@ import java.util.ArrayList;
 public class Flat implements Serializable {
 
     public String flatID;
-
-
     public String city;
     public String country;
     public String address;
@@ -36,104 +34,6 @@ public class Flat implements Serializable {
     public void MoveIn(Flatmate flatmate) {
         tenants.add(flatmate);
     }
-
-    public void MoveOut(int FlatmateID) {
-        for (int i = 0; i < tenants.size(); i++) {
-            if (tenants.get(i).getFlatmateid() == FlatmateID) {
-                tenants.remove(i);
-            }
-        }
-
-    }
-
-    /*Handling expenses*/
-    public void AddExpense(Expense expense) {
-        expenses.add(expense);
-    }
-
-    public double getAllExpenses() {
-        double all = 0;
-        for (int i = 0; i < expenses.size(); i++) {
-            all += expenses.get(i).getPrice();
-        }
-        return all;
-    }
-
-    public ArrayList<Expense> getExpensesByFlatmate(int FlatmateID) {
-        ArrayList<Expense> expenses = new ArrayList<>();
-        /*for (int i = 0; i < this.expenses.size(); i++) {
-            if (this.expenses.get(i).getBuyer() == FlatmateID) {
-                expenses.add(this.expenses.get(i));
-            }
-        }*/
-        return expenses;
-    }
-
-    public double getExpensesPaidByFlatmate(int FlatmateID) {
-        double expenses = 0;
-       /* for (int i = 0; i < this.expenses.size(); i++) {
-            if (this.expenses.get(i).getBuyer() == FlatmateID) {
-                expenses += (this.expenses.get(i).getPrice());
-            }
-        }*/
-        return expenses;
-    }
-
-    /*Handling chore*/
-    public void AddChore(Chore chore) {
-        chores.add(chore);
-
-    }
-
-    public void MarkChoreDone(int ChoreID) {
-     /*   for (int i = 0; i < chores.size(); i++) {
-            if (chores.get(i).getChoreid() == ChoreID) {
-                chores.get(i).setIsdone(true);
-            }
-        }*/
-    }
-
-    public void AssignChore(int ChoreID, int FlatmateID) {
-      /*  for (int i = 0; i < chores.size(); i++) {
-            if (chores.get(i).getChoreid() == ChoreID) {
-                chores.get(i).setAssignedto(FlatmateID);
-            }
-        }*/
-    }
-
-    public ArrayList<Chore> getChoresByFlatmate(int FlatmateID) {
-        ArrayList<Chore> chores = new ArrayList<>();
-       /* for (int i = 0; i < this.chores.size(); i++) {
-            if (this.chores.get(i).getAssignedto() == FlatmateID) {
-                chores.add(this.chores.get(i));
-            }
-        }*/
-        return chores;
-    }
-
-    public ArrayList<Chore> getNotAssignedChores() {
-        ArrayList<Chore> chores = new ArrayList<>();
-       /* for (int i = 0; i < this.chores.size(); i++) {
-            if (this.chores.get(i).getAssignedto() == 0) {
-                chores.add(this.chores.get(i));
-            }
-        }*/
-        return chores;
-    }
-
-    /*Handling events*/
-    public void OrganizeEvent(Event event) {
-        events.add(event);
-    }
-
-    public void MarkEventFinished(int EventID) {
-       /* for (int i = 0; i < events.size(); i++) {
-            if (events.get(i).getEventid() == EventID) {
-                events.remove(i);
-            }
-        }*/
-    }
-
 
     /*Getters*/
 

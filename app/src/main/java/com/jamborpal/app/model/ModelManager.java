@@ -30,16 +30,6 @@ public class ModelManager implements Model {
         return "LoggedInUser.getEmail()";
     }
 
-    @Override
-    public String getPhoneNumber() {
-        return "LoggedInUser.getPhonenumber()";
-    }
-
-
-    @Override
-    public String getExpensesPaidByFlatmate() {
-        return "LoggedInUser.getMoneyspent()";
-    }
 
     @Override
     public boolean login(String username, String password) {
@@ -133,16 +123,6 @@ public class ModelManager implements Model {
         database.getEvents(recyclerView);
     }
 
-
-    @Override
-    public void deleteEvent(String title, String description) {
-        database.deleteEvent(title, description);
-    }
-
-    @Override
-    public void removeFlatmate(String username) {
-        database.removeFlatmate(username);
-    }
 
     @Override
     public void removeProfile() {

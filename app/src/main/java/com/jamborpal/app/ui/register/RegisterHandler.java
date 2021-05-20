@@ -1,4 +1,4 @@
-package com.jamborpal.app.register;
+package com.jamborpal.app.ui.register;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jamborpal.app.R;
-import com.jamborpal.app.login.LoginHandler;
-import com.jamborpal.app.model.Flatmate;
+import com.jamborpal.app.ui.login.LoginHandler;
 
 import java.util.Objects;
 

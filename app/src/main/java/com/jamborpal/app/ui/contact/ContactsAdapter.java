@@ -1,22 +1,12 @@
 package com.jamborpal.app.ui.contact;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jamborpal.app.R;
-import com.jamborpal.app.login.LoginHandler;
-
-import java.util.ArrayList;
 
 
 public class ContactsAdapter {

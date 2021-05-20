@@ -1,22 +1,9 @@
 package com.jamborpal.app;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Button;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-import com.jamborpal.app.login.LoginHandler;
-import com.jamborpal.app.model.Flatmate;
-import com.jamborpal.app.model.Model;
-import com.jamborpal.app.model.ModelManager;
-import com.jamborpal.app.register.RegisterHandler;
-import com.jamborpal.app.ui.settings.SettingsFragment;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;

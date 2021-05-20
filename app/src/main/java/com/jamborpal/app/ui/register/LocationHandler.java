@@ -1,8 +1,7 @@
-package com.jamborpal.app.register;
+package com.jamborpal.app.ui.register;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,22 +16,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jamborpal.app.MainActivity;
 import com.jamborpal.app.R;
-import com.jamborpal.app.login.LoginHandler;
-import com.jamborpal.app.model.Chore;
-import com.jamborpal.app.model.Event;
-import com.jamborpal.app.model.Expense;
+import com.jamborpal.app.ui.login.LoginHandler;
 import com.jamborpal.app.model.Flat;
 import com.jamborpal.app.model.Flatmate;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 public class LocationHandler extends AppCompatActivity {
     Flatmate flatmate;

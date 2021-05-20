@@ -48,7 +48,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".login.LoginHandler"
+            android:name=".ui.login.LoginHandler"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.App.NoActionBar">
@@ -62,13 +62,13 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".register.RegisterHandler"
+            android:name=".ui.register.RegisterHandler"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".register.LocationHandler"
+            android:name=".ui.register.LocationHandler"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".register.LandlordHandler"
+            android:name=".ui.register.LandlordHandler"
             android:screenOrientation="portrait" />
     </application>
 

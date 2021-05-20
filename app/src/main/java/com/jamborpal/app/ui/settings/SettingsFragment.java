@@ -3,7 +3,6 @@ package com.jamborpal.app.ui.settings;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -16,17 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.jamborpal.app.MainActivity;
 import com.jamborpal.app.R;
-import com.jamborpal.app.login.LoginHandler;
-import com.jamborpal.app.ui.home.HomeViewModel;
+import com.jamborpal.app.ui.login.LoginHandler;
 
 public class SettingsFragment extends Fragment {
     private SettingsViewModel settingsViewModel;

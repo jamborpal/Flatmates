@@ -48,7 +48,6 @@ public class EventAdapter  {
             super(itemView);
             title = itemView.findViewById(R.id.event_name);
             time = itemView.findViewById(R.id.event_time);
-
             desc= itemView.findViewById(R.id.event_description);
             delete = itemView.findViewById(R.id.delete_event);
         }

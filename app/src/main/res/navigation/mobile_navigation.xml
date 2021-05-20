@@ -45,22 +45,22 @@
         tools:layout="@layout/fragment_home" />
     <activity
         android:id="@+id/loginHandler"
-        android:name="com.jamborpal.app.login.LoginHandler"
+        android:name="com.jamborpal.app.ui.login.LoginHandler"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
     <activity
         android:id="@+id/locationHandler"
-        android:name="com.jamborpal.app.register.LocationHandler"
+        android:name="com.jamborpal.app.ui.register.LocationHandler"
         android:label="activity_location"
         tools:layout="@layout/activity_location" />
     <activity
         android:id="@+id/registerHandler"
-        android:name="com.jamborpal.app.register.RegisterHandler"
+        android:name="com.jamborpal.app.ui.register.RegisterHandler"
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
   <activity
       android:id="@+id/landlordHandler"
-      android:name="com.jamborpal.app.register.LandlordHandler"
+      android:name="com.jamborpal.app.ui.register.LandlordHandler"
       android:label="activity_landlord"
       tools:layout="@layout/activity_landlord" />
 

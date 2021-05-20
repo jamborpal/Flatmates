@@ -23,10 +23,6 @@ public interface Model {
 
     String getEmail();
 
-    String getPhoneNumber();
-
-    String getExpensesPaidByFlatmate();
-
     void AddChore(Chore chore);
 
     void deleteChore(String ChoreID);
@@ -43,12 +39,7 @@ public interface Model {
 
     void getTenants(RecyclerView recyclerView);
 
-
     void getEvents(RecyclerView recyclerView);
-
-    void deleteEvent(String title, String description);
-
-    void removeFlatmate(String username);
 
     void removeProfile();
 
@@ -60,5 +51,5 @@ public interface Model {
 
     void ChangePassword(String password);
 
-    public String getFlatmateID();
+    String getFlatmateID();
 }

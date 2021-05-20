@@ -1,4 +1,4 @@
-package com.jamborpal.app.register;
+package com.jamborpal.app.ui.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 

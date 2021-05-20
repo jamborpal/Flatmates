@@ -420,7 +420,6 @@ public class DataStorageImpl implements DataStorage {
                         holder.getTitle().setText(model.getTitle());
                         holder.getDesc().setText(model.getDescription());
                         holder.getTime().setText(model.getTime());
-                        holder.getOrganizer().setText(model.getOrganiser());
                         holder.getDelete().setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

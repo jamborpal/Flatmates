@@ -4,9 +4,6 @@ public class Chore {
     public String title;
     public String description;
     public boolean isdone;
-
-
-
     public String choreID;
     public String assignedto;
 
@@ -60,6 +57,7 @@ public class Chore {
     public void setAssignedto(String assignedto) {
         this.assignedto = assignedto;
     }
+
     public String getChoreID() {
         return choreID;
     }
